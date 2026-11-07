@@ -1,0 +1,15 @@
+{
+  "budgets": {},
+  "wildshard/generator-imports": {
+    "src/shards/far-reach/generators/bake-sky-world.mjs": 4,
+    "src/shards/far-reach/generators/creatures.ts": 1,
+    "src/shards/far-reach/generators/movers.ts": 2,
+    "src/shards/far-reach/generators/rows/items.ts": 1,
+    "src/shards/far-reach/generators/rows/rocFight.ts": 1,
+    "src/shards/far-reach/generators/skyDock.ts": 1
+  },
+  "wildshard/shard-engine-imports": {
+    "src/shards/far-reach/generators/creatures.ts": 1,
+    "src/shards/far-reach/generators/movers.ts": 1
+  }
+}
