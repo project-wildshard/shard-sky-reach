@@ -1,0 +1,394 @@
+[
+  {
+    "file": "test/basis-build-provider.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the native recipe preserves fused arithmetic on both normal build architectures', () => {",
+      "test('the normal checked host supplies original phone bytes through cold and persistent program execution', async () => {"
+    ]
+  },
+  {
+    "file": "test/grid-query-terrain.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "it(`${source.identity.slug}: admits query-only ground without an unused terrain material`, async () => {",
+      "it('still refuses unresolved rendered declarations and legacy family strings', () => {",
+      "it(`${source.identity.slug}: retains declared terrain admission`, () => {"
+    ]
+  },
+  {
+    "file": "test/held-secondary-row.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "test('direct secondaries require a secondary contact and no scripted hook', () => {",
+      "test('native direct gust keeps its independent clock, landing order and restore', async () => {"
+    ]
+  },
+  {
+    "file": "test/painted-ground.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "test('a second shard paints its ground from its own tiles, colour graph, shapes and recipe', async () => {",
+      "test.each([false,true])('cold demanded ground meshes finish before publication (refusal %s)', async refuse => {",
+      "test('rows refuse a missing tile, an unknown colour graph and a recipe without its named mesh', async () => {"
+    ]
+  },
+  {
+    "file": "test/painted-look-files.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "test('all six declared files preserve original bytes, order, width and honest GPU costs',async()=>{",
+      "test('named attributes retain complete predecessor buffers and independently owned native arrays',async()=>{",
+      "test('malformed and missing suffixes refuse before reads or look construction',async()=>{"
+    ]
+  },
+  {
+    "file": "test/runtime-product-loader.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "test('read-only runtime lookups defer descriptor classification until release', async () => {",
+      "test.each([false, true])('every admission phase identifies its actual descriptor or hash (receipt %s)', async trusted => {",
+      "test('inline admission without a descriptor path identifies its cache key without inventing a file', async () => {"
+    ]
+  },
+  {
+    "file": "test/scene-source-author-files.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('owned scene source emitters retain all complete original library wires', async () => {",
+      "test('the sky sources pool each rope bridge as its deck, one rails mesh and one ties mesh', async () => {"
+    ]
+  },
+  {
+    "file": "test/scene-source-contracts.test.ts",
+    "disposition": "ran",
+    "reason": "Public authored Sky source/save admission against released format and sharddev; remove unrelated Signal fixture and private array/hash pins.",
+    "evidence": [
+      "test('both complete native source families admit all five actual author envelopes without changing their wire', async () => {",
+      "test('source admission refuses untyped extensions and malformed native resources in every branch', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-bridge-arithmetic.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('original ARM64 fused sine words survive x64 scalar arithmetic without a host-math fallback', () => {",
+      "test('all original rope rows and binary geometry remain exact after deterministic authoring', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-bridge-readers.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('typed bridge hierarchy lends an independently owned derived pool', async () => {",
+      "test('the route owner reads the declared deck and publishes its current registry', async () => {",
+      "test('typed route values retain the complete current wire and isolate caller mutation', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-bridge-rest-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('cold and persistent bridge hits preserve complete current geometry and hierarchy bytes', async () => {",
+      "test('missing, empty and extra source or cache inventories refuse without a physical geometry or metadata fallback', async () => {",
+      "test('bridge source and cache bundle without generated imports or file/compiler services', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-bridge-scene.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "it('assembles an authored bridge with borrowed materials and optional painted posts', async () => {",
+      "it('registers the playable spans and keeps hover routes board-only', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-creature-phone-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the source owns the full original phone GLB from the three native models and injected paint encoder', async () => {",
+      "test('cold and persistent cache hits detach bytes and rekey every native source, program and encoder', async () => {",
+      "test('an exact encoder identity is mandatory even when a cache adapter offers an existing result', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-creature-rig-output.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the checked native host admits all five complete original rigs on cold and persistent hits', async () => {",
+      "test('publication refuses an absent trusted encoder before reading a native cache', async () => {",
+      "test('publication remains one config-safe chunk without a native tool or generated module import', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-creature-rig-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('all four original rigs preserve complete geometry, skins, bones, metadata and embedded Roc paint', async () => {",
+      "test('native cold/cache hits detach bytes and rekey each source model and the full author program', async () => {",
+      "test('missing, empty and extra input or cache inventories refuse without public rig fallback', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-crown-scene.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "it('detaches every current float32 crown matrix from caller mutations', () => {",
+      "it('assembles the carved arena around its borrowed baked part and collider owner', () => {",
+      "it('keeps the baked arena and collision owner when carved models are unavailable', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-fan-pool-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('cold and persistent fan hits preserve the complete current native output', async () => {",
+      "test('missing, empty and extra native input or cached geometry inventories refuse without a loose-file fallback', async () => {",
+      "test('fan source and cache bundle without generated imports or file/compiler services', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-ground-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the source-derived ground serializes every current hull, scene and registry row', () => {",
+      "test('ground row loans cannot mutate the next caller or retained publication', () => {",
+      "test('ground source bundles without generated metadata or file/compiler services', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-ground-scene.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "it('source contact loans cannot mutate the complete current wire', () => {",
+      "it('streamed ground publishes its content-addressed anchor scene costs', () => {",
+      "it('registers the authored walkable ground while borrowing loaded island geometry', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-held-playback-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the held fan consumes current source channels and isolates caller mutations', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-islet-entry-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('source entry rows detach every caller from both complete current transports', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-map-rest-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the pure map producer refuses an omitted native bank before constructing geometry', async () => {",
+      "test('source islet rest projection detaches callers and refuses incomplete poses', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-meadow-binary.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "test('reusing pure path noise preserves complete meadow and scene bytes', () => {",
+      "test('packed meadow retains bounded channels and current scene ownership', () => {",
+      "test('actual product admission reads the packed meadow once and retires every geometry once', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-mill-rest-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('cold and persistent mill hits preserve every current native output byte', async () => {",
+      "test('missing, empty and extra source or cache inventories refuse without a physical geometry or metadata fallback', async () => {",
+      "test('mill source and cache bundle without generated imports or file/compiler services', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-mill-scene-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the mill hierarchy derives its exact original hub and complete scene from both native models', async () => {",
+      "test('mill scene row loans cannot mutate the next caller or retained publication', async () => {",
+      "test('the mill scheduler handoff is retired while original native-source refusals remain strict', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-mill-scene-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('cold and persistent mill scene hits preserve current hierarchy and motion-binding bytes', async () => {",
+      "test('missing, empty and extra source or cache inventories refuse without a physical metadata fallback', async () => {",
+      "test('mill source and cache bundle without generated imports or file/compiler services', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-navigation-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('navigation source retains admitted native bytes, costs and critical identity', async () => {",
+      "test('navigation refuses changed native bytes and malformed cache inventories', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-prepared-map-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the source map owns native inputs and isolates cached pixel mutations', async () => {",
+      "test.each(['/assets/far-reach/fan/hand-hd.glb', ...MILL_REST_INPUTS])('the source map refuses omitted original native model %s', async url => {",
+      "test('owned map world inputs isolate returned bytes without stored handoffs', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-prepared-model-boot.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "test('public boot pack inputs exist before owned products are published', () => {",
+      "test('moving the output entry preserves the complete original physics declaration', () => {",
+      "test('public boot omits all owned geometry files across both tiers and texture policies', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-prepared-model-inputs.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the owned vane source retains independent current parts and strict source/cache inventories', async () => {",
+      "test('hero library derives current native rows with strict input/cache admission', async () => {",
+      "test('both vane writers retire after map adoption of the exact native source', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-prepared-model-output.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "test('caller mutations cannot poison cached output or its named inventory', async () => {",
+      "test('normal output admission and the actual native pool resolver consume the owned name', async () => {",
+      "test('the active output preparation bundles without filesystem or compiler services', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-rig-asset-sources.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "test('all original rig bytes resolve through the native product with only the admitted phone substitution', async () => {",
+      "test('rig metadata changes only native URLs and omits their public boot rows across both tiers and policies', () => {",
+      "test('incomplete, duplicate, mismatched or aliased admitted representations refuse', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-signal-quest-product.test.ts",
+    "disposition": "ran",
+    "reason": "Public authored Sky source/save admission against released format and sharddev; remove unrelated Signal fixture and private array/hash pins.",
+    "evidence": [
+      "test('Sky source page and prompts return independent caller-owned values', () => {",
+      "test(`${slug} accepts its saved page and refuses malformed persistence`, () => {",
+      "test('Sky prompt compilation retains native command and position order', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-storm-noise.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "it('admits the original storm density and lighting as a cached linear library file', async () => {",
+      "it('admits only the original public texture bytes with exact input and output inventories', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-sward-atlas-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the current sward texture preserves numerical strand channels and linear single-level costs', async () => {",
+      "test.each(['swardAtlas', 'swardAtlasProgram'])('%s bundles without generated imports or file/compiler services', async entry => {",
+      "test('cold and persistent atlas hits preserve the complete current texture and detach caller mutations', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-texture-binary.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('sends the native JPEG blob once and returns only dimensions and format', async () => {",
+      "test('refuses a failed encoder and releases its painted texture', async () => {",
+      "test('refuses rejected byte handoffs and releases its painted texture', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-view-data-source.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('source view values detach caller-owned arrays and retain current complete bytes', () => {"
+    ]
+  },
+  {
+    "file": "test/sky-world-piece-bytes.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('all ten source pieces retain complete original GLB and JSON bytes in authored order', () => {",
+      "test('independent compiles own their mutable buffers and missing pieces refuse', () => {",
+      "test.each(['worldPieceBytes', 'worldPieceProgram'])('%s bundles without generated imports or file/compiler services', async entry => {"
+    ]
+  },
+  {
+    "file": "test/sky-world-retirement.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('the retired mill owners preserve both complete outputs in a cold native cache with all former world files absent', async () => {"
+    ]
+  },
+  {
+    "file": "test/sky-world-tile-program.test.ts",
+    "disposition": "deleted",
+    "reason": "J186: private source/bake byte hashes, geometry/hierarchy layouts, arithmetic/cache entry counts, retired-writer structure or mocked painter implementation pins.",
+    "evidence": [
+      "test('all original island tile bytes, file order, lattice rows and costs survive cold source and cache hits', async () => {",
+      "test('the serializer detaches native asset buffers and preserves the complete original metadata', () => {",
+      "test('missing, empty, foreign, corrupted and mispriced cache entries refuse without a source-file fallback', async () => {"
+    ]
+  },
+  {
+    "file": "test/world-scene.test.ts",
+    "disposition": "engine",
+    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "evidence": [
+      "it('admits both shipping held recipes and refuses malformed private capabilities', () => {",
+      "it('binds real world resources and registers parts without changing their hierarchy or pose', async () => {"
+    ]
+  }
+]
