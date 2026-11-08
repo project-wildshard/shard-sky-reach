@@ -1,0 +1,507 @@
+{
+  "far-reach": [
+    {
+      "name": "windmill",
+      "gate": true,
+      "start": {
+        "x": 0,
+        "z": 7,
+        "yaw": 0,
+        "y": 30
+      },
+      "waypoints": [
+        {
+          "x": 0,
+          "z": -2
+        },
+        {
+          "x": 0,
+          "z": -14
+        },
+        {
+          "x": 0,
+          "z": -30
+        },
+        {
+          "x": 0,
+          "z": -48
+        },
+        {
+          "x": -3,
+          "z": -56
+        }
+      ],
+      "expect": {
+        "y": 30
+      },
+      "notes": "on foot: the sunrest deck (spawn), the rope bridge north (x 0, z -15.4 to -49.6), the windmill isle"
+    },
+    {
+      "name": "grove",
+      "gate": true,
+      "start": {
+        "x": -3,
+        "z": -56,
+        "yaw": -2.7828,
+        "y": 30
+      },
+      "waypoints": [
+        {
+          "x": 0,
+          "z": -48
+        },
+        {
+          "x": 0,
+          "z": -30
+        },
+        {
+          "x": 0,
+          "z": -14
+        },
+        {
+          "x": -6,
+          "z": -1
+        },
+        {
+          "x": -14.1,
+          "z": 1.3
+        },
+        {
+          "x": -22.5,
+          "z": 2.1
+        },
+        {
+          "x": -29.4,
+          "z": 2.7
+        },
+        {
+          "x": -36.4,
+          "z": 3.4
+        },
+        {
+          "x": -44.8,
+          "z": 4.1
+        },
+        {
+          "x": -52,
+          "z": 4
+        }
+      ],
+      "expect": {
+        "y": 27
+      },
+      "notes": "on foot: back over the windmill rope bridge, west-north-west over the sloping grove rope bridge (30 -> 27 m) to the grove (loop 5 layout)"
+    },
+    {
+      "name": "roost",
+      "gate": true,
+      "lap": {
+        "boost": false,
+        "why": "DL17 lap: the board at Developer boost leaves the narrow sloping hover bridges (on foot you fall through), so the lap drives it on the board at normal speed"
+      },
+      "start": {
+        "x": -52,
+        "z": 4,
+        "yaw": -1.48,
+        "y": 27,
+        "hover": true
+      },
+      "waypoints": [
+        {
+          "x": -44.8,
+          "z": 4.1
+        },
+        {
+          "x": -36.4,
+          "z": 3.4
+        },
+        {
+          "x": -29.4,
+          "z": 2.7
+        },
+        {
+          "x": -22.5,
+          "z": 2.1
+        },
+        {
+          "x": -14.1,
+          "z": 1.3
+        },
+        {
+          "x": -6,
+          "z": -1
+        },
+        {
+          "x": 8,
+          "z": -2
+        },
+        {
+          "x": 15.3,
+          "z": -3.1
+        },
+        {
+          "x": 24.3,
+          "z": -4.9
+        },
+        {
+          "x": 31.9,
+          "z": -6.4
+        },
+        {
+          "x": 39.5,
+          "z": -7.9
+        },
+        {
+          "x": 48.5,
+          "z": -9.7
+        },
+        {
+          "x": 56,
+          "z": -14
+        }
+      ],
+      "expect": {
+        "y": 34
+      },
+      "notes": "on the board: the grove rope bridge east, sunrest, the sloping hover bridge (30 -> 34 m; on foot you fall through) to the roost, clear of the nest"
+    },
+    {
+      "name": "keeper",
+      "gate": true,
+      "lap": {
+        "boost": false,
+        "why": "DL17 lap: the board at Developer boost leaves the narrow sloping hover bridges (on foot you fall through), so the lap drives it on the board at normal speed"
+      },
+      "start": {
+        "x": 56,
+        "z": -14,
+        "yaw": 1.44,
+        "y": 34,
+        "hover": true
+      },
+      "waypoints": [
+        {
+          "x": 48.5,
+          "z": -9.7
+        },
+        {
+          "x": 39.5,
+          "z": -7.9
+        },
+        {
+          "x": 31.9,
+          "z": -6.4
+        },
+        {
+          "x": 24.3,
+          "z": -4.9
+        },
+        {
+          "x": 15.3,
+          "z": -3.1
+        },
+        {
+          "x": 8,
+          "z": -2
+        },
+        {
+          "x": -6,
+          "z": -1
+        },
+        {
+          "x": -14.1,
+          "z": 1.3
+        },
+        {
+          "x": -22.5,
+          "z": 2.1
+        },
+        {
+          "x": -29.4,
+          "z": 2.7
+        },
+        {
+          "x": -36.4,
+          "z": 3.4
+        },
+        {
+          "x": -44.8,
+          "z": 4.1
+        },
+        {
+          "x": -52,
+          "z": 2
+        },
+        {
+          "x": -54.7,
+          "z": -5.9
+        },
+        {
+          "x": -55.4,
+          "z": -17.5
+        },
+        {
+          "x": -56.0,
+          "z": -27.5
+        },
+        {
+          "x": -56.6,
+          "z": -37.5
+        },
+        {
+          "x": -57.3,
+          "z": -49.1
+        },
+        {
+          "x": -57,
+          "z": -58
+        }
+      ],
+      "expect": {
+        "y": 32.5
+      },
+      "notes": "on the board: the roost hover bridge west, the grove rope bridge, the keeper hover bridge (27 -> 32.5 m) to the keeper's isle"
+    },
+    {
+      "name": "keeper-to-roost",
+      "gate": true,
+      "lap": {
+        "boost": false,
+        "why": "DL17 lap: the board at Developer boost leaves the narrow sloping hover bridges (on foot you fall through), so the lap drives it on the board at normal speed"
+      },
+      "start": {
+        "x": -57,
+        "z": -58,
+        "yaw": 3.08,
+        "y": 32.5,
+        "hover": true
+      },
+      "waypoints": [
+        {
+          "x": -57.3,
+          "z": -49.1
+        },
+        {
+          "x": -56.6,
+          "z": -37.5
+        },
+        {
+          "x": -56.0,
+          "z": -27.5
+        },
+        {
+          "x": -55.4,
+          "z": -17.5
+        },
+        {
+          "x": -54.7,
+          "z": -5.9
+        },
+        {
+          "x": -52,
+          "z": 2
+        },
+        {
+          "x": -44.8,
+          "z": 4.1
+        },
+        {
+          "x": -36.4,
+          "z": 3.4
+        },
+        {
+          "x": -29.4,
+          "z": 2.7
+        },
+        {
+          "x": -22.5,
+          "z": 2.1
+        },
+        {
+          "x": -14.1,
+          "z": 1.3
+        },
+        {
+          "x": -6,
+          "z": -1
+        },
+        {
+          "x": 8,
+          "z": -2
+        },
+        {
+          "x": 15.3,
+          "z": -3.1
+        },
+        {
+          "x": 24.3,
+          "z": -4.9
+        },
+        {
+          "x": 31.9,
+          "z": -6.4
+        },
+        {
+          "x": 39.5,
+          "z": -7.9
+        },
+        {
+          "x": 48.5,
+          "z": -9.7
+        },
+        {
+          "x": 56,
+          "z": -14
+        }
+      ],
+      "expect": {
+        "y": 34
+      },
+      "notes": "on the board: back north over the keeper hover bridge, east over the grove rope and roost hover bridges to the roost"
+    },
+    {
+      "name": "ruin",
+      "gate": true,
+      "start": {
+        "x": 56,
+        "z": -14,
+        "yaw": 0,
+        "y": 34
+      },
+      "waypoints": [
+        {
+          "x": 59,
+          "z": -18
+        },
+        {
+          "x": 60.9,
+          "z": -22.2
+        },
+        {
+          "x": 61.7,
+          "z": -32.9
+        },
+        {
+          "x": 62.5,
+          "z": -42.0
+        },
+        {
+          "x": 63.3,
+          "z": -51.1
+        },
+        {
+          "x": 64.1,
+          "z": -61.8
+        },
+        {
+          "x": 66,
+          "z": -68
+        }
+      ],
+      "expect": {
+        "y": 28
+      },
+      "notes": "on foot: the roost, the sloping ruin rope bridge (34 -> 28 m), the vane ruin (loop 5 layout)"
+    },
+    {
+      "name": "rising islet north in",
+      "start": {
+        "x": 0,
+        "z": 198,
+        "yaw": 0,
+        "y": 25.3
+      },
+      "waypoints": [
+        {
+          "x": 0,
+          "z": 191.5
+        },
+        {
+          "x": 0,
+          "z": 189.5
+        },
+        {
+          "x": 0,
+          "z": 16
+        },
+        {
+          "x": 0,
+          "z": 12
+        }
+      ]
+    },
+    {
+      "name": "rising islet east in",
+      "start": {
+        "x": 198,
+        "z": 58,
+        "yaw": 1.1,
+        "y": 25.3
+      },
+      "waypoints": [
+        {
+          "x": 192.31,
+          "z": 55.11
+        },
+        {
+          "x": 190.53,
+          "z": 54.21
+        },
+        {
+          "x": 70.55,
+          "z": -6.65
+        },
+        {
+          "x": 66.99,
+          "z": -8.46
+        }
+      ]
+    },
+    {
+      "name": "sky dock north",
+      "start": {
+        "x": 0,
+        "z": 244.2,
+        "yaw": 0,
+        "y": 0.3
+      },
+      "waypoints": [
+        {
+          "x": 0,
+          "z": 238
+        },
+        {
+          "x": 0,
+          "z": 234.6
+        }
+      ],
+      "expect": {
+        "y": 0
+      },
+      "notes": "G200: standalone only, the north timber sky dock from its far end onto the islet lip"
+    },
+    {
+      "name": "sky dock west",
+      "start": {
+        "x": -244.2,
+        "z": 0,
+        "yaw": -1.57,
+        "y": 0.3
+      },
+      "waypoints": [
+        {
+          "x": -238,
+          "z": 0
+        },
+        {
+          "x": -234.6,
+          "z": 0
+        }
+      ],
+      "expect": {
+        "y": 0
+      },
+      "notes": "G200: standalone only, the west timber sky dock from its far end onto the islet lip"
+    }
+  ]
+}
