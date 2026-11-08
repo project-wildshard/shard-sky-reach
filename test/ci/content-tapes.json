@@ -1,0 +1,15 @@
+{
+  "far-reach": {
+    "plan": { "version": 1, "observe": [], "segments": [
+      { "id": "distant-keeper", "ticks": 1, "commands": [{ "kind": "script", "actorId": "far.interact", "value": 0 }] },
+      { "id": "walk-to-keeper", "ticks": 1200, "commands": [], "route": [{ "x": 0, "z": -5.5 }, { "x": -2.4, "z": -13.6 }] },
+      { "id": "talk-to-keeper", "ticks": 1, "commands": [{ "kind": "script", "actorId": "far.interact", "value": 0 }] },
+      { "id": "unearned-winch", "ticks": 1, "commands": [{ "kind": "script", "actorId": "far.interact", "value": 2 }] }
+    ] },
+    "expect": [
+      { "at": "distant-keeper", "absent": ["far.notes"] },
+      { "at": "talk-to-keeper", "flags": ["far.notes"] },
+      { "at": "unearned-winch", "absent": ["far.bridge"] }
+    ]
+  }
+}
