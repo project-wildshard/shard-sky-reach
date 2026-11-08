@@ -10,52 +10,59 @@
   },
   {
     "file": "test/grid-query-terrain.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 1 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "it(`${source.identity.slug}: admits query-only ground without an unused terrain material`, async () => {",
       "it('still refuses unresolved rendered declarations and legacy family strings', () => {",
       "it(`${source.identity.slug}: retains declared terrain admission`, () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/held-secondary-row.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "moved-engine",
+    "reason": "Removed direct item-rule shape checks; kept installed native gust cooldown, landing and restore.",
     "evidence": [
       "test('direct secondaries require a secondary contact and no scripted hook', () => {",
       "test('native direct gust keeps its independent clock, landing order and restore', async () => {"
-    ]
+    ],
+    "engineOutcome": "migrated",
+    "engineTarget": "project-wildshard/engine/test/held-secondary-row.test.ts",
+    "ring": 1
   },
   {
     "file": "test/painted-ground.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 7 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('a second shard paints its ground from its own tiles, colour graph, shapes and recipe', async () => {",
       "test.each([false,true])('cold demanded ground meshes finish before publication (refusal %s)', async refuse => {",
       "test('rows refuse a missing tile, an unknown colour graph and a recipe without its named mesh', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/painted-look-files.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 7 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('all six declared files preserve original bytes, order, width and honest GPU costs',async()=>{",
       "test('named attributes retain complete predecessor buffers and independently owned native arrays',async()=>{",
       "test('malformed and missing suffixes refuse before reads or look construction',async()=>{"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/runtime-product-loader.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 52 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('read-only runtime lookups defer descriptor classification until release', async () => {",
       "test.each([false, true])('every admission phase identifies its actual descriptor or hash (receipt %s)', async trusted => {",
       "test('inline admission without a descriptor path identifies its cache key without inventing a file', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/scene-source-author-files.test.ts",
@@ -210,13 +217,14 @@
   },
   {
     "file": "test/sky-meadow-binary.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Coupled unit harness with 2 mock/spy references. It fabricates page/owner/service dependencies and asserts private construction, preparation, ownership or callback behavior instead of traversing a real player/author boundary.",
     "evidence": [
       "test('reusing pure path noise preserves complete meadow and scene bytes', () => {",
       "test('packed meadow retains bounded channels and current scene ownership', () => {",
       "test('actual product admission reads the packed meadow once and retires every geometry once', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/sky-mill-rest-program.test.ts",
@@ -269,13 +277,14 @@
   },
   {
     "file": "test/sky-prepared-model-boot.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('public boot pack inputs exist before owned products are published', () => {",
       "test('moving the output entry preserves the complete original physics declaration', () => {",
       "test('public boot omits all owned geometry files across both tiers and texture policies', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/sky-prepared-model-inputs.test.ts",
@@ -289,23 +298,25 @@
   },
   {
     "file": "test/sky-prepared-model-output.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('caller mutations cannot poison cached output or its named inventory', async () => {",
       "test('normal output admission and the actual native pool resolver consume the owned name', async () => {",
       "test('the active output preparation bundles without filesystem or compiler services', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/sky-rig-asset-sources.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "test('all original rig bytes resolve through the native product with only the admitted phone substitution', async () => {",
       "test('rig metadata changes only native URLs and omits their public boot rows across both tiers and policies', () => {",
       "test('incomplete, duplicate, mismatched or aliased admitted representations refuse', () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   },
   {
     "file": "test/sky-signal-quest-product.test.ts",
@@ -384,11 +395,12 @@
   },
   {
     "file": "test/world-scene.test.ts",
-    "disposition": "engine",
-    "reason": "Engine-owned runtime admission, rendering-resource or simulation behavior; requires engine fixture ownership and the port. Retained and excluded, not moved.",
+    "disposition": "deleted",
+    "reason": "J186: Directly pins private rendering/author representation: geometry, transforms, materials, buffers, source selection, generated row layout or sampled guest arithmetic. The asserted contract is the internal representation itself, including its direct admission guards.",
     "evidence": [
       "it('admits both shipping held recipes and refuses malformed private capabilities', () => {",
       "it('binds real world resources and registers parts without changing their hierarchy or pose', async () => {"
-    ]
+    ],
+    "engineOutcome": "deleted-j186"
   }
 ]
