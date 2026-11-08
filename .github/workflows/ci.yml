@@ -79,6 +79,19 @@ jobs:
           else
             pnpm install --frozen-lockfile
           fi
+      - name: Restore verified Ring 2 author preparation
+        id: author-preparation
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: |
+            ~/.cache/wildshard/basis
+            ~/.cache/wildshard/gen
+          key: author-preparation-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'src/shards/**', 'public/**') }}
+      - name: Require matching preparation for a candidate
+        if: (github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch') && steps.author-preparation.outputs.cache-hit != 'true'
+        run: |
+          echo 'Run ring-2-prepare with these exact engine and sharddev commits first.' >&2
+          exit 1
       - run: pnpm check
       - name: Keep the cleared queue and public imports honest
         run: node scripts/check-test-boundary.mjs
