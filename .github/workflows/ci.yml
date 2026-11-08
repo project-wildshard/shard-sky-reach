@@ -79,6 +79,12 @@ jobs:
           else
             pnpm install --frozen-lockfile
           fi
+      - name: Bind immutable preparation inputs
+        id: preparation-key
+        env:
+          CANDIDATE_ENGINE: ${{ inputs.engine || github.event.client_payload.engine }}
+          CANDIDATE_SHARDDEV: ${{ inputs.sharddev || github.event.client_payload.sharddev }}
+        run: node scripts/author-preparation-key.mjs
       - name: Restore verified Ring 2 author preparation
         id: author-preparation
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
@@ -86,7 +92,7 @@ jobs:
           path: |
             ~/.cache/wildshard/basis
             ~/.cache/wildshard/gen
-          key: author-preparation-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'src/shards/**', 'public/**') }}
+          key: ${{ steps.preparation-key.outputs.key }}
       - name: Require matching preparation for a candidate
         if: (github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch') && steps.author-preparation.outputs.cache-hit != 'true'
         run: |

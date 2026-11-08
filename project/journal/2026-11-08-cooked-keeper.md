@@ -28,3 +28,13 @@ content inputs. A cache from another graph grants no product or test pass.
 Ring 3's exact graph/source requirement has no fallback and is unchanged.
 The pinned dependency and its timeout are not patched. The existing SDK
 main cold-budget fix remains a release concern when no verified tool exists.
+
+Both full preparations passed, but the next real candidate refused its
+cache: hashing the rewritten installed lockfile produced different keys
+(d1e9d52b versus 5130ed2e) for the same source and override commits.
+Preparation and candidate now share one selector over the committed lock,
+author/source blobs, selector code, exact engine/SDK overrides and Node
+version. It refuses dirty author source. Full candidate builds still
+validate their actual inputs and every own test runs; no whole product or
+passed result is imported. Only Ring 2 can fall back to verified input
+caches; Ring 3 still requires its exact immutable preparation identity.
