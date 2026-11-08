@@ -17,3 +17,9 @@ The installed engine v0.1.0 has no public cook entry point. Cooking, client
 boot and authored quest/encounter tapes remain explicit plan gaps, rather
 than reaching into the installed package's private tree. This proof shows
 server admission, walking and continuation, not drawn client play.
+
+The follow-up closes the package-discovery and cleared-queue/import gates
+for this repo too. The real installed CLI admits the complete published
+tarball, and an AST check resolves public imports. Both are CI-only.
+Correction: engine v0.1.0 does export game/shardCook. Cooking its real
+packs and booting from them remains work; lack of an export is not a blocker.
