@@ -257,7 +257,10 @@ jobs:
       - name: Cook and play only served server files
         if: steps.ring2.outputs.play == 'true'
         run: node --test test/ci/cook-play.test.mjs
+      # Plan branches restore main's cache but never save their own: a
+      # branch's cache is unreadable from main and only crowds the 10 GB limit.
       - name: Save verified author preparation
+        if: github.ref == 'refs/heads/main'
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
