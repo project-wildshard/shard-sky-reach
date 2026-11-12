@@ -2,9 +2,12 @@
 // carried on to the winch on the built product: the roost rays, the three
 // vanes, the board over the hover bridges and the updraft, the winch drum
 // turned before and after it is earned, and the raised bridge walked to the
-// storm crown. Only the inputs the page sends drive it (walking, the board,
-// [E] prompts, fan strikes and GUST). No flag, pose or quest state is
-// written; a fight reads where a flier is to aim, as a player's eyes do.
+// storm crown. There the Storm Roc is fought through its three phases (the
+// stoop, the gale walls, the grounded sweep) to its fall, and the Ledger's
+// two facts and the purses are read off the ticks' effects (SH-sky-1, SH-sky-2).
+// Only the inputs the page sends drive it (walking, the board, [E] prompts,
+// fan strikes, GUST and its pitch). No flag, pose or quest state is written;
+// a fight reads where a flier is to aim, as a player's eyes do.
 import '@wildshard/engine/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -20,7 +23,7 @@ const { loadRapier } = await import('@wildshard/engine/physics/rapier');
 const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
 
 // The [E] prompts (SKY_ACT in generators/questPrompts.ts) and the fan's GUST (FAN_ACT in generators/rows/nativeMelee.ts).
-const ACT = { talk: 0, winch: 2 }, GUST = { actorId: 'far.fan', value: 2 };
+const ACT = { talk: 0, winch: 2 }, GUST = { actorId: 'far.fan', value: 2 }, AIM = 'far.fan.aim', PITCH_LIMIT = 1.45, GUST_REACH = 9;
 const keeper = JSON.parse(readFileSync('test/ci/content-tapes.json', 'utf8'))['far-reach'];
 const press = (id, value) => ({ id, ticks: 1, commands: [{ kind: 'script', actorId: 'far.interact', value }] });
 const wait = (id, ticks = 30) => ({ id, ticks, commands: [] });
@@ -62,7 +65,9 @@ const PARTS = [
     walk('walk-to-windmill-again', SUNREST_WINDMILL), ...board('board-updraft-again'), walk('ride-updraft-again', UPDRAFT), ...board('step-off-step-again'),
     walk('walk-to-winch-again', STEP_WINCH), press('turn-winch', ACT.winch), wait('bridge-rising', 180), walk('cross-to-crown', CROWN)],
 ];
-const ROOST = ['far.roost.0', 'far.roost.1', 'far.roost.2'], FREE_RAY = ['far.ray.0'];
+const ROOST = ['far.roost.0', 'far.roost.1', 'far.roost.2'], FREE_RAY = ['far.ray.0'], ROC = 'far.roc';
+// The crown and its dais (generators/layout.ts CROWN, DAIS; the Roc wheels 13 m round the dais, rocDecision.ts).
+const CROWN_AT = { x: 0, z: -190, y: 44, r: 20 }, DAIS_AT = { x: 0, z: -196 }, UNDER_ORBIT = 12, SAFE = 15;
 // What each input earns (flags present, flags still absent, the quest's current step after it).
 const EXPECT = {
   'distant-keeper': { absent: ['far.notes'], step: 'notes' },
@@ -79,7 +84,7 @@ const EXPECT = {
   'cross-to-crown': { position: [-8, 44, -182] },
 };
 
-test('far-reach: the keeper tape carried on to an earned winch on real inputs', { timeout: 9_500 }, async () => {
+test('far-reach: the keeper tape carried on to an earned winch and the Storm Roc\'s fall on real inputs', { timeout: 9_500 }, async () => {
   const started = performance.now(), directory = resolve('out/far-reach'), product = await loadHeadlessProduct(directory), shard = product.shardfile;
   const descriptor = outputDescriptor(shard); assert.ok(descriptor, 'The built shard must pass admission');
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
@@ -115,6 +120,37 @@ test('far-reach: the keeper tape carried on to an earned winch on real inputs', 
     }
     const quest = host.quests.find(row => row.def.id === 'far.quest'); assert.ok(quest?.isComplete, 'The raised bridge completes the quest');
     const crown = observations.at(-1); assert.equal(crown.grounded, true, 'The raised bridge carries the walker onto the storm crown');
-    console.log(`winch-journey ${JSON.stringify({ ticks: host.state.tick, fights, elapsedMs: Math.round(performance.now() - started) })}`);
+    // The Storm Roc. Its stoop (phase 1) and grounded sweep (phase 3) come within the fan's reach: face it and strike. Its
+    // gale walls (phase 2) come from 7 m up and shove toward the rim: keep under its orbit, never past SAFE from the
+    // crown's middle, and GUST it, pitched up at it, whenever it wheels within the cone's reach.
+    const effects = observations.flatMap(row => row.effects);
+    let fell = -1;
+    for (let tick = 0; tick < 18_000 && fell < 0; tick++) {
+      const roc = host.entities.get(ROC), at = player.position, command = { kind: 'player', moveX: 0, moveZ: 0, yaw: player.yaw ?? 0 }, fan = [];
+      if (roc?.alive) {
+        const dx = roc.position.x - at.x, dz = roc.position.z - at.z, rise = roc.position.y - (at.y + 1.68), flat = Math.hypot(dx, dz);
+        command.yaw = Math.atan2(-dx, -dz); command.attack = { targetId: ROC };
+        const ox = roc.position.x - DAIS_AT.x, oz = roc.position.z - DAIS_AT.z, out = Math.hypot(ox, oz), keep = out > UNDER_ORBIT ? UNDER_ORBIT / out : 1;
+        let gx = DAIS_AT.x + ox * keep, gz = DAIS_AT.z + oz * keep;
+        const cx = gx - CROWN_AT.x, cz = gz - CROWN_AT.z, rim = Math.hypot(cx, cz);
+        if (rim > SAFE) { gx = CROWN_AT.x + cx * SAFE / rim; gz = CROWN_AT.z + cz * SAFE / rim; }
+        const tx = gx - at.x, tz = gz - at.z, go = Math.hypot(tx, tz);
+        if (go > 1.5) { command.moveX = tx / go; command.moveZ = tz / go; }
+        if (rise > 1.5 && Math.hypot(flat, rise) < GUST_REACH) fan.push({ kind: 'script', actorId: AIM, value: Math.min(PITCH_LIMIT, Math.atan2(rise, flat)) }, { kind: 'script', ...GUST });
+      }
+      resident.step([command, ...fan]); effects.push(...resident.effects);
+      if (host.flags.has('far.roc.down')) fell = tick;
+    }
+    assert.ok(fell >= 0, 'The Storm Roc must fall within 18000 ticks');
+    const body = host.entities.get(ROC).position;
+    assert.ok(body.y > CROWN_AT.y - 2 && Math.hypot(body.x - CROWN_AT.x, body.z - CROWN_AT.z) < CROWN_AT.r, `The Roc falls on the crown, struck down: ${JSON.stringify(body)}`);
+    assert.ok(player.position.y > CROWN_AT.y - 2, 'The walker is still on the crown when the Roc falls');
+    for (let tick = 0; tick < 120; tick++) { resident.step([{ kind: 'player', moveX: 0, moveZ: 0, yaw: player.yaw ?? 0 }]); effects.push(...resident.effects); }
+    // The Ledger: each completion files its fact once (rows/ledger.ts), and the Roc's purse pays once (rows/rocFight.ts).
+    const facts = effects.filter(row => row.kind === 'fact').map(row => row.name).sort();
+    assert.deepEqual(facts, ['far-reach.quest', 'far-reach.roc'], 'The quest and the Roc each file one Ledger fact');
+    assert.deepEqual(effects.filter(row => row.kind === 'coins' && row.actorId === ROC).map(row => row.amount), [25], 'The Roc pays its 25 coins once');
+    assert.deepEqual(effects.filter(row => row.kind === 'coins' && row.actorId !== ROC).map(row => row.amount), [10], 'The quest pays its 10 coins once');
+    console.log(`winch-journey ${JSON.stringify({ ticks: host.state.tick, fights: { ...fights, roc: fell + 1 }, effects, elapsedMs: Math.round(performance.now() - started) })}`);
   } finally { resident.dispose(); }
 });

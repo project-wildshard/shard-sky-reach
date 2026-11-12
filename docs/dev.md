@@ -30,7 +30,9 @@ keeps a 9.5 s limit and stays outside commit/push hooks.
 `test/ci/winch-journey.test.mjs` (same flags) carries the keeper tape on
 through the roost rays, the three vanes, the board and the updraft to the
 winch, refused before the last vane and turned after it, then walks the
-raised bridge to the storm crown, on page inputs only, under the same cap.
+raised bridge to the storm crown, then fights the Storm Roc to its fall
+and checks the Ledger's facts and purses, on page inputs only, under the
+same cap.
 
 ## Layout
 

@@ -118,7 +118,7 @@ jobs:
         run: pnpm build:shards
       - name: Walk the owned 1800-tick authored route
         run: node --experimental-transform-types --test test/ci/owned-journey.test.mjs
-      - name: Play the keeper tape on to the earned winch
+      - name: Play the keeper tape through the winch to the Roc
         run: node --experimental-transform-types --test test/ci/winch-journey.test.mjs
       - run: pnpm test:shards
       - name: Boot, play and resume every built product
