@@ -1,0 +1,505 @@
+{
+ "about": "G859 24-camera set: cameras 1-4 are the CO6 cameras (art/legacy-vs-shardfile/round-1-2026-10-28/cameras.json); 5-24 are POI, coverage, aerial and hands views. yaw / pitch in degrees (yaw 0 = -z, 90 = +x; the engine camera rotation.y is -yaw). probe = the player pose (radians); eye = the camera, resolved from the LEGACY capture (the player eye after settling, plus lift).",
+ "cameras": {
+  "far-reach": [
+   {
+    "name": "spawn",
+    "eye": [
+     3.133674531985907e-06,
+     31.697897833192247,
+     -5.499975247076266
+    ],
+    "yaw": 0,
+    "pitch": 0,
+    "feet": [
+     0,
+     30,
+     -5.5
+    ],
+    "fov": 72,
+    "kind": "co6",
+    "poi": "CO6 camera spawn",
+    "n": 1
+   },
+   {
+    "name": "hover",
+    "eye": [
+     11.99999139871448,
+     31.6978997786059,
+     -2.4999963613690985
+    ],
+    "yaw": 80,
+    "pitch": -6,
+    "feet": [
+     12,
+     30,
+     -2.5
+    ],
+    "fov": 72,
+    "kind": "co6",
+    "poi": "CO6 camera hover",
+    "n": 2
+   },
+   {
+    "name": "windmill",
+    "eye": [
+     2.2705737075917283e-06,
+     31.700037923870543,
+     -5.500005424180509
+    ],
+    "yaw": 0,
+    "pitch": 0,
+    "feet": [
+     0,
+     30,
+     -5.5
+    ],
+    "fov": 72,
+    "kind": "co6",
+    "poi": "CO6 camera windmill",
+    "n": 3
+   },
+   {
+    "name": "roost",
+    "eye": [
+     -1.5819746629937264,
+     31.700092555651178,
+     -5.695922051169646
+    ],
+    "yaw": 0,
+    "pitch": 0,
+    "feet": [
+     -1.582,
+     30,
+     -5.696
+    ],
+    "fov": 72,
+    "kind": "co6",
+    "poi": "CO6 camera roost",
+    "n": 4
+   },
+   {
+    "name": "windmill-isle",
+    "kind": "poi",
+    "poi": "Windmill isle and the mill (layout WINDMILL)",
+    "probe": {
+     "x": 0,
+     "z": -44,
+     "yaw": 0.0,
+     "pitch": 0.069813,
+     "y": 30
+    },
+    "yaw": 0,
+    "pitch": 4,
+    "fov": 72,
+    "n": 5,
+    "eye": [
+     -0.306,
+     31.122,
+     -43.56
+    ]
+   },
+   {
+    "name": "roost-nest",
+    "kind": "poi",
+    "poi": "The Roost and the nest (layout ROOST)",
+    "probe": {
+     "x": 50,
+     "z": -10,
+     "yaw": -1.570796,
+     "pitch": 0.0,
+     "y": 34
+    },
+    "yaw": 90.0,
+    "pitch": 0,
+    "fov": 72,
+    "n": 6,
+    "eye": [
+     49.669,
+     35.7,
+     -9.246
+    ]
+   },
+   {
+    "name": "keeper",
+    "kind": "poi",
+    "poi": "Keeper's isle and the notes (layout KEEPER)",
+    "probe": {
+     "x": -48,
+     "z": -60,
+     "yaw": -4.712389,
+     "pitch": 0.0,
+     "y": 32.5
+    },
+    "yaw": 270,
+    "pitch": 0,
+    "fov": 72,
+    "n": 7,
+    "eye": [
+     -48.0,
+     34.2,
+     -60.0
+    ]
+   },
+   {
+    "name": "ruin",
+    "kind": "poi",
+    "poi": "Ruin isle (layout RUIN)",
+    "probe": {
+     "x": 65,
+     "z": -62,
+     "yaw": -3.141593,
+     "pitch": 0.0,
+     "y": 28
+    },
+    "yaw": 180,
+    "pitch": 0,
+    "fov": 72,
+    "n": 8,
+    "eye": [
+     65.0,
+     29.7,
+     -62.0
+    ]
+   },
+   {
+    "name": "high-step",
+    "kind": "poi",
+    "poi": "The high step and the winch house (layout STEP)",
+    "probe": {
+     "x": -60,
+     "z": -118,
+     "yaw": 0.588176,
+     "pitch": 0.0,
+     "y": 44
+    },
+    "yaw": -33.7,
+    "pitch": 0,
+    "fov": 72,
+    "n": 9,
+    "eye": [
+     -60.0,
+     45.7,
+     -118.0
+    ]
+   },
+   {
+    "name": "storm-crown",
+    "kind": "poi",
+    "poi": "The storm crown and the dais (layout CROWN)",
+    "probe": {
+     "x": 0,
+     "z": -176,
+     "yaw": 0.0,
+     "pitch": 0.069813,
+     "y": 44
+    },
+    "yaw": 0,
+    "pitch": 4,
+    "fov": 72,
+    "n": 10,
+    "eye": [
+     -0.0,
+     47.989,
+     -175.994
+    ]
+   },
+   {
+    "name": "grove",
+    "kind": "poi",
+    "poi": "Grove isle (layout GROVE)",
+    "probe": {
+     "x": -46,
+     "z": 5,
+     "yaw": 1.570796,
+     "pitch": 0.0,
+     "y": 27
+    },
+    "yaw": -90.0,
+    "pitch": 0,
+    "fov": 72,
+    "n": 11,
+    "eye": [
+     -46.0,
+     28.7,
+     5.0
+    ]
+   },
+   {
+    "name": "hover-bridge",
+    "kind": "poi",
+    "poi": "The hover bridge from the Roost end (layout HOVER_BRIDGE)",
+    "probe": {
+     "x": 52,
+     "z": -11,
+     "yaw": -4.712389,
+     "pitch": -0.069813,
+     "y": 34
+    },
+    "yaw": 270,
+    "pitch": -4,
+    "fov": 72,
+    "n": 12,
+    "eye": [
+     52.275,
+     35.7,
+     -10.426
+    ]
+   },
+   {
+    "name": "rim-south",
+    "kind": "grid",
+    "poi": "Sunrest south rim looking south to the north islet",
+    "probe": {
+     "x": 0,
+     "z": 12,
+     "yaw": -3.141593,
+     "pitch": 0.0,
+     "y": 30
+    },
+    "yaw": 180,
+    "pitch": 0,
+    "fov": 72,
+    "n": 13,
+    "eye": [
+     -0.0,
+     31.7,
+     12.0
+    ]
+   },
+   {
+    "name": "rim-grove-west",
+    "kind": "grid",
+    "poi": "Grove west rim looking west to the west islet",
+    "probe": {
+     "x": -62,
+     "z": 5,
+     "yaw": -4.712389,
+     "pitch": 0.0,
+     "y": 27
+    },
+    "yaw": 270,
+    "pitch": 0,
+    "fov": 72,
+    "n": 14,
+    "eye": [
+     -62.0,
+     28.699,
+     5.0
+    ]
+   },
+   {
+    "name": "rim-roost-east",
+    "kind": "grid",
+    "poi": "Roost south-east rim looking toward the Ruin",
+    "probe": {
+     "x": 56,
+     "z": -20,
+     "yaw": -2.356194,
+     "pitch": 0.0,
+     "y": 34
+    },
+    "yaw": 135,
+    "pitch": 0,
+    "fov": 72,
+    "n": 15,
+    "eye": [
+     55.79,
+     35.7,
+     -21.573
+    ]
+   },
+   {
+    "name": "rim-crown-north",
+    "kind": "grid",
+    "poi": "Crown far rim looking north to the south islet",
+    "probe": {
+     "x": 0,
+     "z": -204,
+     "yaw": 0.0,
+     "pitch": 0.0,
+     "y": 44
+    },
+    "yaw": 0,
+    "pitch": 0,
+    "fov": 72,
+    "n": 16,
+    "eye": [
+     0.0,
+     45.7,
+     -203.985
+    ]
+   },
+   {
+    "name": "rim-keeper-nw",
+    "kind": "grid",
+    "poi": "Keeper rim looking north-west",
+    "probe": {
+     "x": -64,
+     "z": -66,
+     "yaw": -5.497787,
+     "pitch": 0.0,
+     "y": 32.5
+    },
+    "yaw": 315,
+    "pitch": 0,
+    "fov": 72,
+    "n": 17,
+    "eye": [
+     -64.0,
+     34.2,
+     -66.0
+    ]
+   },
+   {
+    "name": "rim-ruin-ne",
+    "kind": "grid",
+    "poi": "Ruin rim looking north-east",
+    "probe": {
+     "x": 71,
+     "z": -78,
+     "yaw": -0.785398,
+     "pitch": 0.0,
+     "y": 28
+    },
+    "yaw": 45,
+    "pitch": 0,
+    "fov": 72,
+    "n": 18,
+    "eye": [
+     69.216,
+     29.7,
+     -79.172
+    ]
+   },
+   {
+    "name": "rim-step-back",
+    "kind": "grid",
+    "poi": "High step looking back south-east over the chain",
+    "probe": {
+     "x": -64,
+     "z": -120,
+     "yaw": -2.617994,
+     "pitch": -0.10472,
+     "y": 44
+    },
+    "yaw": 150,
+    "pitch": -6,
+    "fov": 72,
+    "n": 19,
+    "eye": [
+     -63.969,
+     45.7,
+     -122.483
+    ]
+   },
+   {
+    "name": "rim-windmill-sw",
+    "kind": "grid",
+    "poi": "Windmill rim looking south-west to Grove",
+    "probe": {
+     "x": -4,
+     "z": -72,
+     "yaw": -4.18879,
+     "pitch": 0.0,
+     "y": 30
+    },
+    "yaw": 240,
+    "pitch": 0,
+    "fov": 72,
+    "n": 20,
+    "eye": [
+     -4.211,
+     31.7,
+     -71.85
+    ]
+   },
+   {
+    "name": "aerial-south",
+    "kind": "aerial",
+    "poi": "the whole shard from hover height",
+    "probe": {
+     "x": 0,
+     "z": 0,
+     "yaw": -0.0,
+     "pitch": -0.418879,
+     "y": 30
+    },
+    "yaw": 0.0,
+    "pitch": -24,
+    "lift": 70,
+    "fov": 72,
+    "n": 21,
+    "eye": [
+     -1.839,
+     103.41,
+     -0.496
+    ]
+   },
+   {
+    "name": "aerial-crown",
+    "kind": "aerial",
+    "poi": "the whole shard from hover height",
+    "probe": {
+     "x": 0,
+     "z": -190,
+     "yaw": -3.141593,
+     "pitch": -0.453786,
+     "y": 44
+    },
+    "yaw": 180.0,
+    "pitch": -26,
+    "lift": 70,
+    "fov": 72,
+    "n": 22,
+    "eye": [
+     -0.0,
+     115.68,
+     -190.0
+    ]
+   },
+   {
+    "name": "hands-down",
+    "kind": "hands",
+    "poi": "hands and held item, first-person close-up",
+    "probe": {
+     "x": 0,
+     "z": -5.5,
+     "yaw": 0.0,
+     "pitch": -0.558505,
+     "y": 30
+    },
+    "yaw": 0,
+    "pitch": -32,
+    "fov": 72,
+    "n": 23,
+    "eye": [
+     1.689,
+     32.175,
+     -3.125
+    ]
+   },
+   {
+    "name": "hands-up",
+    "kind": "hands",
+    "poi": "hands and held item, first-person close-up",
+    "probe": {
+     "x": 0,
+     "z": -50,
+     "yaw": -3.141593,
+     "pitch": 0.244346,
+     "y": 30
+    },
+    "yaw": 180,
+    "pitch": 14,
+    "fov": 72,
+    "n": 24,
+    "eye": [
+     -0.0,
+     31.7,
+     -50.0
+    ]
+   }
+  ]
+ }
+}
