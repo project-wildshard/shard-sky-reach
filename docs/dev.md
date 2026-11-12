@@ -27,6 +27,11 @@ settling, disposes the real runtime and refuses a later tick. Routes live
 in this repo; no quest flags, poses or host state are forced. Each case
 keeps a 9.5 s limit and stays outside commit/push hooks.
 
+`test/ci/winch-journey.test.mjs` (same flags) carries the keeper tape on
+through the roost rays, the three vanes, the board and the updraft to the
+winch, refused before the last vane and turned after it, then walks the
+raised bridge to the storm crown, on page inputs only, under the same cap.
+
 ## Layout
 
 The root stays thin: README.md and AGENTS.md (humans only), CLAUDE.md
