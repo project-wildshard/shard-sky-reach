@@ -1,5 +1,5 @@
 import { navigationSourceRows } from '@wildshard/sharddev/bake/navigationAsset';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 
 export const SKY_NAVIGATION_HASH = '97a29a22f3827e4103059929276b2e6a6831f50bd5fc3b121abc11252f774f26';

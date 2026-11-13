@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Test isolated roots containing only the five committed oracle files.
 import { resolve } from 'node:path';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 
 const originals = [
   ['storm-roc.glb', 'test/fixtures/sky-rigs/storm-roc.glb', 492_772, '1c057979c81e5fafd2f97a151b7936c90ccf01555b2f307b911fc628e7c19af0'],

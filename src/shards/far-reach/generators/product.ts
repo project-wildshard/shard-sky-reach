@@ -9,7 +9,7 @@ import skyMaps from '../data/skyMaps.json' with { type: 'json' };
 import type { SkyNavigationRows } from './navigation';
 import { SKY_REACH_RUNTIME_COST } from './rows/budgets';
 import { emptyShardfile } from '@wildshard/sharddev/author';
-import { parseShardfile } from '@wildshard/engine/host/shardfile';
+import { parseShardfile } from '@wildshard/format/shardSchema';
 import { SKY_LIFT_PROMPTS } from './rows/liftPrompts';
 import { SKY_MOVER_VIEWS } from './rows/moverViews';
 import type { MoverData } from '@wildshard/sharddev/movers';

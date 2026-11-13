@@ -1,5 +1,5 @@
 import { readSourceModel } from '@wildshard/sharddev/bake/skinned';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 import { HD_URLS, SKY_HD } from './fileInventory';
 import { hdGeometry } from './modelIntake';

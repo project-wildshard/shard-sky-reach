@@ -1,6 +1,6 @@
 import { AnimationClip, Euler, Group, Quaternion, QuaternionKeyframeTrack, Vector3, VectorKeyframeTrack } from 'three';
 import type { ColliderDesc } from '@wildshard/sharddev/bake/placement';
-import type { MoverData } from '@wildshard/format/movers';
+import type { MoverBox, MoverData } from '@wildshard/format/movers';
 import { Mover } from '@wildshard/sharddev/movers';
 import { SPANS, FALLEN_BRIDGE, APOTHEM } from "./layout";
 import { FALLEN_ANGLE } from './rows/moverBindings';
@@ -8,9 +8,6 @@ import FLAGS from '../data/flags.json' with { type: 'json' };
 import { deckCollider, saggedColliders, railColliders } from './bridgeColliders';
 import { isletId, gateId, RISING_ISLETS } from './risingIslets';
 import { ISLET, ISLET_ISLE } from './rows/isletDesign';
-
-/** One local collider box of a mover, as the shard format declares it. */
-type MoverBox = MoverData[number]['boxes'][number];
 
 // Three's configurable buffer types preserve authored f64 stops instead of rounding native gameplay to Float32.
 class PositionStops extends VectorKeyframeTrack {}

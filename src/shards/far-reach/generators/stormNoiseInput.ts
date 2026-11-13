@@ -1,5 +1,5 @@
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { STORM_NOISE } from './rows/stormNoise';
 
 export const STORM_NOISE_INPUT = '/assets/far-reach/weather/storm-noise.ktx2';

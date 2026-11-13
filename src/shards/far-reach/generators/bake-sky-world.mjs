@@ -3,7 +3,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { constants, zstdCompressSync, zstdDecompressSync } from 'node:zlib';
 import * as v from 'valibot';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { parseKtx2 } from '@wildshard/sharddev/assets';
 import { readImagePixels, writeImagePixels } from '@wildshard/sharddev/bake/image';
 

@@ -1,5 +1,5 @@
 import { parseMoverRows, type MoverData } from '@wildshard/sharddev/movers';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 
 export const SKY_MOVER_HEADER_INPUT = 'data/movers.generated.json';

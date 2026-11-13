@@ -1,6 +1,6 @@
 import { bakeOwned, type BakedScene } from '@wildshard/sharddev/bake';
 import type { BakedKind } from '@wildshard/sharddev/bake/kinds';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/format/immutable';
 import { SKY_IDENTITY } from './piece';
 import { SKY_PIECES, skyReachScene } from './scene';
 

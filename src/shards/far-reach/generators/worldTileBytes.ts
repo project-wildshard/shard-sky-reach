@@ -1,6 +1,6 @@
 import type { BakedProps } from '@wildshard/sharddev/bake/props';
 import { completeL0Tiles, completeEmptyL1Tiles } from '@wildshard/sharddev/bake/tileGrid';
-import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { encodeCanonicalJson, hashImmutableBytes } from '@wildshard/format/immutable';
 import { skyIsleProps } from './isleProps';
 
 /** Refuse an incomplete or foreign tile bank; every declared file owns its exact native bytes. */
