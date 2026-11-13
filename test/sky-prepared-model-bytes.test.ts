@@ -9,10 +9,10 @@ import { expect, test } from 'vitest';
 import { build } from 'vite';
 import { prepareAssetDecoders } from '@wildshard/format/product';
 import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
-import { bakePreparedModels, prepareModelFrame } from '../src/shards/far-reach/generators/preparedModelBytes';
-import { bakePreparedModels as retainedPreparedModels } from '../src/shards/far-reach/generators/preparedModels';
-import { bakeSkyIsleFrames } from '../src/shards/far-reach/generators/skyIsleFrames';
-import { CARVED, MODEL_FITS } from '../src/shards/far-reach/generators/modelFrames';
+import { bakePreparedModels, prepareModelFrame } from '../src/generators/preparedModelBytes';
+import { bakePreparedModels as retainedPreparedModels } from '../src/generators/preparedModels';
+import { bakeSkyIsleFrames } from '../src/generators/skyIsleFrames';
+import { CARVED, MODEL_FITS } from '../src/generators/modelFrames';
 
 const read = (url: string): Uint8Array => new Uint8Array(readFileSync(`public${url}`));
 await prepareAssetDecoders();
@@ -57,7 +57,7 @@ test('missing source reads refuse without a retained-file fallback', async () =>
 
 test.each(['preparedModelBytes', 'preparedModels'])('%s bundles without generated fitting imports or filesystem services', async entry => {
   const result = await build({ configFile: false, logLevel: 'silent', build: { write: false, minify: false,
-    lib: { entry: resolve(`src/shards/far-reach/generators/${entry}.ts`), formats: ['es'] },
+    lib: { entry: resolve(`src/generators/${entry}.ts`), formats: ['es'] },
     rolldownOptions: { external: [/^node:/u, 'assemblyscript/dist/asc.js'], output: { codeSplitting: false } } } });
   const output = Array.isArray(result) ? result[0] : result;
   if (output === undefined || !('output' in output)) throw new Error('Missing prepared-model byte bundle');

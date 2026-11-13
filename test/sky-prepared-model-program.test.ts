@@ -9,7 +9,7 @@ import { build } from 'vite';
 import { prepareAssetDecoders } from '@wildshard/format/product';
 import { createProjectGeneration, type ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
 import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
-import { PREPARED_MODEL_INPUTS, preparedModelProgram, preparedModelSource } from '../src/shards/far-reach/generators/preparedModelProgram';
+import { PREPARED_MODEL_INPUTS, preparedModelProgram, preparedModelSource } from '../src/generators/preparedModelProgram';
 
 const original = readFileSync('public/assets/far-reach/baked/prepared-models.glb');
 await prepareAssetDecoders();
@@ -19,7 +19,7 @@ test('owned cold geometry and persistent hits retain every original byte, part, 
   const prefix = '/assets/far-reach/';
   let builds = 0;
   const context = (identity = 'a'): Pick<ProjectGenerationContext, 'cached'> => {
-    const ctx = createProjectGeneration(resolve('src/shards/far-reach'), identity.repeat(64), new Map(), resolve(scratch, 'cache'), [{ prefix, directory: source }]);
+    const ctx = createProjectGeneration(resolve('src'), identity.repeat(64), new Map(), resolve(scratch, 'cache'), [{ prefix, directory: source }]);
     return { cached: (step, generate) => {
       expect(step).toEqual({ id: 'prepared-models', native: true, inputs: PREPARED_MODEL_INPUTS });
       return ctx.cached(step, inputs => { builds++; return generate(inputs); });
@@ -60,7 +60,7 @@ test('missing, empty or extra source/cache files refuse without a generated or p
 
 test('the complete source/cache entry bundles without generated metadata or file services', async () => {
   const result = await build({ configFile: false, logLevel: 'silent', build: { write: false, minify: false,
-    lib: { entry: resolve('src/shards/far-reach/generators/preparedModelProgram.ts'), formats: ['es'] },
+    lib: { entry: resolve('src/generators/preparedModelProgram.ts'), formats: ['es'] },
     rolldownOptions: { external: [/^node:/u], output: { codeSplitting: false } } } });
   const built = Array.isArray(result) ? result[0] : result;
   if (built === undefined || !('output' in built)) throw new Error('Missing prepared-model source bundle');

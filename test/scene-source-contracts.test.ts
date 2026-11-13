@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import * as v from 'valibot';
 import { SceneModelSourceSchema } from '@wildshard/format/sceneSources';
-import { skyModelSource } from '../src/shards/far-reach/generators/sceneSources';
+import { skyModelSource } from '../src/generators/sceneSources';
 
 test('Sky emitted model source admits through the released author format', () => {
   const blob = skyModelSource('world/bridge.glb', 'world/mill.glb', 'world/fan.glb');

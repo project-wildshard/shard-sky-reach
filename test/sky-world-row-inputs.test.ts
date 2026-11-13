@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { skyWorldRows } from '../src/shards/far-reach/generators/worldRows';
+import { skyWorldRows } from '../src/generators/worldRows';
 
 test('world source row loans cannot mutate subsequent map reads', () => {
   const rows = skyWorldRows(), first = Object.values(rows.bakes)[0];

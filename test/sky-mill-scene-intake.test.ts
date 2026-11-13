@@ -2,8 +2,8 @@
 import { readFileSync } from 'node:fs';
 import { expect, test } from 'vitest';
 import { parseWorldScene } from '@wildshard/format/clientChannels';
-import { millSceneSource } from '../src/shards/far-reach/generators/millScene';
-import { readMillSceneValues, skyWorldSceneValues } from '../src/shards/far-reach/generators/worldScenes';
+import { millSceneSource } from '../src/generators/millScene';
+import { readMillSceneValues, skyWorldSceneValues } from '../src/generators/worldScenes';
 import { originalSkySceneInputs, originalSkyScenes } from './fixtures/sky-scene-source';
 
 

@@ -24,5 +24,5 @@ Only the scaffold exists:
 
 ## Coming with the import
 
-- `src/shards/far-reach/`
+- `src/`
 - `public/assets/far-reach/`

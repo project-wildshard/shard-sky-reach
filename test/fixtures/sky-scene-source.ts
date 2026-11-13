@@ -1,12 +1,12 @@
-import { skyHeroLibrarySource, HERO_LIBRARY_INPUTS, type HeroLibraryRows } from '../../src/shards/far-reach/generators/heroLibrary';
+import { skyHeroLibrarySource, HERO_LIBRARY_INPUTS, type HeroLibraryRows } from '../../src/generators/heroLibrary';
 // oxlint-disable-next-line import/no-nodejs-modules -- Original scene fixtures read only tracked native models.
 import { readFileSync } from 'node:fs';
-import { millSceneValues } from '../../src/shards/far-reach/generators/millScene';
-import { skyStaticSceneBytes } from '../../src/shards/far-reach/generators/staticScene';
-import { readSkyStaticSceneEnvelope } from '../../src/shards/far-reach/generators/staticSceneIntake';
-import { skyWorldSceneValues, type SkyWorldSceneValues } from '../../src/shards/far-reach/generators/worldScenes';
-import { skyOutputValues, type SkySourceOutput } from '../../src/shards/far-reach/generators/sourceOutput';
-import { skyRouteValues, type SkyRouteValues } from '../../src/shards/far-reach/generators/routeScene';
+import { millSceneValues } from '../../src/generators/millScene';
+import { skyStaticSceneBytes } from '../../src/generators/staticScene';
+import { readSkyStaticSceneEnvelope } from '../../src/generators/staticSceneIntake';
+import { skyWorldSceneValues, type SkyWorldSceneValues } from '../../src/generators/worldScenes';
+import { skyOutputValues, type SkySourceOutput } from '../../src/generators/sourceOutput';
+import { skyRouteValues, type SkyRouteValues } from '../../src/generators/routeScene';
 
 /** Every call constructs fresh original rows from the same explicitly named native models. */
 export async function originalSkySceneInputs(): Promise<{

@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { parsePersistedQuestPage } from '@wildshard/sharddev/quests';
-import { skyQuestPage } from '../src/shards/far-reach/generators/questRows';
+import { skyQuestPage } from '../src/generators/questRows';
 
 test('Sky authored quest persistence admits its current page and rejects unsupported saves', () => {
   const page = skyQuestPage();

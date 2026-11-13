@@ -5,12 +5,12 @@ import { resolve } from 'node:path';
 import { expect, test } from 'vitest';
 import { build } from 'vite';
 import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
-import { skyStaticSceneBytes, skyStaticScenes } from '../src/shards/far-reach/generators/staticScene';
-import { fixedWorld, skyFixedWorldValues } from '../src/shards/far-reach/generators/fixedWorld';
-import { STATIC_SCENE_INPUTS, skyStaticSceneSource } from '../src/shards/far-reach/generators/staticSceneProgram';
-import { readSkyStaticSceneEnvelope } from '../src/shards/far-reach/generators/staticSceneIntake';
+import { skyStaticSceneBytes, skyStaticScenes } from '../src/generators/staticScene';
+import { fixedWorld, skyFixedWorldValues } from '../src/generators/fixedWorld';
+import { STATIC_SCENE_INPUTS, skyStaticSceneSource } from '../src/generators/staticSceneProgram';
+import { readSkyStaticSceneEnvelope } from '../src/generators/staticSceneIntake';
 import { originalSkySceneInputs } from './fixtures/sky-scene-source';
-import { WORLD_PLACEMENT_INPUTS, skyWorldPlacementValues } from '../src/shards/far-reach/generators/worldPlacementBytes';
+import { WORLD_PLACEMENT_INPUTS, skyWorldPlacementValues } from '../src/generators/worldPlacementBytes';
 
 test('static contact intake admits retained registry fields and refuses malformed or extra metadata', () => {
   const wire = (contact: unknown): Uint8Array => {
@@ -97,7 +97,7 @@ test('the static scheduler handoff is retired while original native-source inven
 
 test('the reader bundle includes its owned producer and excludes the generated placement handoff', async () => {
   const result = await build({ configFile: false, logLevel: 'silent', build: { write: false, minify: false,
-    lib: { entry: resolve('src/shards/far-reach/generators/staticScene.ts'), formats: ['es'] },
+    lib: { entry: resolve('src/generators/staticScene.ts'), formats: ['es'] },
     rolldownOptions: { external: [/^node:/u, 'assemblyscript/dist/asc.js'], output: { codeSplitting: false } } } });
   const built = Array.isArray(result) ? result[0] : result;
   if (built === undefined || !('output' in built)) throw new Error('Missing static reader bundle');

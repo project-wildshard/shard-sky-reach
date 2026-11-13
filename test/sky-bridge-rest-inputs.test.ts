@@ -1,10 +1,10 @@
 // oxlint-disable-next-line import/no-nodejs-modules -- Read actual native inputs and verify source-handoff retirement.
 import { existsSync, readFileSync } from 'node:fs';
 import { expect, test } from 'vitest';
-import { bridgeRestFiles } from '../src/shards/far-reach/generators/bridgeRest';
-import { MODEL_URLS } from '../src/shards/far-reach/generators/fileInventory';
+import { bridgeRestFiles } from '../src/generators/bridgeRest';
+import { MODEL_URLS } from '../src/generators/fileInventory';
 
-const hierarchy = 'src/shards/far-reach/data/bridgeRest.generated.json';
+const hierarchy = 'src/data/bridgeRest.generated.json';
 
 test('both bridge writers and every declared handoff reader are retired', () => {
   expect(existsSync(hierarchy)).toBe(false);

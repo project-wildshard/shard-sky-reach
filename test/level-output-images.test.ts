@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import { parseManifestMetadata } from '@wildshard/format/minimap';
-import metadata from '../src/shards/far-reach/manifest.json';
+import metadata from '../src/manifest.json';
 
 it('admits bounded image blob URLs in emitted level metadata', () => {
   const url = `/shardfiles/far-reach/blobs/image/${'a'.repeat(64)}.jpg`;

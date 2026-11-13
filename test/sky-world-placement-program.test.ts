@@ -7,11 +7,11 @@ import { Buffer } from 'node:buffer';
 import { expect, test } from 'vitest';
 import { build } from 'vite';
 import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
-import { WORLD_PLACEMENT_FILES, WORLD_PLACEMENT_INPUTS, skyWorldPlacementSource } from '../src/shards/far-reach/generators/worldPlacementBytes';
+import { WORLD_PLACEMENT_FILES, WORLD_PLACEMENT_INPUTS, skyWorldPlacementSource } from '../src/generators/worldPlacementBytes';
 
 const check = (files: ReadonlyMap<string, Uint8Array>): void => {
   expect([...files.keys()]).toEqual(WORLD_PLACEMENT_FILES);
-  for (const [name, bytes] of files) expect(Buffer.compare(bytes, readFileSync(`src/shards/far-reach/${name}`)), name).toBe(0);
+  for (const [name, bytes] of files) expect(Buffer.compare(bytes, readFileSync(`src/${name}`)), name).toBe(0);
 };
 
 test('current placement source retains every original byte and ordered metadata row', async () => {
@@ -31,7 +31,7 @@ test('missing, empty and extra source input inventories refuse without a generat
 
 test.each(['worldPlacementBytes'])('%s bundles without generated imports or file/compiler services', async entry => {
   const result = await build({ configFile: false, logLevel: 'silent', build: { write: false, minify: false,
-    lib: { entry: resolve(`src/shards/far-reach/generators/${entry}.ts`), formats: ['es'] },
+    lib: { entry: resolve(`src/generators/${entry}.ts`), formats: ['es'] },
     rolldownOptions: { external: [/^node:/u, 'assemblyscript/dist/asc.js'], output: { codeSplitting: false } } } });
   const output = Array.isArray(result) ? result[0] : result;
   if (output === undefined || !('output' in output)) throw new Error('Missing world placement source bundle');

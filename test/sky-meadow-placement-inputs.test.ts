@@ -6,12 +6,12 @@ import { expect, test } from 'vitest';
 import * as v from 'valibot';
 import { build } from 'vite';
 import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
-import { meadowHoles, meadowPaths } from '../src/shards/far-reach/generators/placements';
-import { heroStoneDiscs } from '../src/shards/far-reach/generators/dressing';
+import { meadowHoles, meadowPaths } from '../src/generators/placements';
+import { heroStoneDiscs } from '../src/generators/dressing';
 
 test('owned meadow placement values preserve every original hole and path row', () => {
   const original = v.parse(v.object({ meadow: v.object({ holes: v.array(v.array(v.number())), paths: v.array(v.array(v.number())) }) }),
-    JSON.parse(readFileSync('src/shards/far-reach/data/placements.json', 'utf8')));
+    JSON.parse(readFileSync('src/data/placements.json', 'utf8')));
   const rows = (values: ReturnType<typeof meadowHoles>): number[][] => values.map(({ x, y, z, w }) => [x, y, z, w]);
   expect(rows(meadowHoles())).toEqual(original.meadow.holes);
   expect(rows(meadowPaths())).toEqual(original.meadow.paths);
@@ -20,7 +20,7 @@ test('owned meadow placement values preserve every original hole and path row', 
 
 test('authored dressing clearances retain every original disc and own their coordinate arrays', () => {
   const original = v.parse(v.object({ discs: v.array(v.tuple([v.number(), v.number(), v.number()])) }),
-    JSON.parse(readFileSync('src/shards/far-reach/data/dressing.json', 'utf8')));
+    JSON.parse(readFileSync('src/data/dressing.json', 'utf8')));
   const first = heroStoneDiscs(), second = heroStoneDiscs(), disc = first[0];
   expect(first).toEqual(original.discs);
   if (disc === undefined) throw new Error('Missing original dressing clearance');
@@ -34,7 +34,7 @@ const bundle = (omitted?: string) => build({ configFile: false, logLevel: 'silen
     return null;
   } }],
   build: { write: false, minify: false,
-    lib: { entry: resolve('src/shards/far-reach/generators/meadowScene.ts'), formats: ['es'] },
+    lib: { entry: resolve('src/generators/meadowScene.ts'), formats: ['es'] },
     rolldownOptions: { external: [/^node:/u, 'assemblyscript/dist/asc.js'], output: { codeSplitting: false } } } });
 
 test('owned meadow channels bundle without generated imports or file/compiler services', async () => {
@@ -48,5 +48,5 @@ test('owned meadow channels bundle without generated imports or file/compiler se
 });
 
 test.each(['placements.ts', 'dressing.ts'])('owned meadow compilation refuses missing defining %s', async source => {
-  await expect(bundle(`src/shards/far-reach/generators/${source}`)).rejects.toThrow('Omitted meadow source');
+  await expect(bundle(`src/generators/${source}`)).rejects.toThrow('Omitted meadow source');
 });

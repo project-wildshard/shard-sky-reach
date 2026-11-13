@@ -9,14 +9,14 @@ import { build } from 'vite';
 import { prepareAssetDecoders } from '@wildshard/format/product';
 import { encodeBuildBytes } from '@wildshard/sharddev/bake/byteCodec';
 import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
-import { skyWorldPackSource, WORLD_PACK_FILES, WORLD_PACK_INPUTS } from '../src/shards/far-reach/generators/worldPackBytes';
+import { skyWorldPackSource, WORLD_PACK_FILES, WORLD_PACK_INPUTS } from '../src/generators/worldPackBytes';
 
 await prepareAssetDecoders();
 
 const check = (files: ReadonlyMap<string, Uint8Array>): void => {
   expect([...files.keys()]).toEqual(WORLD_PACK_FILES);
   for (const [name, bytes] of files) {
-    const original = name.startsWith('baked/') ? `public/assets/far-reach/${name}` : `src/shards/far-reach/${name}`;
+    const original = name.startsWith('baked/') ? `public/assets/far-reach/${name}` : `src/${name}`;
     expect(Buffer.compare(bytes, readFileSync(original)), name).toBe(0);
   }
 };
@@ -38,7 +38,7 @@ test('missing, empty and extra model input inventories refuse without a publishe
 
 test.each(['worldPackBytes'])('%s bundles without generated imports or file/compiler services', async entry => {
   const result = await build({ configFile: false, logLevel: 'silent', build: { write: false, minify: false,
-    lib: { entry: resolve(`src/shards/far-reach/generators/${entry}.ts`), formats: ['es'] },
+    lib: { entry: resolve(`src/generators/${entry}.ts`), formats: ['es'] },
     rolldownOptions: { external: [/^node:/u, 'assemblyscript/dist/asc.js'], output: { codeSplitting: false } } } });
   const output = Array.isArray(result) ? result[0] : result;
   if (output === undefined || !('output' in output)) throw new Error('Missing world pack source bundle');

@@ -1,10 +1,10 @@
 import { withPortableMath } from '@wildshard/sharddev/commons/bake/portableMath';
 import { expect, test } from 'vitest';
-import { skyIsleProps } from '../src/shards/far-reach/generators/isleProps';
-import { skyGroundValues, skyTiledGroundValues } from '../src/shards/far-reach/generators/groundScene';
-import { SKY_ISLE_TILES } from '../src/shards/far-reach/generators/islandScenes';
-import { SKY_WORLD_TILE_ROWS } from '../src/shards/far-reach/generators/worldTileRows';
-import { skyProductRows } from '../src/shards/far-reach/generators/product';
+import { skyIsleProps } from '../src/generators/isleProps';
+import { skyGroundValues, skyTiledGroundValues } from '../src/generators/groundScene';
+import { SKY_ISLE_TILES } from '../src/generators/islandScenes';
+import { SKY_WORLD_TILE_ROWS } from '../src/generators/worldTileRows';
+import { skyProductRows } from '../src/generators/product';
 import { originalSkyMovers } from './fixtures/sky-movers';
 import { originalSkyNavigation } from './fixtures/sky-navigation';
 

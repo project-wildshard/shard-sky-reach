@@ -2,11 +2,11 @@
 import { readFileSync } from 'node:fs';
 import * as v from 'valibot';
 import { expect, test } from 'vitest';
-import { skyIsletRigRows } from '../src/shards/far-reach/generators/isletRigRows';
-import { isletMotionRows } from '../src/shards/far-reach/generators/isletMotion';
+import { skyIsletRigRows } from '../src/generators/isletRigRows';
+import { isletMotionRows } from '../src/generators/isletMotion';
 
 const jsonBytes = (value: unknown): Uint8Array => new TextEncoder().encode(`${JSON.stringify(value)}\n`);
-const original = v.parse(v.object({ rigs: v.unknown(), rails: v.unknown() }), JSON.parse(readFileSync('src/shards/far-reach/data/isletRig.json', 'utf8')));
+const original = v.parse(v.object({ rigs: v.unknown(), rails: v.unknown() }), JSON.parse(readFileSync('src/data/isletRig.json', 'utf8')));
 
 test('authored rig rows retain every original chain anchor, rail box and field order', () => {
   expect(JSON.stringify(skyIsletRigRows())).toBe(JSON.stringify(original));
