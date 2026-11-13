@@ -1,7 +1,3 @@
 {
-  "budgets": {},
-  "wildshard/shard-engine-imports": {
-    "src/shards/far-reach/generators/creatures.ts": 1,
-    "src/shards/far-reach/generators/movers.ts": 1
-  }
+  "budgets": {}
 }
