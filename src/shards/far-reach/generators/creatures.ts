@@ -1,6 +1,6 @@
 import { BufferGeometry, Color, Float32BufferAttribute, IcosahedronGeometry, MeshStandardMaterial, OctahedronGeometry, TorusGeometry, Uint16BufferAttribute, Vector3 } from 'three';
 import { bindRigid, readSourceModel, skinnedGlb, type RawTexture, type SkinnedBone, type SkinnedOutput } from '@wildshard/sharddev/bake/skinned';
-import type { AnimalDims } from '@wildshard/engine/entities/species/registry';
+import type { ShardRows } from '@wildshard/format/rows';
 import { hdGeometry, facetedGeometry, fitModel } from './modelIntake';
 import { SKY_AO_FLOOR } from './modelFrames';
 import { SKY_CREATURE_SOURCES, type SkyCreatureExtras } from './rows/creatures';
@@ -15,8 +15,10 @@ import type { SkyCreature } from './fileInventory';
  * `test/sky-creature-rig-program.test.ts` preserves every original byte and native-input refusal.
  */
 
+/** A species row's body dims, as the shard format declares them. */
+type BodyDims = ShardRows['species'][number]['dims'];
 /** A processed body: what the species look's `build()` returns, plus its map. */
-interface Body { bones: SkinnedBone[]; geometry: BufferGeometry; dims: AnimalDims; texture?: RawTexture; facetJitter?: number; selfLight?: number }
+interface Body { bones: SkinnedBone[]; geometry: BufferGeometry; dims: BodyDims; texture?: RawTexture; facetJitter?: number; selfLight?: number }
 
 const BODY = 0, HEAD = 1, WING_L = 2, WING_R = 3, TAIL = 4;
 const smooth = (a: number, b: number, v: number): number => { const k = Math.min(1, Math.max(0, (v - a) / (b - a))); return k * k * (3 - 2 * k); };

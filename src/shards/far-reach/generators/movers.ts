@@ -7,8 +7,10 @@ import { FALLEN_ANGLE } from './rows/moverBindings';
 import FLAGS from '../data/flags.json' with { type: 'json' };
 import { deckCollider, saggedColliders, railColliders } from './bridgeColliders';
 import { isletId, gateId, RISING_ISLETS } from './risingIslets';
-import type { MoverBox } from '@wildshard/engine/physics/mover';
 import { ISLET, ISLET_ISLE } from './rows/isletDesign';
+
+/** One local collider box of a mover, as the shard format declares it. */
+type MoverBox = MoverData[number]['boxes'][number];
 
 // Three's configurable buffer types preserve authored f64 stops instead of rounding native gameplay to Float32.
 class PositionStops extends VectorKeyframeTrack {}
