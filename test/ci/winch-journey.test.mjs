@@ -16,7 +16,7 @@ import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
 const { loadHeadlessProduct } = await import('@wildshard/engine/host/headlessProduct');
-const { createTrustedHeadlessResident } = await import('@wildshard/engine/host/headlessRuntime');
+const { openWorld } = await import('@wildshard/engine/host/openWorld');
 const { runTrustedHeadlessTape } = await import('@wildshard/engine/host/headlessTape');
 const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
 const { loadRapier } = await import('@wildshard/engine/physics/rapier');
@@ -90,7 +90,7 @@ test('far-reach: the keeper tape carried on to an earned winch and the Storm Roc
   const assets = new Map(descriptor.index.files.filter(file => serverReadsFile(file, shard.terrain?.collider) && (file.name === undefined || file.kind === 'wasm' || file.kind === 'tile'))
     .map(file => [file.commons === true ? `commons:${file.hash}` : file.hash, readFileSync(join(directory, file.path))]));
   const rapier = await loadRapier(readFileSync(engineRequire.resolve('@dimforge/rapier3d-simd/rapier_wasm3d_bg.wasm')));
-  const resident = await createTrustedHeadlessResident({ shard, assets, product, rapier }), { host } = resident;
+  const resident = (await openWorld({ shard, assets, product, rapier }, { room: true })).resident, { host } = resident;
   try {
     const player = [...host.players.values()][0]; assert.ok(player);
     // Stand and strike the nearest live flier as it dives, until every one named is down.
@@ -149,8 +149,9 @@ test('far-reach: the keeper tape carried on to an earned winch and the Storm Roc
     // The Ledger: each completion files its fact once (rows/ledger.ts), and the Roc's purse pays once (rows/rocFight.ts).
     const facts = effects.filter(row => row.kind === 'fact').map(row => row.name).sort();
     assert.deepEqual(facts, ['far-reach.quest', 'far-reach.roc'], 'The quest and the Roc each file one Ledger fact');
-    assert.deepEqual(effects.filter(row => row.kind === 'coins' && row.actorId === ROC).map(row => row.amount), [25], 'The Roc pays its 25 coins once');
-    assert.deepEqual(effects.filter(row => row.kind === 'coins' && row.actorId !== ROC).map(row => row.amount), [10], 'The quest pays its 10 coins once');
+    // A room (HS1's world) pays the Roc's purse to the player who earned it, not to the body (J105): the walker gets the
+    // quest's 10 coins, then the Roc's 25, each once.
+    assert.deepEqual(effects.filter(row => row.kind === 'coins').map(row => [row.actorId, row.amount]), [[player.id, 10], [player.id, 25]], 'The quest pays 10 coins and the Roc 25, each once, to the walker');
     console.log(`winch-journey ${JSON.stringify({ ticks: host.state.tick, fights: { ...fights, roc: fell + 1 }, effects, elapsedMs: Math.round(performance.now() - started) })}`);
   } finally { resident.dispose(); }
 });
