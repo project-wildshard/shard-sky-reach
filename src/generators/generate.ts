@@ -1,7 +1,7 @@
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
-import { skyProductRows } from './product';
+import { skyShardfileRows } from './shardfile';
 import { prepareOutput } from './sourceOutput';
-import { skyProductBoot } from './bootInventory';
+import { skyBootInventory } from './bootInventory';
 import { skyRigAssetSources } from './rigAssetSources';
 import { GPU_FILES } from '../ktx2.generated';
 import { skyMapPalette } from './fixedLayouts';
@@ -12,13 +12,13 @@ import { skyMoverProgram } from './moverHeader';
 
 /** Publish declaration, native output and discovery from one source invocation. */
 export async function generate(ctx: ProjectGenerationContext): Promise<{
-  readonly shard: ReturnType<typeof skyProductRows>;
+  readonly shard: ReturnType<typeof skyShardfileRows>;
   readonly output: Awaited<ReturnType<typeof prepareOutput>>;
   readonly map: Awaited<ReturnType<typeof skyMapProgram>>;
-  readonly discovery: ReturnType<typeof skyProductBoot> & ReturnType<typeof skyViewDiscovery> & { readonly mapPalette: ReturnType<typeof skyMapPalette>; readonly navigation: SkyNavigationRows };
+  readonly discovery: ReturnType<typeof skyBootInventory> & ReturnType<typeof skyViewDiscovery> & { readonly mapPalette: ReturnType<typeof skyMapPalette>; readonly navigation: SkyNavigationRows };
 }> {
   const navigation = await skyNavigationProgram(ctx), output = await prepareOutput(ctx);
   const geometry = output.namedFiles.find(file => file.name === 'world/geometry/prepared-models.glb');
   if (geometry === undefined) throw new Error('Missing owned prepared geometry for boot');
-  return { shard: skyProductRows(navigation.rows, await skyMoverProgram(ctx)), output, map: await skyMapProgram(ctx), discovery: { ...skyProductBoot(skyRigAssetSources(output.namedFiles, { phone: GPU_FILES.phone, desktop: GPU_FILES.desktop })), ...skyViewDiscovery(), mapPalette: skyMapPalette(), navigation: navigation.rows } };
+  return { shard: skyShardfileRows(navigation.rows, await skyMoverProgram(ctx)), output, map: await skyMapProgram(ctx), discovery: { ...skyBootInventory(skyRigAssetSources(output.namedFiles, { phone: GPU_FILES.phone, desktop: GPU_FILES.desktop })), ...skyViewDiscovery(), mapPalette: skyMapPalette(), navigation: navigation.rows } };
 }

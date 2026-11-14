@@ -30,7 +30,7 @@ const isletRows = risingIsletRows(), RISING_ISLETS = isletRows.entries, ENTRYWAY
 
 const base = emptyShardfile({ slug: 'far-reach', name: 'Sky Reach', author: 'Wildshard', revision: 1, seed: 6417 });
 /** Build-time declaration rows from admitted original navigation; no source handoff is read. */
-export function skyProductRows(navigation: SkyNavigationRows, movers: MoverData): ReturnType<typeof parseShardfile> {
+export function skyShardfileRows(navigation: SkyNavigationRows, movers: MoverData): ReturnType<typeof parseShardfile> {
   return structuredClone(parseShardfile({ ...base, ...SKY_SECTIONS, plumbing, state: { ...SKY_SECTIONS.state, version: 2 }, migrations: slotMigrations, navigation: navigation.navigation, serverBudget: { ...base.serverBudget, memory: base.serverBudget.memory + navigation.files.reduce((sum, file) => sum + file.decoded, 0) }, accent: 'pink', runtime: null,
   // the material graphs the runtime draws its own meshes in (authored SF59 graph JSON, data/lookGraphs.json), and the
   // samplers: the islands' and boulders' library maps tile, the sward atlas keeps its own

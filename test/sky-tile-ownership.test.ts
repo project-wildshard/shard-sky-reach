@@ -4,7 +4,7 @@ import { skyIsleProps } from '../src/generators/isleProps';
 import { skyGroundValues, skyTiledGroundValues } from '../src/generators/groundScene';
 import { SKY_ISLE_TILES } from '../src/generators/islandScenes';
 import { SKY_WORLD_TILE_ROWS } from '../src/generators/worldTileRows';
-import { skyProductRows } from '../src/generators/product';
+import { skyShardfileRows } from '../src/generators/shardfile';
 import { originalSkyMovers } from './fixtures/sky-movers';
 import { originalSkyNavigation } from './fixtures/sky-navigation';
 
@@ -39,7 +39,7 @@ test('resident anchors preserve original ground identity, contacts, placement an
 });
 
 test('fine render ownership is exclusive to tiles; each cold island reads only its own partitions', () => {
-  const rows = skyProductRows(originalSkyNavigation(), originalSkyMovers());
+  const rows = skyShardfileRows(originalSkyNavigation(), originalSkyMovers());
   const fineFiles = new Set(rows.tiles.filter(row => row.lod === 0).flatMap(row => row.files));
   expect(rows.library.some(file => fineFiles.has(file))).toBe(false);
   if (rows.props === null) throw new Error('Missing streamed island props');

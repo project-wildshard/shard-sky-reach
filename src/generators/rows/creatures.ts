@@ -1,6 +1,6 @@
 /**
  * Sky Reach's native creature sources and skin metadata. The owned source/cache program
- * returns the complete original bodies; the admitted product supplies runtime addresses.
+ * returns the complete original bodies; the admitted shard file supplies runtime addresses.
  */
 /** The generated sources (C6 / E392: Hunyuan3D-2 GLBs under public/), read only by the bake. */
 export const SKY_CREATURE_SOURCES = {

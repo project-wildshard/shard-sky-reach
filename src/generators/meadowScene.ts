@@ -8,7 +8,7 @@ import { MEADOW, meadowCard } from './rows/meadowLook';
 
 type SceneBuffers = ReturnType<typeof parseSceneBuffers>;
 
-/** The original blade bytes, card channels and chunk LOD transforms, frozen before product compilation. */
+/** The original blade bytes, card channels and chunk LOD transforms, frozen before shard file compilation. */
 export function skyMeadowScene(publish: (id: string, bytes: Uint8Array) => { file: string; byteOffset: number }, blades: Uint8Array = bakeMeadowBlades()): SceneBuffers {
   const bytes = decodePortableBytes(blades), view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   const chunks = view.getUint32(0, true), buffers: SceneBuffers['buffers'] = [], attributes: SceneBuffers['attributes'] = [];

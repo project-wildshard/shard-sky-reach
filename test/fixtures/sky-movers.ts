@@ -1,4 +1,4 @@
-// oxlint-disable-next-line import/no-nodejs-modules -- The original native header is tracked source, not an ignored product.
+// oxlint-disable-next-line import/no-nodejs-modules -- The original native header is tracked source, not an ignored build output.
 import { readFileSync } from 'node:fs';
 import { skyMoverRows, SKY_MOVER_HEADER_INPUT } from '../../src/generators/moverHeader';
 

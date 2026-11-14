@@ -19,17 +19,17 @@ export const BOOT_FILES = { sources: BOOT_SOURCES, tier: 'phone', tex: 'img' } a
 /** The learned grade remains the only late read. */
 export const LATE_READS = ['/assets/lut/far-reach.bin'];
 
-/** Public boot packs omit owned geometry; native pools load it through normal product admission. */
-export function skyProductBoot(rigs?: SkyRigAssetSources): {
+/** Public boot packs omit owned geometry; native pools load it through normal shard file admission. */
+export function skyBootInventory(rigs?: SkyRigAssetSources): {
   readonly ktx2: typeof GPU_FILES;
-  readonly 'boot.files': { readonly sources: ReturnType<typeof productSources>; readonly tier: 'phone'; readonly tex: 'img' };
-  readonly 'boot.sources': ReturnType<typeof productSources>;
+  readonly 'boot.files': { readonly sources: ReturnType<typeof bootSources>; readonly tier: 'phone'; readonly tex: 'img' };
+  readonly 'boot.sources': ReturnType<typeof bootSources>;
   readonly 'boot.lateReads': typeof LATE_READS;
 } {
-  const sources = productSources(rigs);
+  const sources = bootSources(rigs);
   return { ktx2: rigs?.gpuFiles ?? GPU_FILES, 'boot.files': { sources, tier: 'phone', tex: 'img' }, 'boot.sources': sources, 'boot.lateReads': LATE_READS };
 }
-function productSources(rigs?: SkyRigAssetSources) {
+function bootSources(rigs?: SkyRigAssetSources) {
   const owned = new Set<string>([PREPARED_MODELS_URL, ...SKY_MESHES.map(name => MODEL_URLS[name]), ...BAKED_PIECES.map(piece => BAKED_URLS[piece]), BRIDGE_REST_URL, MILL_REST_URL, FAN_URL, ...REST_URLS, ISLET_POOL.url,
     ...(rigs === undefined ? [] : Object.values(SKY_CREATURE_RIGS))]);
   const props = shared.props.filter(row => typeof row === 'string' ? !owned.has(row) : rigs === undefined || !owned.has(row.gpu));

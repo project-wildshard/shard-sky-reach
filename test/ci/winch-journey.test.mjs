@@ -1,5 +1,5 @@
 // J186 Ring 2, CI only, never a hook. The keeper tape (content-tapes.json)
-// carried on to the winch on the built product: the roost rays, the three
+// carried on to the winch on the built output: the roost rays, the three
 // vanes, the board over the hover bridges and the updraft, the winch drum
 // turned before and after it is earned, and the raised bridge walked to the
 // storm crown. There the Storm Roc is fought through its three phases (the

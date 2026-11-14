@@ -14,7 +14,7 @@ export const SKY_PAINTED_ATTRIBUTE_SOURCES: { name: string; kind: 'bin'; source:
     .map(([name,row])=>({name:row.file,kind:'bin' as const,source:`data/sky-glow-${name}.bin`,options:{critical:true,gpu:row.count*4}}))),
 ];
 
-/** Product presentation preserves original image samplers, geometry and draw order. */
+/** Shard file presentation preserves original image samplers, geometry and draw order. */
 export function skyPaintedPresentation(): PaintedLookRow {
   const { look, images, dressing } = SKY_PAINTED;
   const disc = (row: typeof dressing.maelstrom.disc, graph: string, image: string) => ({ name: row.name, graph, image, order: row.order, at: row.at,

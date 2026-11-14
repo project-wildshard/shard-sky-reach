@@ -54,7 +54,7 @@ export function restScenes(): { readonly winch: ClientSceneBake['scene']; readon
 }
 /** The six rest pools' bakes in REST_URLS order (winch, three hovers, storm, book halo). */
 function restPoolBakes(): ClientSceneBake[] { return [winchRest(), ...hoverRestRows(), stormRest(), bookHaloRest()]; }
-/** GR5: the rest pools' GLB bytes, in REST_URLS order; the product owns them (restPoolProgram.ts). */
+/** GR5: the rest pools' GLB bytes, in REST_URLS order; the shard file owns them (restPoolProgram.ts). */
 export function restPoolGlbs(): readonly Uint8Array[] { return restPoolBakes().map(made => made.glb); }
 export function restPools(): readonly { readonly url: string; readonly parts: readonly string[] }[] {
   const scenes = restPoolBakes();

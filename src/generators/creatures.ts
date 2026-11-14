@@ -10,7 +10,7 @@ import type { SkyCreature } from './fileInventory';
  * Build-time only: the source program owns Sky Reach's four creature bodies and their admitted rig files (the Roc's painted map inside it, the source's
  * exact WebP bytes, so the KTX2 bake makes its phone stand-in as it did for the source). Each generated source is read offline through the runtime's own intake
  * (`@wildshard/sharddev/looks/modelIntake` facetedGeometry / hdGeometry), fitted, re-skinned and recoloured here exactly as the runtime did it,
- * and returned as a standard skinned GLB (`@wildshard/sharddev/bake/skinned`); the native product owns its runtime address.
+ * and returned as a standard skinned GLB (`@wildshard/sharddev/bake/skinned`); the native shard file owns its runtime address.
  * The gale wisp is code-built here (no source model): its primitive parts painted and rigidly skinned, one bone each.
  * `test/sky-creature-rig-program.test.ts` preserves every original byte and native-input refusal.
  */

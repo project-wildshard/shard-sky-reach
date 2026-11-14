@@ -104,8 +104,8 @@ export async function bakeTextureLibrary(root, input, options) {
     if (options.encode && pinsChanged)
         writeFileSync(source, `${JSON.stringify(rows, null, 2)}\n`);
     const output = source.replace(/Sources\.json$/u, 's.json'), values = Object.values(files);
-    const product = { maps: files, files: values, library: values.map(file => file.hash), budget: { compressed: values.reduce((sum, file) => sum + file.compressed, 0), resident: values.reduce((sum, file) => sum + file.decoded + file.gpu, 0) } };
-    const payload = `${JSON.stringify(product, null, 2)}\n`;
+    const metadata = { maps: files, files: values, library: values.map(file => file.hash), budget: { compressed: values.reduce((sum, file) => sum + file.compressed, 0), resident: values.reduce((sum, file) => sum + file.decoded + file.gpu, 0) } };
+    const payload = `${JSON.stringify(metadata, null, 2)}\n`;
     if (options.check) {
         if (readFileSync(output, 'utf8') !== payload)
             throw new Error(`Stale library metadata ${output}`);

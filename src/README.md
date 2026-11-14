@@ -53,7 +53,7 @@ Storm Roc.
 
 Build-only `generators/layout.ts` and `crownLayout.ts` define the coordinates.
 `fixedLayouts.ts` lends their original rows to the map and a fresh palette to
-product discovery; the page reads admitted scene/discovery data. No scheduler
+shard file discovery; the page reads admitted scene/discovery data. No scheduler
 publishes layout, crown or palette JSON handoffs.
 
 ## Budgets
