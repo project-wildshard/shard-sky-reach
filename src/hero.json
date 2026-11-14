@@ -1,10 +1,10 @@
 {
-  "content": "dd846fef84b594c178401227626405f0d7117d34e67f5f8360044cf9576ad106",
-  "captured": "2026-11-14T00:25:34.711Z",
-  "base": "stamp-existing: the hero files already in the shard, adopted without a capture",
+  "content": "a6dcdf986bd7549441dcef83fc4414810ea54fd59f43e17f2fa792521740d3ff",
+  "captured": "2026-11-14T02:19:48.242Z",
+  "base": "http://127.0.0.1:4791",
   "card": {
-    "thumbs/far-reach.jpg": "a639d58dfc165909f612c4987c4904ed6d9ab9452ced035d7563ff5239736635",
-    "thumbs/far-reach-portrait.jpg": "bd36750b6013e6818c4264c77511edd85b8b8a8aff82a9f7c6146a4f0fd7b646",
-    "thumbs/far-reach-landscape.jpg": "6a3f0cbc82ee6f56c66c57ef10205dd495f6cf1b6b7d88acca21c2a8ca0be822"
+    "thumbs/far-reach.jpg": "00ae7e7d6ab21bac0bd5c147f347ffa873e00343ff225de85352de6de34d15c4",
+    "thumbs/far-reach-portrait.jpg": "8120ec84cb60c6d03ed762b8514c52daaa7a124f1c087f0c249da816eadeaf7b",
+    "thumbs/far-reach-landscape.jpg": "3508eb6a8d294a0bcdbfb7c889dfb4fdaf07679bdf6aa38ffd10fae2194638ec"
   }
 }
