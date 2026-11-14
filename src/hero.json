@@ -1,7 +1,7 @@
 {
-  "content": "545bfad61ec29904cbeccd59d8acaad9dba9f0207c4d05a59e9130dad7ddf906",
-  "captured": "2026-11-13T09:07:06.060Z",
-  "base": "http://127.0.0.1:4911",
+  "content": "dd846fef84b594c178401227626405f0d7117d34e67f5f8360044cf9576ad106",
+  "captured": "2026-11-14T00:25:34.711Z",
+  "base": "stamp-existing: the hero files already in the shard, adopted without a capture",
   "card": {
     "thumbs/far-reach.jpg": "a639d58dfc165909f612c4987c4904ed6d9ab9452ced035d7563ff5239736635",
     "thumbs/far-reach-portrait.jpg": "bd36750b6013e6818c4264c77511edd85b8b8a8aff82a9f7c6146a4f0fd7b646",
