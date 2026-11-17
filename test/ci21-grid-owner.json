@@ -1,0 +1,11 @@
+{
+  "schema": "ci21-grid-owner/1",
+  "original": "engine:test/grid-reentry.test.ts",
+  "products": [
+    {
+      "slug": "far-reach",
+      "directory": "out/far-reach"
+    }
+  ],
+  "generic": false
+}
