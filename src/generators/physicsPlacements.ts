@@ -1,10 +1,10 @@
 import type { BoxColliderData, ColliderData } from '@wildshard/sharddev/physics';
-import { APOTHEM, DECK, ISLES, MILL, MILL_DRUM, NOTES, VANES, WINCH, type Isle } from "./layout";
+import { DECK, ISLES, MILL, MILL_DRUM, NOTES, VANES, WINCH, type Isle } from "./layout";
 import STRINGS from '../data/strings.json' with { type: 'json' };
 import { risingIsletRows } from './risingIslets';
 
 type PlacementBox = BoxColliderData & { surface: 'grass' | 'stone' | 'wood' };
-type PlacementHull = Extract<ColliderData, { kind: 'hull' }> & { surface: 'stone' };
+type PlacementHull = Extract<ColliderData, { kind: 'hull' }> & { surface: 'grass' | 'stone' };
 
 /** The original native island/landing/prop rest transport; movable bodies remain runtime-owned. */
 export interface SkyPhysicsPlacement {
@@ -43,11 +43,21 @@ function props(): SkyPhysicsPlacement[] {
   ];
 }
 
-/** Cover the twelve-sided top with the shipping six strips, retaining yaw and numeric operation order. */
-function islandStrips(isle: Isle): PlacementBox[] {
-  const half = isle.r * APOTHEM, width = isle.r * 0.26;
-  return [0, 1, 2, 3, 4, 5].map(index => ({ kind: 'box', x: isle.x, y: ((isle.y - 2) + isle.y) / 2, z: isle.z,
-    hx: half, hy: (isle.y - (isle.y - 2)) / 2, hz: width, yaw: 0 - (index * Math.PI) / 6, surface: 'grass' }));
+/**
+ * The twelve-sided top as one convex prism, 2 m deep, its corners where the drawn deck's are (radius `r`, at 15 + 30k degrees;
+ * the faces' middles at `r * APOTHEM`). NET-LAG NL13 (engine meta docs/plans/NET-LAG-PLAN.md): it was six overlapping strips,
+ * and a capsule walking across one strip's buried edges inside another took whichever edge the world's tree gave it first.
+ * The page's world and the room's never hold their colliders in the same order, so the same step from the same state moved
+ * the feet differently (mm on the deck, cm against the windmill) and the owner was corrected 8 to 44 times a minute.
+ * One prism has no buried edges: the walk is the same in any order.
+ */
+function islandDeck(isle: Isle): PlacementHull {
+  const points: number[] = [];
+  for (let i = 0; i < 12; i++) {
+    const a = ((2 * i + 1) * Math.PI) / 12, x = Math.fround(Math.cos(a) * isle.r), z = Math.fround(Math.sin(a) * isle.r);
+    points.push(x, Math.fround(-1), z, x, Math.fround(1), z);
+  }
+  return { kind: 'hull', x: isle.x, y: isle.y - 1, z: isle.z, points, surface: 'grass' };
 }
 
 /** Compile the twelve fixed island tops, four road lips and the fixed props from retained author rows.
@@ -60,7 +70,7 @@ export function skyPhysicsPlacements(): SkyPhysicsPlacement[] {
     grove: STRINGS.grove, keeper: STRINGS.keeper, ruin: STRINGS.ruin, step: STRINGS.step, crown: STRINGS.crown };
   const islands = [...ISLES, ...entries.map(entry => entry.gate)].map(isle => ({
     id: `far.isle.${isle.id}`, name: names[isle.id] ?? STRINGS.gateIsle, category: 'ground' as const,
-    file: BUILD, colliders: islandStrips(isle), active: true as const, surface: 'grass' as const,
+    file: BUILD, colliders: [islandDeck(isle)], active: true as const, surface: 'grass' as const,
   }));
   const lips = entries.map(({ edge, landing: l }) => ({ id: `far.islet.lip.${edge}`, name: STRINGS.isletLip, category: 'buildings' as const,
     file: 'src/shards/far-reach/world/risingIslet.ts',
