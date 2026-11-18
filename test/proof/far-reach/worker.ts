@@ -6,6 +6,6 @@ import { installPortableMath } from '@wildshard/engine/core/portableMath';
 /** The same real Sky entry in the SDK worker, with the recorder's portable math installed before its imports. */
 export async function prepareHeadlessRuntime(preparation: HeadlessRuntimePreparation): Promise<HeadlessRuntimePlan> {
   installPortableMath();
-  const { prepareProductPlan } = await import('@wildshard/engine/test/headless-native');
-  return prepareProductPlan(preparation);
+  const { prepareFolderPlan } = await import('@wildshard/engine/test/headless-native');
+  return prepareFolderPlan(preparation);
 }

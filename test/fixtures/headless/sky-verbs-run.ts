@@ -10,7 +10,7 @@ import '@wildshard/engine/core/portableMathFirst';
 import {readFileSync} from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assertions describe actual current input execution, never golden output.
 import assert from 'node:assert/strict';
-import {openProductSession} from '@wildshard/engine/test/headless/folderSession';
+import {openFolderSession} from '@wildshard/engine/test/headless/folderSession';
 import {nativeRapierFile} from '../native-rapier-file';
 
 const SKY_VERBS=new URL('../sky-verbs.ts',import.meta.url);
@@ -29,7 +29,7 @@ import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
 
 const mode=process.argv[2]??'priority';
 if(mode!=='priority'&&mode!=='gust')throw new Error('Unknown Sky verb tape');
-const session=await openProductSession('far-reach',{prepare:SKY_VERBS}),{product}=session;
+const session=await openFolderSession('far-reach',{prepare:SKY_VERBS}),{product}=session;
 let resident:Awaited<ReturnType<typeof createNativeProofResident>>|undefined,releaseRopes=()=>{};
 /** Version-one camera-relative stick input feeds the shared page foot law.
  * Board motion still consumes its ordinary native axes and HOVER presses. */
