@@ -75,6 +75,11 @@ playing and 1,131 MB loading, worst grid cell. The GPU drop repeats.
 The renderer delta is within the prior run spread, and both candidate
 boots remain above the 1.0 GB target.
 
+Hosted Ring 2 built the candidate, then refused the old hero stamp.
+The normal `wildshard hero` command recaptured all three sizes at the
+same spawn on the local `4a7ba050` preparation client serving
+`509461ee`. The new content stamp is `57c86d6fddfe`.
+
 The Mac mini evidence is under
 `~/.cache/wildshard/plan-artifacts/memory-gates/zone-loading-peaks-2026-11-17/far-reach`.
 The allocation receipt is addressed to mini-ninemem2 and mini-memplan.
