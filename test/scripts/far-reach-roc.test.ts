@@ -1,13 +1,13 @@
 // CI21 C8 port of engine test/scripts/far-reach-roc.test.ts (engine blob 54ce757b): every
 // case, assertion and the two-second body unchanged; engine and SDK imports are public exports.
 import { beforeAll, expect, test } from 'vitest';
-import { builtProduct } from '@wildshard/engine/test/builtProduct';
-import { scenario as diskScenario,type DiskScriptScenario } from '@wildshard/sharddev/test/scriptScenario';
+import { builtFolder } from '@wildshard/engine/test/builtFolder';
+import { scenario as diskScenario,type DiskScriptScenario } from '@wildshard/dev/test/scriptScenario';
 
 let prepared:readonly [DiskScriptScenario,DiskScriptScenario]|undefined;
 
 beforeAll(async () => {
-  const directory = builtProduct('far-reach');
+  const directory = builtFolder('far-reach');
   // Disk admission and independent host allocation are fixture preparation.
   // The unchanged two-second body measures every gameplay/save/restore step.
   const create = () => diskScenario('far-reach', 'far.roc.decision', { productDirectory: directory, seed: 6417,

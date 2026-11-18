@@ -8,12 +8,12 @@ import { resolve } from 'node:path';
 // oxlint-disable-next-line import/no-nodejs-modules -- Compare the complete GLB without expanding a 10 MB assertion.
 import { Buffer } from 'node:buffer';
 import { expect, test } from 'vitest';
-import { readBuiltShardfile } from '@wildshard/engine/scripts/built-product.mjs';
+import { readBuiltShardfile } from '@wildshard/engine/scripts/built-folder.mjs';
 import { readProgramDiscovery } from '@wildshard/engine/scripts/program-discovery.mjs';
 import { parseOutputIndex } from '@wildshard/format/outputIndex';
 import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
 import { emptyShardfile } from '@wildshard/engine/host/author';
-import { projectAssets } from '@wildshard/sharddev/project';
+import { projectAssets } from '@wildshard/build/project';
 import { prepareProjectOutput } from '@wildshard/sharddev/projectOutput';
 import { createProjectGeneration } from '@wildshard/sharddev/projectGeneration';
 import { prepareOutput } from '../src/generators/sourceOutput';

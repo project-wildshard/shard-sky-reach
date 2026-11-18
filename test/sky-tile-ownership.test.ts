@@ -1,4 +1,4 @@
-import { withPortableMath } from '@wildshard/sharddev/commons/bake/portableMath';
+import { withPortableMath } from '@wildshard/sharddev/math/portableMath';
 import { expect, test } from 'vitest';
 import { skyIsleProps } from '../src/generators/isleProps';
 import { skyGroundValues, skyTiledGroundValues } from '../src/generators/groundScene';

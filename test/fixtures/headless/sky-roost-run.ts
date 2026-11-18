@@ -10,7 +10,7 @@ import '@wildshard/engine/core/portableMathFirst';
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read the unchanged checked-in physics module.
 import {readFileSync} from 'node:fs';
-import {beginProductSession} from '@wildshard/engine/test/headless/productSession';
+import {beginProductSession} from '@wildshard/engine/test/headless/folderSession';
 import {nativeRapierFile} from '../native-rapier-file';
 
 const SKY_VERBS=new URL('../sky-verbs.ts',import.meta.url);

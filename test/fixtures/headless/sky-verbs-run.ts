@@ -10,11 +10,11 @@ import '@wildshard/engine/core/portableMathFirst';
 import {readFileSync} from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assertions describe actual current input execution, never golden output.
 import assert from 'node:assert/strict';
-import {openProductSession} from '@wildshard/engine/test/headless/productSession';
+import {openProductSession} from '@wildshard/engine/test/headless/folderSession';
 import {nativeRapierFile} from '../native-rapier-file';
 
 const SKY_VERBS=new URL('../sky-verbs.ts',import.meta.url);
-import {builtProduct} from '@wildshard/engine/test/builtProduct';
+import {builtFolder} from '@wildshard/engine/test/builtFolder';
 import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
 import {loadRapier} from '@wildshard/engine/physics/rapier';
 import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
@@ -41,7 +41,7 @@ function controls(command:HeadlessCommand):HeadlessCommand {
 }
 try{
   const descriptor=outputDescriptor(product.shardfile);assert.ok(descriptor);
-  const directory=builtProduct('far-reach'),assets=new Map(descriptor.index.files.map(file=>[
+  const directory=builtFolder('far-reach'),assets=new Map(descriptor.index.files.map(file=>[
     file.commons===true?`commons:${file.hash}`:file.hash,Uint8Array.from(readFileSync(`${directory}/${file.path}`)),
   ]));
   const rapier=await loadRapier(readFileSync(nativeRapierFile));

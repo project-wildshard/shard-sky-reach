@@ -11,7 +11,7 @@ import { restPoolGlbs } from './restScene.ts';
 import { REST_URLS, ISLET_POOL } from './restFiles.ts';
 import { isletGlb, isletScenes } from './isletScene.ts';
 import { isletMotionRows } from './isletMotion.ts';
-import { mapSceneRest } from '@wildshard/sharddev/bake/mapRest';
+import { mapSceneRest } from '@wildshard/dev/bake/mapRest';
 import { fixedLayoutFiles } from './fixedLayouts.ts';
 import { crownInstances } from './crownInstances.ts';
 import { risingIsletRows } from './risingIslets.ts';
