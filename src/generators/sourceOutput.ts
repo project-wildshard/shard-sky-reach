@@ -29,6 +29,7 @@ import { skyStormNoiseInput } from './stormNoiseInput';
 import { STORM_NOISE } from './rows/stormNoise';
 import { SWARD_ATLAS_FILE } from './rows/swardAtlas';
 import { skyCreatureRigOutput } from './creatureRigOutput';
+import { skyPaintedModelPhoneOutput } from './paintedModelPhone';
 import { skyRigAssetSources } from './rigAssetSources';
 import { skyRigLibrary } from './rigLibrary';
 import { GPU_FILES } from '../ktx2.generated';
@@ -79,6 +80,7 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<SkyS
   const sceneValues = skyWorldSceneValues(readMillSceneValues(millWire), readSkyStaticSceneEnvelope(staticWire), readSkyRouteValues(routeWire), heroes);
   const prepared = skyOutputValues(sceneValues);
   const rigs = await skyCreatureRigOutput(ctx);
+  const phonePaint = await skyPaintedModelPhoneOutput(ctx);
   const rigSources = skyRigAssetSources(rigs.files, GPU_FILES);
   const name = 'world/geometry/prepared-models.glb';
   const geometry = nameBlob(name, 'glb', await preparedModelProgram(ctx)), hero = skyHeroSource(name, heroes);
@@ -103,7 +105,7 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<SkyS
     if (bytes === undefined) throw new Error('Missing owned vane geometry');
     return nameBlob(`world/geometry/${file}`, 'glb', bytes);
   });
-  const assets = new Map([...prepared.assets, ...rigs.assets, ...navigation.assets]), replacements = [hero, bakes,
+  const assets = new Map([...prepared.assets, ...rigs.assets, ...phonePaint.assets, ...navigation.assets]), replacements = [hero, bakes,
     skyModelSource(bridgeName, millName, fanName, skyRigLibrary(rigSources.urls), {
       'vane-post': 'world/geometry/vane-post.glb', 'vane-rotor': 'world/geometry/vane-rotor.glb',
     }, restPools)];
@@ -123,5 +125,5 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<SkyS
     assets.set(file.hash, bytes);
   }
   return { ...prepared, namedFiles: [...prepared.namedFiles.map(file => replacements.find(row => row.file.name === file.name)?.file ?? file),
-    geometry.file, ...world.map(blob => blob.file), bridge.file, mill.file, fan.file, ...rigs.files, ...vanes.map(blob => blob.file), ...rest.map(blob => blob.file)], assets };
+    geometry.file, ...world.map(blob => blob.file), bridge.file, mill.file, fan.file, ...rigs.files, ...phonePaint.files, ...vanes.map(blob => blob.file), ...rest.map(blob => blob.file)], assets };
 }

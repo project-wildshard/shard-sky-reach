@@ -3,6 +3,7 @@ import { skyShardfileRows } from './shardfile';
 import { prepareOutput } from './sourceOutput';
 import { skyBootInventory } from './bootInventory';
 import { skyRigAssetSources } from './rigAssetSources';
+import { skyPaintedModelGpuFiles } from './paintedModelPhone';
 import { GPU_FILES } from '../ktx2.generated';
 import { skyMapPalette } from './fixedLayouts';
 import { skyViewDiscovery } from './viewData';
@@ -20,5 +21,7 @@ export async function generate(ctx: ProjectGenerationContext): Promise<{
   const navigation = await skyNavigationProgram(ctx), output = await prepareOutput(ctx);
   const geometry = output.namedFiles.find(file => file.name === 'world/geometry/prepared-models.glb');
   if (geometry === undefined) throw new Error('Missing owned prepared geometry for boot');
-  return { shard: skyShardfileRows(navigation.rows, await skyMoverProgram(ctx)), output, map: await skyMapProgram(ctx), discovery: { ...skyBootInventory(skyRigAssetSources(output.namedFiles, { phone: GPU_FILES.phone, desktop: GPU_FILES.desktop })), ...skyViewDiscovery(), mapPalette: skyMapPalette(), navigation: navigation.rows } };
+  const rigs = skyRigAssetSources(output.namedFiles, GPU_FILES);
+  const sources = { ...rigs, gpuFiles: skyPaintedModelGpuFiles(output.namedFiles, rigs.gpuFiles) };
+  return { shard: skyShardfileRows(navigation.rows, await skyMoverProgram(ctx)), output, map: await skyMapProgram(ctx), discovery: { ...skyBootInventory(sources), ...skyViewDiscovery(), mapPalette: skyMapPalette(), navigation: navigation.rows } };
 }

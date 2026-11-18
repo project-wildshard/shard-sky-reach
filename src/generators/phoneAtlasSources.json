@@ -1,0 +1,62 @@
+{
+  "hand-hd": {
+    "url": "assets/phone-atlases/hand-hd.webp",
+    "hash": "31d9d509b97a4dcb4f48f20ab472f46df2d606ca2da75da2f28b0bf5ee7efd74"
+  },
+  "crown-dais": {
+    "url": "assets/phone-atlases/crown-dais.webp",
+    "hash": "1c4fdfa00b1511f2a3041723a492d43d5a453147759034c33c16a386c18965f1"
+  },
+  "crown-stone-b": {
+    "url": "assets/phone-atlases/crown-stone-b.webp",
+    "hash": "107a94bfef5b22050688c622e4bb98062dc857bb478eac3266905c1dd666951b"
+  },
+  "crown-stone": {
+    "url": "assets/phone-atlases/crown-stone.webp",
+    "hash": "2877b18a1029466a40a351eee25946b804094e37f22b76b45914bb3b4a8ebea2"
+  },
+  "isle-canopy-hd": {
+    "url": "assets/phone-atlases/isle-canopy-hd.webp",
+    "hash": "0b3350694039b00b9b7a3854c31a8a8ac1244deba2e8a9cc482e757680046c7a"
+  },
+  "isle-falls-hd": {
+    "url": "assets/phone-atlases/isle-falls-hd.webp",
+    "hash": "438c4b57568da533306bf0a80e3f478ed1109f27334f3f2d67df20885ff45257"
+  },
+  "isle-mass-hd": {
+    "url": "assets/phone-atlases/isle-mass-hd.webp",
+    "hash": "a781a7bb36ee89de3997a18e59fad28e3c8459307e235f7baf067c669842e09e"
+  },
+  "isle-shelf-hd": {
+    "url": "assets/phone-atlases/isle-shelf-hd.webp",
+    "hash": "212feaa3d43d64f59360e9521ec85cb7e23ab6c21f897c5fd6864f1b4231face"
+  },
+  "isle-spire-hd": {
+    "url": "assets/phone-atlases/isle-spire-hd.webp",
+    "hash": "a41c82f729be9bd8c1d0b36b99647eb315ba3d546f0d060bb649f5b4e822062f"
+  },
+  "isle-twin-hd": {
+    "url": "assets/phone-atlases/isle-twin-hd.webp",
+    "hash": "d46917ade09462e686d7d1c8f6f55383d4fe49e7574a1663d31652a11ea0c786"
+  },
+  "keeper-hd": {
+    "url": "assets/phone-atlases/keeper-hd.webp",
+    "hash": "59464d35b4f2e3a6b7f84f84896f44eb662a49e472670da7b7001e623671a801"
+  },
+  "lectern-hd": {
+    "url": "assets/phone-atlases/lectern-hd.webp",
+    "hash": "f557596319cbc98a16ff6044149e603d24689dbbb3b178470e498fe1abed9e99"
+  },
+  "mill-foot": {
+    "url": "assets/phone-atlases/mill-foot.webp",
+    "hash": "06db523e86a9e9477f287b7100595f99bbd3b7ca4007b06f20fab8cba7613fa2"
+  },
+  "mill-tower": {
+    "url": "assets/phone-atlases/mill-tower.webp",
+    "hash": "58a8777dbd5e1f8cf1f31a380e14ecc3f70b69f3effb2ae1a2de52db1bc87eba"
+  },
+  "post-hd": {
+    "url": "assets/phone-atlases/post-hd.webp",
+    "hash": "31c5445e81bf090efc7a261b84f1e489ac4981d83016dde8b0603b8f1d1b769f"
+  }
+}
