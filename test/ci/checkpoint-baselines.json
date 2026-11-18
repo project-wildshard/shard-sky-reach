@@ -10,5 +10,8 @@
   },
   "0.1.32 linux-x64": {
     "far-reach": "ad16bd7f285b78d6b3890df927876850c417e042b1c2c6bd89cd3979ef191f23"
+  },
+  "0.1.35 linux-x64": {
+    "far-reach": "886bf9c968b623bea288f8df7896ac764a31731e186a095859e6a65788deafbd"
   }
 }
