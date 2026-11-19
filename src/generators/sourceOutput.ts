@@ -17,7 +17,7 @@ import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGenera
 import { preparedModelProgram } from './preparedModelProgram';
 import { skyHeroSource, skyBakeSource, skyModelSource } from './sceneSources';
 import { skyWorldPieceProgram } from './worldPieceProgram';
-import { BAKED_PIECES } from './fileInventory';
+import { BAKED_PIECES, PANO_URL } from './fileInventory';
 import { skyWorldTileProgram } from './worldTileProgram';
 import { SKY_WORLD_TILE_ROWS } from './worldTileRows';
 import { skyBridgeRestProgram } from './bridgeRestProgram';
@@ -81,6 +81,17 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<SkyS
   const prepared = skyOutputValues(sceneValues);
   const rigs = await skyCreatureRigOutput(ctx);
   const phonePaint = await skyPaintedModelPhoneOutput(ctx);
+  // The cook also serves this blob at its existing sky URL. Declare its
+  // actual tier so phone admission excludes the desktop-only panorama.
+  const panoramaName = 'look/panorama.desktop.webp';
+  const panoramas = await ctx.cached({ id: 'desktop-panorama', inputs: [PANO_URL.desktop] }, inputs => {
+    const bytes = inputs.get(PANO_URL.desktop);
+    if (bytes === undefined) throw new Error('Missing Sky desktop panorama');
+    return new Map([[panoramaName, bytes]]);
+  });
+  const panoramaBytes = panoramas.get(panoramaName);
+  if (panoramaBytes === undefined) throw new Error('Missing cached Sky desktop panorama');
+  const panorama = nameBlob(panoramaName, 'image', panoramaBytes, { tier: 'desktop' });
   const rigSources = skyRigAssetSources(rigs.files, GPU_FILES);
   const name = 'world/geometry/prepared-models.glb';
   const geometry = nameBlob(name, 'glb', await preparedModelProgram(ctx)), hero = skyHeroSource(name, heroes);
@@ -114,7 +125,7 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<SkyS
     if (previous === undefined) throw new Error('Missing original scene source output');
     assets.delete(previous.hash); assets.set(replacement.file.hash, replacement.bytes);
   }
-  for (const blob of [geometry, ...world, bridge, mill, fan, ...vanes, ...rest]) assets.set(blob.file.hash, blob.bytes);
+  for (const blob of [panorama, geometry, ...world, bridge, mill, fan, ...vanes, ...rest]) assets.set(blob.file.hash, blob.bytes);
   assets.set(SWARD_ATLAS_FILE.hash, await skySwardAtlasProgram(ctx));
   assets.set(STORM_NOISE.hash, await skyStormNoiseInput(ctx));
   const tiles = await skyWorldTileProgram(ctx);
@@ -125,5 +136,5 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<SkyS
     assets.set(file.hash, bytes);
   }
   return { ...prepared, namedFiles: [...prepared.namedFiles.map(file => replacements.find(row => row.file.name === file.name)?.file ?? file),
-    geometry.file, ...world.map(blob => blob.file), bridge.file, mill.file, fan.file, ...rigs.files, ...phonePaint.files, ...vanes.map(blob => blob.file), ...rest.map(blob => blob.file)], assets };
+    panorama.file, geometry.file, ...world.map(blob => blob.file), bridge.file, mill.file, fan.file, ...rigs.files, ...phonePaint.files, ...vanes.map(blob => blob.file), ...rest.map(blob => blob.file)], assets };
 }
