@@ -17,7 +17,7 @@ import { test } from 'node:test';
 
 const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
 const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { runTrustedHeadlessTape } = await import('@wildshard/engine/host/headlessTape');
+const { runNativeHeadlessTape } = await import('@wildshard/engine/host/headlessTape');
 const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
 const { loadRapier } = await import('@wildshard/engine/physics/rapier');
 const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
@@ -105,7 +105,7 @@ test('far-reach: the keeper tape carried on to an earned winch and the Storm Roc
       assert.fail(`${ids.join(', ')} must fall within ${limit} ticks`);
     };
     const observations = [], fights = {};
-    const play = segments => observations.push(...runTrustedHeadlessTape(host, input => { resident.step(input); }, () => resident.effects, { version: 1, observe: [], segments }).observations);
+    const play = segments => observations.push(...runNativeHeadlessTape(host, input => { resident.step(input); }, () => resident.effects, { version: 1, observe: [], segments }).observations);
     play(PARTS[0]); fights.roost = fight(ROOST, 3000);
     // The free ray circles the windmill isle and dives at whoever crosses; an earlier tape that left it alive fell off the
     // windmill isle on its second crossing, so the journey downs it first.

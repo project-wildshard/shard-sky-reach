@@ -13,5 +13,8 @@
   },
   "0.1.35 linux-x64": {
     "far-reach": "886bf9c968b623bea288f8df7896ac764a31731e186a095859e6a65788deafbd"
+  },
+  "0.1.47 darwin-arm64": {
+    "far-reach": "ac4c3b8520b02c7274848c456bcb7bba6b57f6a7f1a9e1623323e59456f90f5c"
   }
 }
