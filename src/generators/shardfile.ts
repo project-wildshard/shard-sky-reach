@@ -17,6 +17,8 @@ import { risingIsletRows, risingIsletEntryways } from './risingIslets';
 import lookGraphs from '../data/lookGraphs.json' with { type: 'json' };
 import { ISLE_MAPS } from './rows/isleLook';
 import { SKY_WORLD_TILE_ROWS as isleProps } from './worldTileRows';
+import { withConvertedRows } from '@wildshard/sharddev/species/toRows';
+import { SKY_DECLARED_LOOKS, SKY_DECLARED_ROWS, SKY_DECLARED_SPAWNS } from './rows/declaredCreatures';
 
 const isletRows = risingIsletRows(), RISING_ISLETS = isletRows.entries, ENTRYWAYS = risingIsletEntryways();
 
@@ -29,9 +31,12 @@ const isletRows = risingIsletRows(), RISING_ISLETS = isletRows.entries, ENTRYWAY
 // exactly these rows (runtime/movers.ts). world/islets.ts is the one source of the geometry.
 
 const base = emptyShardfile({ slug: 'far-reach', name: 'Sky Reach', author: 'Wildshard', revision: 1, seed: 6417 });
+// ONE-FORMAT OF20b: the rays, roost rays, wisps and goats are declared rows the engine runs beside the runtime plan (OF19b0)
+const rows = { ...withConvertedRows(base.rows, SKY_DECLARED_ROWS), looks: [...base.rows.looks, ...SKY_DECLARED_LOOKS] };
+const creatures = { ...base.creatures, brains: SKY_DECLARED_ROWS.brains, spawns: SKY_DECLARED_SPAWNS };
 /** Build-time declaration rows from admitted original navigation; no source handoff is read. */
 export function skyShardfileRows(navigation: SkyNavigationRows, movers: MoverData): ReturnType<typeof parseShardfile> {
-  return structuredClone(parseShardfile({ ...base, ...SKY_SECTIONS, plumbing, state: { ...SKY_SECTIONS.state, version: 2 }, migrations: slotMigrations, navigation: navigation.navigation, serverBudget: { ...base.serverBudget, memory: base.serverBudget.memory + navigation.files.reduce((sum, file) => sum + file.decoded, 0) }, accent: 'pink', runtime: null,
+  return structuredClone(parseShardfile({ ...base, ...SKY_SECTIONS, rows, creatures, plumbing, state: { ...SKY_SECTIONS.state, version: 2 }, migrations: slotMigrations, navigation: navigation.navigation, serverBudget: { ...base.serverBudget, memory: base.serverBudget.memory + navigation.files.reduce((sum, file) => sum + file.decoded, 0) }, accent: 'pink', runtime: null,
   // the material graphs the runtime draws its own meshes in (authored SF59 graph JSON, data/lookGraphs.json), and the
   // samplers: the islands' and boulders' library maps tile, the sward atlas keeps its own
   look: { ...base.look, materials: { ...base.look.materials, ...lookGraphs, ...SKY_PAINTED_GRAPHS }, samplers: { ...base.look.samplers, [ISLE_MAPS.rock]: { wrap: 'repeat', anisotropy: 4 }, [ISLE_MAPS.meadow]: { wrap: 'repeat', anisotropy: 4 }, [SWARD_ATLAS_FILE.hash]: SWARD_ATLAS_SAMPLER } },
