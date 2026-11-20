@@ -24,10 +24,11 @@ export const ROC_MOVES = [
   { id: 'far.roc.dive', kind: 'dive', speed: 20, turn: 4, slope: 0, skim: LAYOUT.CROWN.y, altitude: LAYOUT.ROC.y, aimHeight: 1.2, targetAltitude: true, contactCompletes: false, maxSeconds: 8 },
 ] as const;
 
-/** Decision law on the existing held/spawned body and encounter owner. */
+/** Decision law on the existing held/spawned body and encounter owner. OF20d: it runs only while the Roc's declared fight is
+ *  on (`binding.encounter`), as the held fight's control did; a shard-wide binding flew the perched Roc to the nearest player. */
 export const ROC_DECISION = [{
   id: 'far.roc.decision', abi: '1.0', side: 'sim', module: `blobs/wasm/${'0'.repeat(64)}.wasm`, source: 'behaviour/roc.as',
-  binding: { shard: true }, pages: 1, onFail: 'hold', on: ['start', 'stop', 'threshold', 'death', 'timer', 'move.done', 'strike.done'],
+  binding: { encounter: 'far.roc.fight' }, pages: 1, onFail: 'hold', on: ['start', 'stop', 'threshold', 'death', 'timer', 'move.done', 'strike.done'],
   reads: ['nearestPlayer'], commands: ['move', 'strike', 'stop', 'timer'],
   actors: { roc: 'far.roc' },
   moves: { perch: 'far.roc.perch', takeoff: 'far.roc.takeoff', orbitHigh: 'far.roc.orbit.high', orbitWall: 'far.roc.orbit.wall', orbitLow: 'far.roc.orbit.low',

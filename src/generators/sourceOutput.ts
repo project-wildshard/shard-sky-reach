@@ -5,7 +5,6 @@ import { FAN_ID } from './rows/items';
 import { skyWorldSceneValues, readMillSceneValues, type SkyWorldSceneValues } from './worldScenes';
 import { emitNamedBlobs, nameBlob } from '@wildshard/sharddev/blobs';
 import STRINGS from '../data/strings.json' with { type: 'json' };
-import { SKY_PAGE_PROGRAM } from './rows/population';
 import { SKY_GUST_TARGETS } from './gustTargets';
 import { emitPlatformSections } from '@wildshard/sharddev/platformSections';
 import { ROC_DECISION, ROC_MOVES, ROC_WORLD_TARGETS } from './rows/rocDecision';
@@ -62,7 +61,6 @@ export function skyOutputValues(scenes: SkyWorldSceneValues): SkySourceOutput {
     ['look/painted', skyPaintedPresentation()],
     ['explore/catalogue', {"version": 1, "entries": [{"kind": "held", "item": FAN_ID}, {"kind": "scene", "part": "specimen-mill.root"}, {"kind": "scene", "part": "specimen-bridge.root"}, {"kind": "scene", "part": "specimen-vane.root"}, {"kind": "rigs", "library": "sky"}, {"kind": "npc", "npc": "far.keeper"}]}],
     ['world/scenes', scenes.scenes],
-    ['actors/species-programs', { page: SKY_PAGE_PROGRAM.species.page.map(({ body: _body, brain: _brain, ...row }) => row), native: [], program: SKY_PAGE_PROGRAM.species.program }],
     ['sim/runtime-plan', { kind: 'held-melee', recipe: SKY_NATIVE_WORLD, baked }],
     ['sim/scripts', ROC_DECISION], ['actors/moves', ROC_MOVES], ['actors/strikes', ROC_STRIKES], ['world/targets', { targets: SKY_GUST_TARGETS, spots: ROC_WORLD_TARGETS.spots }],
   ])),

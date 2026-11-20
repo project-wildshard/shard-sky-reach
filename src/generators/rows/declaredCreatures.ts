@@ -53,10 +53,10 @@ function withinPlain(row: ConvertedSpecies['strikes'][number]): ConvertedSpecies
 }
 export const SKY_DECLARED_ROWS: ConvertedSpecies = { ...converted, species: converted.species.map(withStrikeEffects), strikes: converted.strikes.map(withinPlain) };
 
-/** One look row per species, naming the shard's rig recipe; the page draws the bodies through its `species.program`
- *  feature until declared looks can name a rig library (the server never reads a look). */
+/** One look row per species: OF20d, the page draws each body from the `sky` scene library's rig of its kind (format
+ *  0.50.0 `platform.rig`), as an ordinary upload does, with no `species.program` feature (the server never reads a look). */
 export const SKY_DECLARED_LOOKS = SKY_DECLARED_ROWS.species.map(row => ({ id: `far.declared.${row.kind}`, species: row.id,
-  recipe: 'far.rig', material: null, parameters: {}, animation: { recipe: 'far.clips', parameters: {} } }));
+  recipe: 'platform.rig', material: null, parameters: { library: 'sky' }, animation: { recipe: 'platform.rig', parameters: {} } }));
 
 const keeperBodies = new Map(skyPhysicsActors().map(row => [row.id, row]));
 /** Each flock body as a declared spawn, in the keeper's order: its id, home, scale and the keeper's placement. */
@@ -76,10 +76,11 @@ export const SKY_DECLARED_SPAWNS = flock.map((row, index) => {
     at: [row.at[0], y, row.at[1]] as [number, number, number], yaw: row.yaw, home: { x: row.home.x, y: row.home.y, z: row.home.z, r: row.home.r } };
 });
 
-/** OF20c: the Storm Roc's fight as a declared `boss` encounter: resident on its perch, its arena the crown, its intro, retry
- *  and phases the held fight's (speed 0: its decision row moves it); the plan's owner row binds its flag, fact, purse and save. */
+/** OF20c: the Storm Roc's fight as a declared `boss` encounter: placed on its perch, its arena the crown (walking onto it
+ *  starts the fight, as the held fight did: OF20d), its intro, retry and phases the held fight's (speed 0: its decision row
+ *  moves it); the plan's owner row binds its flag, fact, purse and save. */
 export const SKY_DECLARED_ENCOUNTERS = [{ id: 'far.roc.fight', entity: ROC_ID, kind: 'boss', panel: 'far.roc.panel',
-  name: ROC_DEFINITION.name, title: ROC_DEFINITION.title, retry: ROC_DEFINITION.retryTitle, start: 'resident', capExempt: true,
+  name: ROC_DEFINITION.name, title: ROC_DEFINITION.title, retry: ROC_DEFINITION.retryTitle, start: 'placed', capExempt: true,
   arena: { at: [LAYOUT.CROWN.x, LAYOUT.CROWN.y, LAYOUT.CROWN.z] as [number, number, number], radius: LAYOUT.CROWN.r * 0.9 },
   intro: ROC_DEFINITION.intro, introShort: ROC_DEFINITION.introShort,
   respawn: { at: [LAYOUT.FALLEN_BRIDGE.x1, LAYOUT.CROWN.y + 0.2, LAYOUT.FALLEN_BRIDGE.z1 - 2] as [number, number, number], yaw: 0 },

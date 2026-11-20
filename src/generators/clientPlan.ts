@@ -27,7 +27,6 @@ export const SKY_CLIENT_PLAN = parseClientPlan({ version: 1, features: [
       { kind: 'field', field: 'gustPetals', ahead: 0.2, offset: [0, -0.25, 0] },
     ] }],
   } },
-  { kind: 'species.program', library: 'sky', homes: SKY_PAGE_PROGRAM.species.homes, shove: true },
   { kind: 'quest.page', rows: quest, progress: true, promptOrder: 'npc-page',
     endpoints: [{ mover: 'far.winch.bridge', stage: 'far.quest.raised', toast: STRINGS.raised }],
     capture: Object.fromEntries(Object.entries(capture ?? {}).map(([name, steps]) => [name, steps.map(step => {

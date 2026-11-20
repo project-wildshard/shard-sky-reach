@@ -42,7 +42,7 @@ async function cell(effects: NativeRuntimeEffect[] = []) {
 test('the Storm Roc is a declared boss: its win files the owner row\'s flag and fact and pays its purse once', async () => {
   const effects: NativeRuntimeEffect[] = [], { shard, plan, host } = await cell(effects);
   try {
-    expect(shard.encounters.map(row => [row.id, row.entity, row.kind, row.start])).toEqual([[FIGHT, ROC_ID, 'boss', 'resident']]);
+    expect(shard.encounters.map(row => [row.id, row.entity, row.kind, row.start])).toEqual([[FIGHT, ROC_ID, 'boss', 'placed']]);
     expect(plan.recipe.population.owner?.actor).toBe(ROC_ID);
     const player = leadPlayer(host), roc = host.entities.get(ROC_ID);
     if (roc === undefined) throw new Error('Missing declared Roc');
@@ -64,9 +64,15 @@ test('the Storm Roc is a declared boss: its win files the owner row\'s flag and 
 }, 120_000);
 
 test('the flock and the Roc are declared spawns: goats keep their isles, a fallen goat dies, a ray dives, the cell resumes', async () => {
-  const { shard, plan, world, host, rapier } = await cell();
+  const { product, shard, plan, world, host, rapier } = await cell();
   expect(shard.creatures.spawns.map(row => row.id)).toEqual(SKY_FLOCK_ROWS.map(row => row.id));
   expect(plan.recipe.population.rows.homes).toEqual([]);
+  // OF20d: an ordinary upload: the page draws each declared body from the `sky` library's rig of its kind (`platform.rig`),
+  // with no `species.program` feature and no species program section
+  expect(product.has('actors/species-programs')).toBe(false);
+  expect(product.section('client/plan').features.map(row => row.kind)).not.toContain('species.program');
+  expect(new Set(shard.rows.looks.filter(row => shard.creatures.spawns.some(spawn => spawn.species === row.species))
+    .map(row => `${row.recipe} ${JSON.stringify(row.parameters)}`))).toEqual(new Set(['platform.rig {"library":"sky"}']));
   const player = leadPlayer(host), ray = host.entities.get(RAY), goat = host.entities.get(GOAT);
   if (ray === undefined || goat === undefined) throw new Error('Missing declared bodies');
   let blows = 0;
@@ -93,4 +99,32 @@ test('the flock and the Roc are declared spawns: goats keep their isles, a falle
     host.step();
     expect(goat.alive).toBe(false);
   } finally { resumed.dispose(); host.dispose(); }
+}, 120_000);
+
+test('the declared Roc holds at its perch until a player walks onto the crown, then takes off to fight (OF20d)', async () => {
+  const { shard, host } = await cell();
+  try {
+    const roc = host.entities.get(ROC_ID), spawn = shard.creatures.spawns.find(row => row.id === ROC_ID), player = leadPlayer(host);
+    if (roc === undefined || spawn === undefined) throw new Error('Missing declared Roc');
+    const perch = new Vector3(...spawn.at);
+    const fight = () => { const slot = snapshotSimHost(host).adapters.find(row => row.id === `encounter.${FIGHT}`);
+      if (typeof slot?.state !== 'string') throw new Error('Missing declared Roc encounter'); return v.parse(fightState, JSON.parse(slot.state)).boss.state; };
+    for (let i = 0; i < 1800; i++) host.step(); // 30 s with the player at the spawn, far from the crown
+    expect(fight()).toBe('armed');
+    expect(roc.alive).toBe(true);
+    // it holds over its perch (its flight keeps it a few metres up) rather than flying to the nearest player
+    expect(Math.hypot(roc.position.x - perch.x, roc.position.z - perch.z)).toBeLessThan(1);
+    expect(Math.abs(roc.position.y - perch.y)).toBeLessThan(8);
+    host.events.answer('damage.modify', request => request?.target === player.health ? null : request, host.scope);
+    let started = false, left = 0;
+    for (let i = 0; i < 1800; i++) {
+      player.position.set(0, 44.2, -184); player.velocity.set(0, 0, 0);
+      host.step();
+      started ||= fight() === 'fight';
+      left = Math.max(left, roc.position.distanceTo(perch));
+    }
+    expect(started).toBe(true);
+    expect(left).toBeGreaterThan(5);
+    expect(roc.position.distanceTo(new Vector3(0, 44.2, -184))).toBeLessThan(60);
+  } finally { host.dispose(); }
 }, 120_000);
