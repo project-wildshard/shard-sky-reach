@@ -22,5 +22,8 @@
   },
   "0.1.53 darwin-arm64": {
     "far-reach": "bd8fed578a9c057b725d540153705cc977d9f7e659635f8b6f8b9b3ea8a74301"
+  },
+  "0.1.53 linux-x64": {
+    "far-reach": "bd8fed578a9c057b725d540153705cc977d9f7e659635f8b6f8b9b3ea8a74301"
   }
 }
