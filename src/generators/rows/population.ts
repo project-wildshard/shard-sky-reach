@@ -21,7 +21,7 @@ export const SKY_PAGE_PROGRAM = { species: { program, page: SKY_PAGE_ROWS, homes
   fight: { id: ROC_ID, definition: ROC_DEFINITION, stages, profile: ROC_BOSS_PROFILE, reward: BOSS_REWARD,
     victory: { flag: FLAGS.roc, fact: 'far-reach.roc', once: true, again: STRINGS.rocDown, rewardLabel: STRINGS.bossReward } },
 } as const;
-const keeperProgram = { ...program, species: [] };
-export const SKY_NATIVE_POPULATION = { program: keeperProgram, step: FLOCK_STEP, seed: 6417, admission: 'install',
+// ONE-FORMAT OF30: the empty keeper names no species programme (format 0.66.1, engine 0a9eff1512)
+export const SKY_NATIVE_POPULATION = { step: FLOCK_STEP, seed: 6417, admission: 'install',
   homes: [],
   attackers: null, think: 'legacy', killY: SKY_KILL_Y, placement: { ...SKY_FLOCK_PLACEMENT, rows: [] } } as const;
