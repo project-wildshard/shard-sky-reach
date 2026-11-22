@@ -1,5 +1,5 @@
 import { readSourceModel } from '@wildshard/sharddev/bake/skinned';
-import { hashImmutableBytes } from '@wildshard/format/immutable';
+import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
 import { parseStillImage } from '@wildshard/format/stillImage';
 import { emitNamedBlobs, nameBlob, type EmittedBlobs } from '@wildshard/sharddev/blobs';
 import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
