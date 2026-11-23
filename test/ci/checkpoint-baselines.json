@@ -28,5 +28,11 @@
   },
   "0.1.65-next.9c91846e linux-x64": {
     "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
+  },
+  "0.1.74-next.d6e6bc6b darwin-arm64": {
+    "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
+  },
+  "0.1.74-next.d6e6bc6b linux-x64": {
+    "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
   }
 }
