@@ -1,7 +1,7 @@
 // CI21 C8 port of engine test/scripts/far-reach-roc.test.ts (engine blob 54ce757b): every
 // case, assertion and the two-second body unchanged; engine and SDK imports are public exports.
 import { beforeAll, expect, test } from 'vitest';
-import { builtFolder } from '@wildshard/engine/test/builtFolder';
+import { builtFolder } from '@wildshard/sdk/internal/engine/test/builtFolder';
 import { scenario as diskScenario,type DiskScriptScenario } from '@wildshard/dev/test/scriptScenario';
 
 let prepared:readonly [DiskScriptScenario,DiskScriptScenario]|undefined;

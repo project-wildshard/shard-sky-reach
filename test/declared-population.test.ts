@@ -5,24 +5,24 @@
 // declared boss encounter that takes the plan's owner row (OF20c): its win sets the flag, files the fact and pays the purse.
 // oxlint-disable-next-line import/no-nodejs-modules -- The proof reads the admitted product and native physics.
 import { readFileSync } from 'node:fs';
-import { builtFolder } from '@wildshard/engine/test/builtFolder';
+import { builtFolder } from '@wildshard/sdk/internal/engine/test/builtFolder';
 import { expect, test } from 'vitest';
 import { nativeRapierFile } from './fixtures/native-rapier-file';
-import { loadHeadlessFolder } from '@wildshard/engine/host/headlessFolder';
-import { outputDescriptor } from '@wildshard/engine/game/shardfile/outputDescriptor';
-import { loadRapier } from '@wildshard/engine/physics/rapier';
-import { createSimHost } from '@wildshard/engine/sim';
-import { snapshotSimHost } from '@wildshard/engine/sim/snapshot';
-import { restoreSimHost } from '@wildshard/engine/sim/restore';
-import { prepareRuntimeWorld } from '@wildshard/engine/game/plugin/simulation';
+import { loadHeadlessFolder } from '@wildshard/sdk/headless/host/headlessFolder';
+import { outputDescriptor } from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import { loadRapier } from '@wildshard/sdk/headless/physics/rapier';
+import { createSimHost } from '@wildshard/sdk/internal/engine/sim';
+import { snapshotSimHost } from '@wildshard/sdk/headless/sim/snapshot';
+import { restoreSimHost } from '@wildshard/sdk/internal/engine/sim/restore';
+import { prepareRuntimeWorld } from '@wildshard/sdk/internal/engine/game/plugin/simulation';
 import { parseNativeRuntimePlan } from '@wildshard/format/nativeRuntimePlan';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 import { SKY_FLOCK_ROWS, SKY_KILL_Y } from '../src/generators/rows/spawns';
 import { ROC_ID, BOSS_REWARD } from '../src/generators/rows/rocFight';
 import FLAGS from '../src/data/flags.json' with { type: 'json' };
 import { Vector3 } from 'three';
 import * as v from 'valibot';
-import type { NativeRuntimeEffect } from '@wildshard/engine/game/plugin/simulation';
+import type { NativeRuntimeEffect } from '@wildshard/sdk/internal/engine/game/plugin/simulation';
 
 const FLOCK = SKY_FLOCK_ROWS.filter(row => row.id !== ROC_ID), GOAT = 'far.goat.0', RAY = 'far.ray.0', FIGHT = 'far.roc.fight';
 const fightState = v.object({ boss: v.object({ state: v.string(), saved: v.object({ defeated: v.boolean(), rewardTaken: v.boolean(), kills: v.number() }) }) });

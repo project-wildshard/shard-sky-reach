@@ -2,7 +2,7 @@ import type { SceneEffectField } from '@wildshard/sdk/worldScenes';
 import * as LAYOUT from '../layout';
 
 /**
- * Sky Reach's visible wind (style bible §7, loop 3; drawn on @wildshard/engine/fx/effectField): the fan's GUST, a cone of
+ * Sky Reach's visible wind (style bible §7, loop 3; drawn on engine `fx/effectField`): the fan's GUST, a cone of
  * 30 streaks with 14 tumbling petals (0.6 s life), and the updraft's column, a soft spiral of 24 streaks with 14 rising
  * leaves up the ramp. How each moves and paints is its graph in data/lookGraphs.json (`wind-*`).
  */

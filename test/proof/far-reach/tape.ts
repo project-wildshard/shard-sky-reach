@@ -1,8 +1,8 @@
 // CI21 C8: engine test/proof/far-reach/tape.ts (engine blob eff99b71) moved to its shard. The controller is
 // unchanged; engine imports are public exports and the shard's generators are src/.
-import type {SimHost} from '@wildshard/engine/sim';
-import type {AnimalSim} from '@wildshard/engine/entities/AnimalSim';
-import type {HeadlessCommand} from '@wildshard/engine/host/tickProtocol';
+import type {SimHost} from '@wildshard/sdk/internal/engine/sim';
+import type {AnimalSim} from '@wildshard/sdk/internal/engine/entities/AnimalSim';
+import type {HeadlessCommand} from '@wildshard/sdk/headless/host/tickProtocol';
 import {CROWN,FALLEN_BRIDGE,KEEPER,ROOST,RUIN,STEP,UPDRAFT,VANES,WINCH} from '../../../src/generators/layout';
 import {KEEPER_AT} from '../../../src/generators/quests';
 import {FAN_SWING} from '../../../src/generators/rows/items';
@@ -10,7 +10,7 @@ import {FAN_ACT,FAN_ACTOR,FAN_AIM} from '../../../src/generators/rows/nativeMele
 import {ROOST_IDS,SKY_ACT,SKY_INTERACT} from '../../../src/generators/questPrompts';
 import {ROC_ID} from '../../../src/generators/rows/rocFight';
 import FLAGS from '../../../src/data/flags.json' with {type:'json'};
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const EYE=1.68;
 const requireValue=<T>(value:T|undefined|null,message:string):T=>{if(value===undefined||value===null)throw new Error(message);return value;};

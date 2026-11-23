@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { dirname, resolve } from 'node:path';
 import { expect, test } from 'vitest';
 import { originalSkyRigs } from './fixtures/sky-original-rigs';
-import { hashImmutableBytes } from '@wildshard/engine/host/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 
 test('complete original rig oracles work with neither retired handoff and reject corrupted frozen bytes', () => {
   mkdirSync('tmp', { recursive: true });

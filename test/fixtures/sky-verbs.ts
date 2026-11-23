@@ -1,10 +1,10 @@
 // CI21 C8: engine test/fixtures/sky-verbs.ts (engine blob e648d4cf), unchanged but for public imports.
 import * as v from 'valibot';
-import {placesWithDiscovery} from '@wildshard/engine/quest/discovery';
+import {placesWithDiscovery} from '@wildshard/sdk/internal/engine/quest/discovery';
 import {parsePersistedQuestPage} from '@wildshard/format/questStory';
-import type {PrepareHeadlessRuntime} from '@wildshard/engine/host/headlessRuntime';
+import type {PrepareHeadlessRuntime} from '@wildshard/sdk/headless/host/headlessRuntime';
 import {prepareHeadlessRuntime as prepareSky} from '../proof/far-reach/worker';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 /** The page's discovery kernel observes actual native feet and admitted page
  * places. No authored capture, progression flag or player pose is applied. */

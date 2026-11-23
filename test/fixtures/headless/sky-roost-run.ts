@@ -5,30 +5,30 @@
 // bytes come from the installed engine's rapier package (the same bytes as engine's
 // public/assets/physics/rapier.wasm).
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Compare only actual earned native execution and independent replay.
 import assert from 'node:assert/strict';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read the unchanged checked-in physics module.
 import {readFileSync} from 'node:fs';
-import {beginFolderSession} from '@wildshard/engine/test/headless/folderSession';
+import {beginFolderSession} from '@wildshard/sdk/internal/engine/test/headless/folderSession';
 import {nativeRapierFile} from '../native-rapier-file';
 
 const SKY_VERBS=new URL('../sky-verbs.ts',import.meta.url);
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {decodeSimSnapshot,snapshotSimHost} from '@wildshard/engine/sim/snapshot';
-import {physicsState} from '@wildshard/engine/test/simState';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
-import {installWalkRopeBodies} from '@wildshard/engine/test/headless/ropeBodies';
-import {installNativeWalkBounds} from '@wildshard/engine/test/headless/nativeBounds';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {decodeSimSnapshot,snapshotSimHost} from '@wildshard/sdk/headless/sim/snapshot';
+import {physicsState} from '@wildshard/sdk/internal/engine/test/simState';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
+import {installWalkRopeBodies} from '@wildshard/sdk/internal/engine/test/headless/ropeBodies';
+import {installNativeWalkBounds} from '@wildshard/sdk/internal/engine/test/headless/nativeBounds';
 import {prepareHeadlessRuntime} from '../sky-verbs';
 import {SkyTape} from '../../proof/far-reach/tape';
 import {FAN_ACT,FAN_ACTOR} from '../../../src/generators/rows/nativeMelee';
 import {SKY_KILL_Y} from '../../../src/generators/rows/spawns';
 import {BOSS_REWARD,ROC_FACT,ROC_ID} from '../../../src/generators/rows/rocFight';
 import {ROOST_IDS,SKY_ACT,SKY_INTERACT} from '../../../src/generators/questPrompts';
-import type {HeadlessCommand,HeadlessEffect} from '@wildshard/engine/host/tickProtocol';
-import type {HeadlessTapeObservation,HeadlessTapeSegment} from '@wildshard/engine/host/headlessTape';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import type {HeadlessCommand,HeadlessEffect} from '@wildshard/sdk/headless/host/tickProtocol';
+import type {HeadlessTapeObservation,HeadlessTapeSegment} from '@wildshard/sdk/headless/host/headlessTape';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const stage=process.argv[2]??'roost';
 if(stage!=='roost'&&stage!=='vanes'&&stage!=='winch'&&stage!=='roc')throw new Error('Unknown Sky progression tape');

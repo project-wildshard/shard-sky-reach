@@ -12,7 +12,7 @@ import * as v from 'valibot';
 const resultSchema=v.object({phase:v.literal('replayed'),slug:v.literal('far-reach'),mode:v.picklist(['priority','gust']),
   ticks:v.number(),segments:v.number(),boardTicks:v.number(),flags:v.array(v.string())});
 for(const mode of ['priority','gust'] as const)test(`Sky ${mode} verbs use real movement, actions and fresh native replay`,()=>{
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/engine/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/sky-verbs-run.ts'),mode],{encoding:'utf8',timeout:30_000});
   expect(child.status,child.stdout+child.stderr).toBe(0);
   const line=child.stdout.split('\n').find(row=>row.includes('"phase":"replayed"'));

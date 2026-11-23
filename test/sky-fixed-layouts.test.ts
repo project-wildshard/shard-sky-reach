@@ -10,7 +10,7 @@ import { symlinkSync } from 'node:fs';
 import { resolve } from 'node:path';
 // oxlint-disable-next-line import/no-nodejs-modules -- Own and remove only this bounded native discovery cache.
 import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
-import { authoredManifestSource } from '@wildshard/engine/scripts/authored-manifest.mjs';
+import { authoredManifestSource } from '@wildshard/sdk/headless/scripts/authored-manifest.mjs';
 import { parseDiscoveryValues } from '@wildshard/format/discoveryValues';
 import { fixedLayoutFiles as skyFiles, skyMapPalette } from '../src/generators/fixedLayouts';
 import * as skySource from '../src/generators/layout';

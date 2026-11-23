@@ -5,27 +5,27 @@
 // bytes come from the installed engine's rapier package (the same bytes as engine's
 // public/assets/physics/rapier.wasm).
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
-import '@wildshard/engine/core/portableMathFirst';
+import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read exact admitted native product and physics bytes.
 import {readFileSync} from 'node:fs';
 // oxlint-disable-next-line import/no-nodejs-modules -- Assertions describe actual current input execution, never golden output.
 import assert from 'node:assert/strict';
-import {openFolderSession} from '@wildshard/engine/test/headless/folderSession';
+import {openFolderSession} from '@wildshard/sdk/internal/engine/test/headless/folderSession';
 import {nativeRapierFile} from '../native-rapier-file';
 
 const SKY_VERBS=new URL('../sky-verbs.ts',import.meta.url);
-import {builtFolder} from '@wildshard/engine/test/builtFolder';
-import {outputDescriptor} from '@wildshard/engine/game/shardfile/outputDescriptor';
-import {loadRapier} from '@wildshard/engine/physics/rapier';
-import {createNativeProofResident} from '@wildshard/engine/test/headless-native';
-import {installWalkRopeBodies} from '@wildshard/engine/test/headless/ropeBodies';
-import {installNativeWalkBounds} from '@wildshard/engine/test/headless/nativeBounds';
+import {builtFolder} from '@wildshard/sdk/internal/engine/test/builtFolder';
+import {outputDescriptor} from '@wildshard/sdk/headless/game/shardfile/outputDescriptor';
+import {loadRapier} from '@wildshard/sdk/headless/physics/rapier';
+import {createNativeProofResident} from '@wildshard/sdk/internal/engine/test/headless-native';
+import {installWalkRopeBodies} from '@wildshard/sdk/internal/engine/test/headless/ropeBodies';
+import {installNativeWalkBounds} from '@wildshard/sdk/internal/engine/test/headless/nativeBounds';
 import {prepareHeadlessRuntime} from '../sky-verbs';
 import {SkyTape} from '../../proof/far-reach/tape';
-import type {HeadlessCommand,HeadlessEffect} from '@wildshard/engine/host/tickProtocol';
-import type {HeadlessTapeSegment} from '@wildshard/engine/host/headlessTape';
+import type {HeadlessCommand,HeadlessEffect} from '@wildshard/sdk/headless/host/tickProtocol';
+import type {HeadlessTapeSegment} from '@wildshard/sdk/headless/host/headlessTape';
 import {WINCH} from '../../../src/generators/layout';
-import { leadPlayer } from '@wildshard/engine/sim/leadPlayer';
+import { leadPlayer } from '@wildshard/sdk/internal/engine/sim/leadPlayer';
 
 const mode=process.argv[2]??'priority';
 if(mode!=='priority'&&mode!=='gust')throw new Error('Unknown Sky verb tape');

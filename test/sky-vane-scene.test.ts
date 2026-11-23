@@ -1,7 +1,7 @@
 // Ported from engine test/sky-vane-scene.test.ts (CI21, J232): Sky's own scene rows bound through engine's public scene runtime.
 import { expect, it } from 'vitest';
 import { BoxGeometry, Group, Mesh, Vector3 } from 'three';
-import { bindWorldSceneParts, createWorldScene } from '@wildshard/engine/game/plugin/scene';
+import { bindWorldSceneParts, createWorldScene } from '@wildshard/sdk/internal/engine/game/plugin/scene';
 import { originalSkySceneInputs } from './fixtures/sky-scene-source';
 
 const { routes: { SKY_VANES } } = await originalSkySceneInputs();

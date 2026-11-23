@@ -8,19 +8,19 @@
 // Only the inputs the page sends drive it (walking, the board, [E] prompts,
 // fan strikes, GUST and its pitch). No flag, pose or quest state is written;
 // a fight reads where a flier is to aim, as a player's eyes do.
-import '@wildshard/engine/scripts/sim-node-loader.mjs';
+import '@wildshard/sdk/headless/scripts/sim-node-loader.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 
-const { loadHeadlessFolder } = await import('@wildshard/engine/host/headlessFolder');
-const { openWorld } = await import('@wildshard/engine/host/openWorld');
-const { runNativeHeadlessTape } = await import('@wildshard/engine/host/headlessTape');
-const { outputDescriptor, serverReadsFile } = await import('@wildshard/engine/game/shardfile/outputDescriptor');
-const { loadRapier } = await import('@wildshard/engine/physics/rapier');
-const engineRequire = createRequire(import.meta.resolve('@wildshard/engine/package.json'));
+const { loadHeadlessFolder } = await import('@wildshard/sdk/headless/host/headlessFolder');
+const { openWorld } = await import('@wildshard/sdk/internal/engine/host/openWorld');
+const { runNativeHeadlessTape } = await import('@wildshard/sdk/headless/host/headlessTape');
+const { outputDescriptor, serverReadsFile } = await import('@wildshard/sdk/headless/game/shardfile/outputDescriptor');
+const { loadRapier } = await import('@wildshard/sdk/headless/physics/rapier');
+import { engineRequire } from '@wildshard/sdk/headless';
 
 // The [E] prompts (SKY_ACT in generators/questPrompts.ts) and the fan's GUST (FAN_ACT in generators/rows/nativeMelee.ts).
 const ACT = { talk: 0, winch: 2 }, GUST = { actorId: 'far.fan', value: 2 }, AIM = 'far.fan.aim', PITCH_LIMIT = 1.45, GUST_REACH = 9;
