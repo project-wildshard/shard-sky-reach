@@ -8,3 +8,7 @@ The publish uses the immutable v0.1.74 preparation client.
 The exact v0.1.74 reader produced the same checkpoint on hosted Linux
 and the MacBook. The Mac product passed the real boot, walk and resume
 journey and retained its discovery document in the publishable tarball.
+
+The publish author check records the built-world identity in the hero
+stamp. Commit that generated metadata so the prepared artifact leaves
+the source checkout clean. The capture and its images are unchanged.
