@@ -36,9 +36,12 @@ const base = emptyShardfile({ slug: 'far-reach', name: 'Sky Reach', author: 'Wil
 // runtime plan (OF19b0); the Roc's fight is a declared `boss` encounter with its panel
 const rows = { ...withConvertedRows(base.rows, SKY_DECLARED_ROWS), looks: [...base.rows.looks, ...SKY_DECLARED_LOOKS] };
 const creatures = { ...base.creatures, brains: SKY_DECLARED_ROWS.brains, spawns: SKY_DECLARED_SPAWNS };
+/** ONE-FORMAT OF31h3: the cell's awake cost, ms per tick with one player in it as microseconds (engine's measured
+ * SC8 table, v0.1.19: 0.866 ms); the box weighs the cell by it in place of an engine table of shards. */
+const SKY_AWAKE_MICROS = 866;
 /** Build-time declaration rows from admitted original navigation; no source handoff is read. */
 export function skyShardfileRows(navigation: SkyNavigationRows, movers: MoverData): ReturnType<typeof parseShardfile> {
-  return structuredClone(parseShardfile({ ...base, ...SKY_SECTIONS, rows, creatures, encounters: SKY_DECLARED_ENCOUNTERS, spawn: manifest.spawn, ui: [...base.ui, ...SKY_DECLARED_UI], plumbing, state: { ...SKY_SECTIONS.state, version: 2 }, migrations: slotMigrations, navigation: navigation.navigation, serverBudget: { ...base.serverBudget, memory: base.serverBudget.memory + navigation.files.reduce((sum, file) => sum + file.decoded, 0) }, accent: 'pink', runtime: null,
+  return structuredClone(parseShardfile({ ...base, ...SKY_SECTIONS, rows, creatures, encounters: SKY_DECLARED_ENCOUNTERS, spawn: manifest.spawn, ui: [...base.ui, ...SKY_DECLARED_UI], plumbing, state: { ...SKY_SECTIONS.state, version: 2 }, migrations: slotMigrations, navigation: navigation.navigation, serverBudget: { ...base.serverBudget, awakeMicros: SKY_AWAKE_MICROS, memory: base.serverBudget.memory + navigation.files.reduce((sum, file) => sum + file.decoded, 0) }, accent: 'pink', runtime: null,
   // the material graphs the runtime draws its own meshes in (authored SF59 graph JSON, data/lookGraphs.json), and the
   // samplers: the islands' and boulders' library maps tile, the sward atlas keeps its own
   look: { ...base.look, materials: { ...base.look.materials, ...lookGraphs, ...SKY_PAINTED_GRAPHS }, samplers: { ...base.look.samplers, [ISLE_MAPS.rock]: { wrap: 'repeat', anisotropy: 4 }, [ISLE_MAPS.meadow]: { wrap: 'repeat', anisotropy: 4 }, [SWARD_ATLAS_FILE.hash]: SWARD_ATLAS_SAMPLER } },
