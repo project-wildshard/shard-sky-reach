@@ -8,7 +8,7 @@ import { BoxGeometry, BufferGeometry, Float32BufferAttribute } from 'three';
 import { expect, test } from 'vitest';
 import { build } from 'vite';
 import { prepareAssetDecoders } from '@wildshard/format/shardfileAssets';
-import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
+import { assertConfigBoundary } from '@wildshard/sdk/configBoundary';
 import { bakePreparedModels, prepareModelFrame } from '../src/generators/preparedModelBytes';
 import { bakePreparedModels as retainedPreparedModels } from '../src/generators/preparedModels';
 import { bakeSkyIsleFrames } from '../src/generators/skyIsleFrames';

@@ -1,8 +1,8 @@
-import {registeredJsonSchema} from '@wildshard/sharddev/formatJsonSchema';
-import { decodePortableBytes } from '@wildshard/sharddev/bake/portableBytes';
-import { worldSceneBuffers as parseSceneBuffers } from '@wildshard/sharddev/worldScenes';
+import {registeredJsonSchema} from '@wildshard/sdk/formatJsonSchema';
+import { decodePortableBytes } from '@wildshard/sdk/bake/portableBytes';
+import { worldSceneBuffers as parseSceneBuffers } from '@wildshard/sdk/worldScenes';
 
-import { nameBlob } from '@wildshard/sharddev/blobs';
+import { nameBlob } from '@wildshard/sdk/blobs';
 import { bakeMeadowBlades } from './meadowBlades';
 import { MEADOW, meadowCard } from './rows/meadowLook';
 

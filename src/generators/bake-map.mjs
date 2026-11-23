@@ -1,5 +1,5 @@
 import { skyHeroLibrarySource, HERO_LIBRARY_INPUTS } from './heroLibrary.ts';
-import { encodeBuildBytes } from '@wildshard/sharddev/bake/byteCodec';
+import { encodeBuildBytes } from '@wildshard/sdk/bake/byteCodec';
 import { skyMapWorldSources } from './mapWorldSources.ts';
 import { PREPARED_MODEL_INPUTS, preparedModelSource } from './preparedModelProgram.ts';
 import { BRIDGE_REST_INPUTS, skyBridgeRestSource } from './bridgeRestProgram.ts';

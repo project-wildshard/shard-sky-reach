@@ -1,4 +1,4 @@
-import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
+import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { skyShardfileRows } from './shardfile';
 import { prepareOutput } from './sourceOutput';
 import { skyBootInventory } from './bootInventory';

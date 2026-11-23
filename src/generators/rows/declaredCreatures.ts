@@ -1,4 +1,4 @@
-import { speciesProgramToRows, type ConvertedSpecies } from '@wildshard/sharddev/species/toRows';
+import { speciesProgramToRows, type ConvertedSpecies } from '@wildshard/sdk/species/toRows';
 import rows from '../../data/physicsRows.json' with { type: 'json' };
 import { skyPhysicsActors } from '../physics';
 import { SKY_CREATURE_ROWS, ROC_STRIKES } from './brains';

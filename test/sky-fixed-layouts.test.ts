@@ -15,7 +15,7 @@ import { parseDiscoveryValues } from '@wildshard/format/discoveryValues';
 import { fixedLayoutFiles as skyFiles, skyMapPalette } from '../src/generators/fixedLayouts';
 import * as skySource from '../src/generators/layout';
 import * as crownSource from '../src/generators/crownLayout';
-import { createProjectGeneration } from '@wildshard/sharddev/projectGeneration';
+import { createProjectGeneration } from '@wildshard/sdk/projectGeneration';
 import { skyCreatureRigOutput } from '../src/generators/creatureRigOutput';
 import { skyRigAssetSources } from '../src/generators/rigAssetSources';
 import { skyBootInventory as skyProductBoot } from '../src/generators/bootInventory'; // renamed by SA11 (6d41cb3)

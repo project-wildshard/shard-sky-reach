@@ -3,7 +3,7 @@
 Meta SHARD-AUTHORING SA6 (J170, J317).
 
 - The author lint now loads sharddev's `wildshard-sdk` plugin
-  (`node_modules/@wildshard/sharddev/lint/sdk-plugin.mjs`, pin `efbdc25`).
+  (`node_modules/@wildshard/sdk/lint/sdk-plugin.mjs`, pin `efbdc25`).
   Its `generator-imports` allows the shard format, valibot and `node:*`, so
   the format, valibot and Node imports in `bake-sky-world.mjs`, `items.ts`,
   `rocFight.ts` and `skyDock.ts` pass as they are.

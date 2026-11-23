@@ -3,9 +3,9 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { constants, zstdCompressSync, zstdDecompressSync } from 'node:zlib';
 import * as v from 'valibot';
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
-import { parseKtx2 } from '@wildshard/sharddev/assets';
-import { readImagePixels, writeImagePixels } from '@wildshard/sharddev/bake/image';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
+import { parseKtx2 } from '@wildshard/sdk/assets';
+import { readImagePixels, writeImagePixels } from '@wildshard/sdk/bake/image';
 
 /** Repack existing zstd KTX2 mip payloads without changing a decoded byte.
  * Keep each original block if it is smaller; preserve metadata and physical

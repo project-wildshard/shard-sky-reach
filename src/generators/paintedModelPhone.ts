@@ -1,8 +1,8 @@
-import { readSourceModel } from '@wildshard/sharddev/bake/skinned';
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
+import { readSourceModel } from '@wildshard/sdk/bake/skinned';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { parseStillImage } from '@wildshard/format/stillImage';
-import { emitNamedBlobs, nameBlob, type EmittedBlobs } from '@wildshard/sharddev/blobs';
-import type { ProjectGenerationContext } from '@wildshard/sharddev/projectGeneration';
+import { emitNamedBlobs, nameBlob, type EmittedBlobs } from '@wildshard/sdk/blobs';
+import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { HD_URLS, SKY_HD, type SkyHdName } from './fileInventory';
 import { hdGeometry } from './modelIntake';
 import atlasSources from './phoneAtlasSources.json' with { type: 'json' };

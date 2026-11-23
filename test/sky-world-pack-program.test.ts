@@ -7,8 +7,8 @@ import { Buffer } from 'node:buffer';
 import { expect, test } from 'vitest';
 import { build } from 'vite';
 import { prepareAssetDecoders } from '@wildshard/format/shardfileAssets';
-import { encodeBuildBytes } from '@wildshard/sharddev/bake/byteCodec';
-import { assertConfigBoundary } from '@wildshard/sharddev/configBoundary';
+import { encodeBuildBytes } from '@wildshard/sdk/bake/byteCodec';
+import { assertConfigBoundary } from '@wildshard/sdk/configBoundary';
 import { skyWorldPackSource, WORLD_PACK_FILES, WORLD_PACK_INPUTS } from '../src/generators/worldPackBytes';
 
 await prepareAssetDecoders();

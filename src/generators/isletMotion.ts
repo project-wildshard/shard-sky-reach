@@ -1,4 +1,4 @@
-import { ClientChannels } from '@wildshard/sharddev/clientChannels';
+import { ClientChannels } from '@wildshard/sdk/clientChannels';
 import { risingIsletRows } from './risingIslets';
 import { skyIsletRigRows } from './isletRigRows';
 

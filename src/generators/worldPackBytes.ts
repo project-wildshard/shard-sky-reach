@@ -1,4 +1,4 @@
-import { hashImmutableBytes } from '@wildshard/sharddev/immutable';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { bakeSkyBridges } from './bridges';
 import { bakeSkyIsles } from './isles';
 import { bakeSkyMillModel } from './millModel';
