@@ -105,7 +105,7 @@ jobs:
         run: pnpm build:shards
       - run: pnpm test:shards
       - name: Real product admission, play and resume
-        run: node --test --test-concurrency=1 test/ci/product-play.test.mjs test/ci/package-products.test.mjs
+        run: node --test --test-concurrency=1 test/ci/bump-only.test.mjs test/ci/product-play.test.mjs test/ci/package-products.test.mjs
       - name: Cook and play only served server files
         run: node --test test/ci/cook-play.test.mjs
       - name: Save verified author preparation
