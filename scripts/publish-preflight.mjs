@@ -18,6 +18,7 @@
 // that other bytes already hold, refused uploads included, naming the next free version. The version step runs the same
 // check after the build for a repo whose slug only the build names.
 import { agentFetch as fetch } from './wildshard-agent-requests.mjs';
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
@@ -29,6 +30,7 @@ const ORIGINS = { staging: 'https://staging.wildshard.io', production: 'https://
 export const COOKS = { staging: ['staging'], prod: ['staging', 'production'] };
 const REGISTRY = process.env.NPM_REGISTRY_URL || 'https://registry.npmjs.org';
 const GITHUB = process.env.GITHUB_API_URL || 'https://api.github.com';
+const API = process.env.WILDSHARD_API_URL || 'https://api.wildshard.io';
 const VERSION = /(\d+)\.(\d+)\.(\d+)(?:-[0-9A-Za-z.-]+)?$/u;
 
 /** `npm:@wildshard/shard-format@0.74.1`, `^0.74.1` or `0.74.1` as `0.74.1`; undefined when none. */
@@ -90,18 +92,70 @@ export async function engineFormat(build, token = process.env.GH_TOKEN) {
 export function knownSlug(env = process.env, root = process.cwd()) {
   if (env.PUBLISH_SLUG) return env.PUBLISH_SLUG;
   const file = join(root, 'published.json');
-  if (!existsSync(file)) return undefined;
-  const slugs = Object.keys(JSON.parse(readFileSync(file, 'utf8')) ?? {});
-  return slugs.length === 1 ? slugs[0] : undefined;
+  if (existsSync(file)) {
+    const slugs = Object.keys(JSON.parse(readFileSync(file, 'utf8')) ?? {});
+    if (slugs.length === 1) return slugs[0];
+  }
+  // FAST-RELEASE FR-A4 (11-25): a one-product repo's discovery source names its slug, so a repo that never published
+  // back (Pine, Nine, Nalati, Driftwood) is still checked before the build
+  const manifest = join(root, 'src/manifest.json');
+  if (!existsSync(manifest)) return undefined;
+  try {
+    const slug = JSON.parse(readFileSync(manifest, 'utf8'))?.slug;
+    return typeof slug === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(slug) ? slug : undefined;
+  } catch { return undefined; }
 }
 
-/** QA-11-23-b row 47: refuse a taken version before the build; true when refused. */
+/**
+ * FAST-RELEASE FR-A4 (11-25): `repo` publishes package.json's version, and a shard repo still on the template's 0.0.0
+ * refused at the version step after a full build (Pine, Nine, Nalati and Driftwood's staging republishes on v0.1.89).
+ * That refusal needs no slug: it runs before the build whatever the repo builds. Undefined when the version can go on.
+ */
+export function ownVersionProblem(wanted, own) {
+  if ((wanted || 'repo') !== 'repo') return undefined;
+  if (typeof own === 'string' && /^\d+\.\d+\.\d+$/u.test(own) && own !== '0.0.0') return undefined;
+  return `package.json declares no shard version X.Y.Z (${own ?? 'none'}): set "version" above the catalogue's (the API's newest for the slug plus one), commit it and publish again, or dispatch with -f version=auto (CP13, refused before the build, FAST-RELEASE FR-A4)`;
+}
+
+/**
+ * FAST-RELEASE FR-A5 (J505): "the hero is unchanged since <slug> <version>" was 14 of 29 upload refusals (11-16..24), each
+ * after a 3 to 17 minute build. The upload's own check compares sharddev's card digest (`cardDigest`: sha256 over
+ * `thumb:<h>`, `portrait:<h>`, `landscape:<h>`, each h the image's sha256) with the catalogue's newest `heroHash`.
+ * src/hero.json's `card` names the same three hashes, so the preflight can refuse first. Undefined when it has no card.
+ */
+export function heroDigest(hero) {
+  const card = Object.entries(hero?.card ?? {});
+  const slot = (test) => card.find(([name]) => test(name))?.[1];
+  const thumb = slot((name) => !/-(?:portrait|landscape)\.[a-z0-9]+$/u.test(name));
+  const portrait = slot((name) => /-portrait\.[a-z0-9]+$/u.test(name));
+  const landscape = slot((name) => /-landscape\.[a-z0-9]+$/u.test(name));
+  if (card.length !== 3 || ![thumb, portrait, landscape].every((hash) => /^[0-9a-f]{64}$/u.test(hash ?? ''))) return undefined;
+  return createHash('sha256').update([`thumb:${thumb}`, `portrait:${portrait}`, `landscape:${landscape}`].join('\n')).digest('hex');
+}
+
+/** FR-A5: the upload's hero refusal, before the build. A curated hero, a first version and a retry of the newest pass, as there. */
+export function heroProblem({ slug, hero, row, version }) {
+  if (!hero || hero.curated === true || !row?.heroHash) return undefined;
+  if (heroDigest(hero) !== row.heroHash || row.version === version) return undefined;
+  return `the hero is unchanged since ${slug} ${row.version}: run wildshard hero, commit src/hero.json and the card, push, then publish (refused before the build, FAST-RELEASE FR-A5)`;
+}
+
+/** QA-11-23-b row 47: refuse a taken version before the build; FR-A5: and an unchanged hero. True when refused. */
 async function versionRefused(rehearse) {
+  const own = existsSync('package.json') ? JSON.parse(readFileSync('package.json', 'utf8')).version : undefined;
+  const ownProblem = ownVersionProblem(process.env.PUBLISH_VERSION, own);
+  if (ownProblem) { console.log(`::${rehearse ? 'warning' : 'error'}::${ownProblem}`); return !rehearse; }
   const slug = knownSlug();
   if (!slug) { console.log('publish-preflight: the build names the slug; the version step checks the version after it'); return false; }
   try {
     const version = await chooseVersion(slug, process.env.PUBLISH_VERSION || 'repo', { rehearse });
     console.log(`publish-preflight: ${slug} ${version} is free, or holds these same sources`);
+    if (existsSync('src/hero.json')) {
+      const catalogue = await json(`${API}/api/catalogue`);
+      const problem = heroProblem({ slug, hero: JSON.parse(readFileSync('src/hero.json', 'utf8')), row: catalogue.shards?.find((shard) => shard.slug === slug), version });
+      if (problem) throw new Refusal(problem);
+      console.log(`publish-preflight: ${slug}'s hero is new since the catalogue's newest, curated, or a retry of it`);
+    }
     return false;
   } catch (error) {
     // A refusal stops the run (a rehearsal only warns); an API or git hiccup leaves it to the version step.
