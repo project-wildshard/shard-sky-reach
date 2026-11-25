@@ -7,7 +7,7 @@ import { MILL_COURSES, MILL_TOWER } from './rows/millShape';
  * Build-time only (SHARD-PLATFORM SF72): baked by `scripts/bake-sky-world.mjs` into `baked/mill.glb` + `data/mill.json`;
  * the client draws the bake in its own materials (`world/mill.ts`: the painted stone, ivy and canvas land on them).
  *
- * The windmill's code set (loop 20): the whitewashed rubble tower with its weathering in the vertex colour, the ivy cards,
+ * The windmill's code set (loop 20): the whitewashed rubble tower with its weathering in the vertex colour, the ivy (leaves and vines),
  * the door and windows in dressed-stone frames, the boarded curb, the shingled cap and its finial (the fallback the
  * modelled tower replaces), the windshaft, and the turning parts on the hub: the boss, the four lattice sail frames (one
  * kind, four instances) and the four canvases (their `farCloth` channel kept for the fraying shader). The group's kinds sit
@@ -109,25 +109,57 @@ function tower(): BufferGeometry {
   return g;
 }
 
-/** The ivy cards: each a curved strip laid on the wall, a painted spray from the sheet's 2 x 2 cells. */
+/**
+ * The ivy (QA 2026-11-24 row 53, J510: no flat image stands in for a 3D object): each patch is vines climbing the wall
+ * from its foot and the ivy leaves on them, real geometry, not a sheet. A leaf is a three-lobed blade (a raised midrib,
+ * two side lobes) held off the wall on its stalk and tipped down and out; a vine is a thin three-sided stem hugging the
+ * wall. Unused in play: the modelled tower replaces the code set's tower and ivy (millScene.ts imports only the hub's parts).
+ */
 function ivy(): BufferGeometry {
   const pos: number[] = [], uv: number[] = [], nor: number[] = [], col: number[] = [], idx: number[] = [];
-  const NX = 4, NY = 5, c = new Color(), shade = new Color(0x7c8a72), sun = new Color(0xffffff);
-  IVY.forEach(([a0, y0, w, h, cell], k) => {
-    const cu = (cell % 2) * 0.5, cv = cell < 2 ? 0.5 : 0, base = pos.length / 3;
-    for (let j = 0; j <= NY; j++) for (let i = 0; i <= NX; i++) {
-      const s = i / NX, t = j / NY, y = y0 + t * h, r = wallRadius(y < PLINTH + 0.25 ? 0 : y) + 0.05 + 0.02 * (k % 4) + 0.1 * t * (0.5 + 0.5 * hash(k, i));
-      const a = a0 + ((s - 0.5) * w) / r;
-      pos.push(Math.sin(a) * r, y, Math.cos(a) * r);
-      nor.push(Math.sin(a) * 0.85, 0.5, Math.cos(a) * 0.85);
-      // the sheet's sprays climb from the cell's bottom edge; a 4 % inset keeps the neighbours out
-      uv.push(cu + 0.02 + s * 0.46, cv + 0.02 + t * 0.46);
-      c.copy(shade).lerp(sun, Math.min(1, 0.35 + y / 5));
-      col.push(c.r, c.g, c.b);
+  // the leaf greens (dark, mid, light) and the stem brown are the ivy sheet's own (art mill-ivy.webp, its opaque texels'
+  // averages by brightness): the sheet's picture is gone, its colours stay
+  const c = new Color(), greens = [new Color(0x355728), new Color(0x50773c), new Color(0x81a251)], stem = new Color(0x6a5332);
+  const v = (p: Vector3, n: Vector3, tint: Color): number => { pos.push(p.x, p.y, p.z); nor.push(n.x, n.y, n.z); uv.push(0, 0); col.push(tint.r, tint.g, tint.b); return pos.length / 3 - 1; };
+  // a point on the wall at heading a, height y, d metres out from its face
+  const wall = (a: number, y: number, d: number): Vector3 => { const r = wallRadius(y < PLINTH + 0.25 ? 0 : y) + d; return new Vector3(Math.sin(a) * r, y, Math.cos(a) * r); };
+  IVY.forEach(([a0, y0, w, h], k) => {
+    const r0 = wallRadius(Math.max(0, y0) < PLINTH + 0.25 ? 0 : Math.max(0, y0)), span = w / r0;
+    // the vines: three stems from the foot, wandering up the patch
+    for (let s = 0; s < 3; s++) {
+      const base = pos.length / 3, start = a0 + (hash(k, 50 + s) - 0.5) * span * 0.6, rows = 6;
+      for (let j = 0; j <= rows; j++) {
+        const t = j / rows, y = y0 + t * h * (0.75 + 0.25 * hash(k, 60 + s)), a = start + Math.sin(t * 5 + s * 2 + k) * span * 0.12;
+        const centre = wall(a, y, 0.03), out = new Vector3(Math.sin(a), 0, Math.cos(a)), side = new Vector3(Math.cos(a), 0, -Math.sin(a)), rr = 0.012 * (1 - t * 0.5);
+        for (let q = 0; q < 3; q++) { const ang = (q / 3) * Math.PI * 2, n = out.clone().multiplyScalar(Math.cos(ang)).addScaledVector(side, Math.sin(ang)); v(centre.clone().addScaledVector(n, rr), n, stem); }
+      }
+      for (let j = 0; j < rows; j++) for (let q = 0; q < 3; q++) {
+        const p0 = base + j * 3 + q, p1 = base + j * 3 + (q + 1) % 3;
+        idx.push(p0, p1, p0 + 3, p1, p1 + 3, p0 + 3);
+      }
     }
-    for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) {
-      const p = base + j * (NX + 1) + i;
-      idx.push(p, p + 1, p + NX + 2, p, p + NX + 2, p + NX + 1);
+    // the leaves: thickest at the foot, thinning toward the patch's top and its sides (the old sheets' oval)
+    const leaves = Math.round(w * h * 16);
+    for (let i = 0; i < leaves; i++) {
+      const s = hash(k * 31 + i, 1) - 0.5, t = hash(k * 31 + i, 2) ** 1.3;
+      if (s * s * 4 + t * t > 1.05) continue;
+      const y = y0 + t * h, a = a0 + s * span, size = 0.09 + 0.07 * hash(k * 31 + i, 3);
+      const out = new Vector3(Math.sin(a), 0, Math.cos(a)), side = new Vector3(Math.cos(a), 0, -Math.sin(a)), up = new Vector3(0, 1, 0);
+      // a leaf hangs from its stalk: its tip down and out from the wall, turned a little either way
+      const turn = (hash(k * 31 + i, 4) - 0.5) * 1.4, droop = 0.5 + 0.5 * hash(k * 31 + i, 5);
+      const along = up.clone().multiplyScalar(-Math.cos(turn) * droop).addScaledVector(side, Math.sin(turn)).addScaledVector(out, 0.55).normalize();
+      const across = new Vector3().crossVectors(along, out).normalize(), face = new Vector3().crossVectors(across, along).normalize();
+      if (face.dot(out) < 0) face.negate();
+      const root = wall(a, y, 0.06 + 0.06 * hash(k * 31 + i, 6));
+      // shadier low and inside the mat, younger and lighter up the wall and at its edges
+      const tone = Math.min(1.999, Math.max(0, hash(k * 31 + i, 7) * 1.4 + t * 0.6 + Math.abs(s) * 0.4)), lo = Math.floor(tone);
+      c.copy(greens[lo] ?? stem).lerp(greens[lo + 1] ?? stem, tone - lo);
+      const n = face.clone().addScaledVector(out, 0.6).addScaledVector(up, 0.3).normalize();
+      const at = (u: number, x: number, lift: number): Vector3 => root.clone().addScaledVector(along, u * size).addScaledVector(across, x * size).addScaledVector(face, lift * size);
+      const p0 = v(at(0, 0, 0), n, c), mid = v(at(0.45, 0, 0.12), n, c), tip = v(at(1, 0, 0), n, c);
+      const l = v(at(0.35, 0.55, -0.05), n, c), r = v(at(0.35, -0.55, -0.05), n, c), ll = v(at(0.05, 0.4, 0), n, c), rl = v(at(0.05, -0.4, 0), n, c);
+      // the midrib fold, the two side lobes and the heart at the stalk
+      idx.push(p0, l, mid, mid, l, tip, p0, mid, r, mid, tip, r, p0, ll, l, p0, r, rl);
     }
   });
   const g = new BufferGeometry();
@@ -268,7 +300,7 @@ export function buildMillSet(): (readonly [string, InstancedMesh])[] {
   const turned = new Matrix4().makeRotationFromQuaternion(new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), Math.PI / 2));
   return [
     ['tower', one(tower(), new MeshStandardMaterial({ vertexColors: true, color: 0xe9e0cf, roughness: 0.95, metalness: 0 }))],
-    ['ivy', one(ivy(), new MeshStandardMaterial({ vertexColors: true, alphaTest: 0.4, side: DoubleSide, roughness: 0.8, metalness: 0, emissive: 0x18220c }))],
+    ['ivy', one(ivy(), new MeshStandardMaterial({ vertexColors: true, side: DoubleSide, roughness: 0.8, metalness: 0, emissive: 0x18220c }))],
     ['dressed', one(o.stone, new MeshStandardMaterial({ vertexColors: true, roughness: 0.92, metalness: 0 }))],
     ['door', one(o.wood, wood)],
     ['dark', one(o.dark, new MeshStandardMaterial({ color: 0x1e1a20, roughness: 1, metalness: 0 }))],

@@ -8,7 +8,7 @@ import { fallGeometry } from './fallGeometry';
  * the client takes each kind's geometry (world/baked.ts skyBakedGeometry) and places its own instances of it.
  *
  * The shared one-geometry shapes Sky Reach instances at runtime: the meadow's grass clump, daisy and boulder (world/dressing.ts
- * places them over the islands), the code pine (world/shapes.ts, the last fallback for the trees) and the card-branch fir
+ * places them over the islands), the code pine (world/shapes.ts, the last fallback for the trees) and the fir (geometry boughs since QA 11-24 row 53)
  * (world/fir.ts, the trees' fallback while the branch sheet loaded), and the falls' sheet (world/distant.ts, 1 m by 1 m, each
  * instance scaled to its fall). Each is one kind with one identity instance.
  */
@@ -145,28 +145,48 @@ function firGeometry(): BufferGeometry {
     const n = new Vector3(Math.cos((a0 + a1) / 2), 0.1, Math.sin((a0 + a1) / 2)).normalize();
     quad(p0, p1, p2, p3, -1, -1, -1, -1, n, bark);
   }
-  // the tiers: boughs radiating out and drooping, longer low down; two crossed cards per bough for volume
-  const cellW = 1 / FIR.cell;
+  // the tiers: boughs radiating out and drooping, longer low down. QA 2026-11-24 row 53 (J510): each bough is real
+  // geometry, not two crossed cards: a tapering three-sided branch with tufts of needle spikes splayed round it (an X
+  // through the branch, a bottlebrush), in the cards' own vertex colours
+  const tri = (p0: Vector3, p1: Vector3, p2: Vector3, n: Vector3, tint: Color): void => {
+    for (const p of [p0, p1, p2]) { pos.push(p.x, p.y, p.z); uv.push(-1, -1); nor.push(n.x, n.y, n.z); col.push(tint.r, tint.g, tint.b); }
+  };
   for (let t = 0; t < FIR.tiers; t++) {
     const f = t / (FIR.tiers - 1), y = 1.1 + f * (FIR.height - 1.8), len = FIR.base * (1 - f * 0.78) + 0.35, droop = 0.5 + (1 - f) * 0.45;
     const n = FIR.perTier - Math.round(f * 2);
     for (let k = 0; k < n; k++) {
       const a = (k / n) * Math.PI * 2 + t * 0.9 + rnd() * 0.5, dir = new Vector3(Math.cos(a), 0, Math.sin(a));
       const side = new Vector3(-dir.z, 0, dir.x), w = len * 0.85;
-      const cell = Math.floor(rnd() * FIR.cell * FIR.cell), cu = (cell % FIR.cell) * cellW, cv = 1 - (Math.floor(cell / FIR.cell) + 1) * cellW;
+      rnd(); // the old card's sheet cell: still drawn, so every later bough keeps its heading
       const root = new Vector3(0, y, 0), tip = dir.clone().multiplyScalar(len).add(new Vector3(0, y - droop * len * 0.45, 0));
       c.copy(shade).lerp(sun, 0.35 + 0.65 * f);
-      // flat card (the bough seen from above) and a vertical one (its depth), the sheet's left edge at the trunk
-      const lift = new Vector3(0, w * 0.3, 0);
-      quad(root.clone().addScaledVector(side, -w * 0.5), tip.clone().addScaledVector(side, -w * 0.5), tip.clone().addScaledVector(side, w * 0.5), root.clone().addScaledVector(side, w * 0.5),
-        cu, cv, cu + cellW, cv + cellW, new Vector3(0, 1, 0), c);
-      quad(root.clone().sub(lift), tip.clone().sub(lift), tip.clone().add(lift), root.clone().add(lift), cu, cv, cu + cellW, cv + cellW, side, c.clone().multiplyScalar(0.85));
+      const along = tip.clone().sub(root), axis = along.clone().normalize(), up = new Vector3().crossVectors(side, axis).normalize();
+      // the branch
+      for (let q = 0; q < 3; q++) {
+        const a0 = (q / 3) * Math.PI * 2, a1 = ((q + 1) / 3) * Math.PI * 2, rr = 0.05;
+        const o0 = side.clone().multiplyScalar(Math.cos(a0)).addScaledVector(up, Math.sin(a0)), o1 = side.clone().multiplyScalar(Math.cos(a1)).addScaledVector(up, Math.sin(a1));
+        const nn = o0.clone().add(o1).normalize();
+        quad(root.clone().addScaledVector(o0, rr), root.clone().addScaledVector(o1, rr), tip.clone().addScaledVector(o1, rr * 0.2), tip.clone().addScaledVector(o0, rr * 0.2), -1, -1, -1, -1, nn, bark);
+      }
+      // the needle tufts along it, shorter toward the tip, each four spikes leaning toward the tip
+      const tufts = 4;
+      for (let j = 0; j < tufts; j++) {
+        const s0 = (j + 0.3) / tufts, at = root.clone().addScaledVector(along, s0), reach = (w * 0.5) * (1 - s0 * 0.55), step = (len / tufts) * 0.55;
+        const tint = c.clone().multiplyScalar(0.88 + 0.12 * ((j + k) % 2));
+        for (const ang of [0.5, -0.5, Math.PI - 0.5, Math.PI + 0.5]) {
+          const head = side.clone().multiplyScalar(Math.cos(ang)).addScaledVector(up, Math.sin(ang)), spike = at.clone().addScaledVector(head, reach).addScaledVector(axis, step * 1.4);
+          const nn = up.clone().addScaledVector(head, 0.5).normalize();
+          tri(at.clone().addScaledVector(axis, -step), at.clone().addScaledVector(axis, step), spike, nn, tint);
+        }
+      }
     }
   }
-  // the leader: a small upright card cross at the top
+  // the leader: a short upright spire of needle spikes at the top
   const top = new Vector3(0, FIR.height - 0.6, 0);
-  for (const s of [new Vector3(0.45, 0, 0), new Vector3(0, 0, 0.45)]) {
-    quad(top.clone().sub(s), top.clone().add(s), top.clone().add(s).add(new Vector3(0, 1.3, 0)), top.clone().sub(s).add(new Vector3(0, 1.3, 0)), 0, 1 - cellW, cellW, 1, new Vector3(s.z, 0, s.x).normalize(), sun);
+  for (let q = 0; q < 6; q++) {
+    const a = (q / 6) * Math.PI * 2, out = new Vector3(Math.cos(a), 0, Math.sin(a));
+    tri(top.clone().addScaledVector(out, 0.12), top.clone().addScaledVector(out, -0.12), top.clone().addScaledVector(out, 0.3).add(new Vector3(0, 1.3, 0)).addScaledVector(out, -0.3), out, sun);
+    tri(top.clone(), top.clone().add(new Vector3(0, 0.5, 0)), top.clone().addScaledVector(out, 0.4).add(new Vector3(0, 0.1, 0)), out, sun);
   }
   const g = new BufferGeometry();
   g.setAttribute('position', new Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new Float32BufferAttribute(uv, 2));
