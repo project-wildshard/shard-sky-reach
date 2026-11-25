@@ -80,7 +80,7 @@ export async function bakeTextureLibrary(root, input, options) {
     mkdirSync(join(project, 'assets'), { recursive: true });
     let pinsChanged = false;
     for (const [name, declaration] of Object.entries(rows)) {
-        const image = Uint8Array.from(readFileSync(join(root, 'public', declaration.source)));
+        const image = Uint8Array.from(readFileSync(join(root, 'src/static', declaration.source)));
         const raster = await readImagePixels(image);
         if (options.encode) {
             const png = await writeImagePixels(raster);

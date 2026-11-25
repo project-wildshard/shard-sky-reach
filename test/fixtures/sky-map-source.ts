@@ -3,5 +3,5 @@ import { readFileSync } from 'node:fs';
 import { SKY_MAP_INPUTS } from '../../src/generators/bake-map.mjs';
 
 export function originalSkyMapInputs(): Map<string, Uint8Array> {
-  return new Map(SKY_MAP_INPUTS.map(url => [url, new Uint8Array(readFileSync(`public${url}`))]));
+  return new Map(SKY_MAP_INPUTS.map(url => [url, new Uint8Array(readFileSync(`src/static${url}`))]));
 }

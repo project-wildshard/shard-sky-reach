@@ -8,7 +8,7 @@ import { originalSkySceneInputs, originalSkyScenes } from './fixtures/sky-scene-
 
 
 const encode = (value: unknown): Uint8Array => new TextEncoder().encode(JSON.stringify(value));
-const original = (): Promise<Uint8Array> => millSceneSource(url => readFileSync(`public${url}`));
+const original = (): Promise<Uint8Array> => millSceneSource(url => readFileSync(`src/static${url}`));
 test('owned mill intake preserves the complete original hierarchy and motion bindings with isolated rows', async () => {
   const bytes = await original();
   const admitted = readMillSceneValues(bytes);

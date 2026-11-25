@@ -2,7 +2,7 @@
 // Every Sky case and assertion is unchanged; the sunscar-dunes row of the discovery loop
 // moved to shard-dunes test/sunscar-fixed-palette.test.ts. Engine/SDK imports are public
 // exports; the engine app-build reader takes a src/shards/<slug> root, so this repo's
-// src/ and public/ are linked into a scratch root of that shape.
+// src/ and src/static/ are linked into a scratch root of that shape.
 import { expect, test } from 'vitest';
 // oxlint-disable-next-line import/no-nodejs-modules -- The engine's app-build reader takes a monorepo-shaped root.
 import { symlinkSync } from 'node:fs';
@@ -37,7 +37,7 @@ async function skyDiscovery(): Promise<ReturnType<typeof parseDiscoveryValues>> 
   try {
     const context = createProjectGeneration(project, 'f'.repeat(64), new Map(), cache, [
       { prefix: '/src/', directory: project },
-      { prefix: '/assets/', directory: resolve('public/assets') },
+      { prefix: '/assets/', directory: resolve('src/static/assets') },
     ]);
     const rigs = await skyCreatureRigOutput(context);
     return parseDiscoveryValues({ ...skyProductBoot(skyRigAssetSources(rigs.files, GPU_FILES)),
@@ -63,13 +63,13 @@ for (const [label, compile, rows] of [
   });
 }
 
-/** The engine app build reads a shard at src/shards/<slug> (SDK gen-shards); this repo's src/ and public/ are linked there. */
+/** The engine app build reads a shard at src/shards/<slug> (SDK gen-shards); this repo's src/ and src/static/ are linked there. */
 function appBuildRoot(): string {
   mkdirSync('tmp', { recursive: true });
   const root = mkdtempSync(resolve('tmp', 'sky-app-root-'));
   mkdirSync(resolve(root, 'src/shards'), { recursive: true });
   symlinkSync(resolve('src'), resolve(root, 'src/shards/far-reach'), 'dir');
-  symlinkSync(resolve('public'), resolve(root, 'public'), 'dir');
+  symlinkSync(resolve('src/static'), resolve(root, 'src/static'), 'dir');
   return root;
 }
 

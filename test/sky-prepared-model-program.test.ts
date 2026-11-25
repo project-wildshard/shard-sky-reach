@@ -11,7 +11,7 @@ import { createProjectGeneration, type ProjectGenerationContext } from '@wildsha
 import { assertConfigBoundary } from '@wildshard/sdk/configBoundary';
 import { PREPARED_MODEL_INPUTS, preparedModelProgram, preparedModelSource } from '../src/generators/preparedModelProgram';
 
-const original = readFileSync('public/assets/far-reach/baked/prepared-models.glb');
+const original = readFileSync('src/static/assets/far-reach/baked/prepared-models.glb');
 await prepareAssetDecoders();
 
 test('owned cold geometry and persistent hits retain every original byte, part, bound and keeper pivot', async () => {
@@ -31,7 +31,7 @@ test('owned cold geometry and persistent hits retain every original byte, part, 
   try {
     for (const name of PREPARED_MODEL_INPUTS) {
       const path = resolve(source, name.slice(prefix.length)); mkdirSync(dirname(path), { recursive: true });
-      writeFileSync(path, readFileSync(`public${name}`));
+      writeFileSync(path, readFileSync(`src/static${name}`));
     }
     const cold = await preparedModelProgram(context()); check(cold); cold.fill(0);
     const hit = await preparedModelProgram(context()); check(hit); expect(builds).toBe(1);

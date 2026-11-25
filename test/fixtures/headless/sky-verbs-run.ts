@@ -3,7 +3,7 @@
 // exports; the session takes this shard's own sky-verbs prepare module by URL (engine
 // 0.1.32's productSession), where engine named it by the 'sky-verbs' variant; physics
 // bytes come from the installed engine's rapier package (the same bytes as engine's
-// public/assets/physics/rapier.wasm).
+// src/static/assets/physics/rapier.wasm).
 // oxlint-disable-next-line import/no-unassigned-import -- The sim's Math goes in before any module body runs.
 import '@wildshard/sdk/internal/engine/core/portableMathFirst';
 // oxlint-disable-next-line import/no-nodejs-modules -- Read exact admitted native product and physics bytes.

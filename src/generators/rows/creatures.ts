@@ -2,7 +2,7 @@
  * Sky Reach's native creature sources and skin metadata. The owned source/cache program
  * returns the complete original bodies; the admitted shard file supplies runtime addresses.
  */
-/** The generated sources (C6 / E392: Hunyuan3D-2 GLBs under public/), read only by the bake. */
+/** The generated sources (C6 / E392: Hunyuan3D-2 GLBs under src/static/), read only by the bake. */
 export const SKY_CREATURE_SOURCES = {
   'storm-roc': '/assets/far-reach/models/roc-hd/roc-hd.glb', 'sky-goat': '/assets/far-reach/models/sky-goat/sky-goat.glb',
   'drift-ray': '/assets/far-reach/models/drift-ray/drift-ray.glb',

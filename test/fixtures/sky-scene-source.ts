@@ -15,7 +15,7 @@ export async function originalSkySceneInputs(): Promise<{
   readonly routes: SkyRouteValues;
   readonly heroes: HeroLibraryRows;
 }> {
-  const read = (url: string): Uint8Array => new Uint8Array(readFileSync(`public${url}`));
+  const read = (url: string): Uint8Array => new Uint8Array(readFileSync(`src/static${url}`));
   return { mill: (await millSceneValues(read)).MILL_SCENE,
     staticScenes: readSkyStaticSceneEnvelope(await skyStaticSceneBytes(read)), routes: await skyRouteValues(read), heroes: await skyHeroLibrarySource(new Map(HERO_LIBRARY_INPUTS.map(url => [url, read(url)]))) };
 }

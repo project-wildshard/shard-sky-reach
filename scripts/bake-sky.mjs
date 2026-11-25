@@ -3,7 +3,7 @@
 //
 // Sky.build scans the decoded 2k HDR twice at launch (findSun: every other pixel for the brightest texel;
 // sampleHorizon: one row above the horizon) — pure functions of the file. This runs the same maths in Node
-// (three's HDRLoader.parse is DOM-free) and writes public/assets/baked/<slug>/sky.json; Sky.ts reads it and
+// (three's HDRLoader.parse is DOM-free) and writes src/static/assets/baked/<slug>/sky.json; Sky.ts reads it and
 // skips the scans. Every run compares baked output bytes (Sky.ts keeps the reference implementation).
 //
 //   node --import ./scripts/bake-loader.mjs scripts/bake-sky.mjs [--check]
@@ -24,11 +24,11 @@ if (!magick) console.log('bake-check: sky pair skipped (no magick)');
 const { SHARDS } = await import(pathToFileURL(resolve(ROOT, 'src/shards.generated.ts')).href);
 for (const def of SHARDS) {
   if (!def.ground.terrain || def.ground.structures || !def.sky?.hdri) continue;
-    const hdrPath = resolve(ROOT, `public/assets/hdri/${def.sky.hdri}_2k.hdr`);
+    const hdrPath = resolve(ROOT, `src/static/assets/hdri/${def.sky.hdri}_2k.hdr`);
     if (!existsSync(hdrPath)) { console.warn(`bake-sky: ${def.slug}: ${hdrPath} missing`); continue; }
     const hdr = readFileSync(hdrPath);
-    const out = resolve(ROOT, 'public/assets/baked', def.slug, 'sky.json');
-    const stem = resolve(ROOT, `public/assets/hdri/${def.sky.hdri}_2k`);
+    const out = resolve(ROOT, 'src/static/assets/baked', def.slug, 'sky.json');
+    const stem = resolve(ROOT, `src/static/assets/hdri/${def.sky.hdri}_2k`);
     const t0 = performance.now();
     const img = new HDRLoader().parse(hdr.buffer.slice(hdr.byteOffset, hdr.byteOffset + hdr.byteLength));
     const { width, height, data } = img;

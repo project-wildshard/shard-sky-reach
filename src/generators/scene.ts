@@ -11,7 +11,7 @@ import { skyGeometriesPiece } from './geometries';
 import { skyIsletRigPiece } from './isletRig';
 import { skyDressingPiece } from './dressing';
 
-/** Each code-built piece: its GLB's name under `public/assets/far-reach/baked/`, its rows file under `data/`, its builder. */
+/** Each code-built piece: its GLB's name under `src/static/assets/far-reach/baked/`, its rows file under `data/`, its builder. */
 export const SKY_PIECES: readonly { glb: string; rows: string; piece: () => SkyPiece<object> }[] = [
   { glb: 'winch-house', rows: 'winchHouse', piece: skyWinchHousePiece }, { glb: 'roost', rows: 'roost', piece: skyRoostPiece },
   { glb: 'docks', rows: 'docks', piece: skyDocksPiece }, { glb: 'crown', rows: 'crown', piece: skyCrownPiece },

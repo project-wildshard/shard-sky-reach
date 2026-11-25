@@ -14,12 +14,12 @@ import { bakePreparedModels as retainedPreparedModels } from '../src/generators/
 import { bakeSkyIsleFrames } from '../src/generators/skyIsleFrames';
 import { CARVED, MODEL_FITS } from '../src/generators/modelFrames';
 
-const read = (url: string): Uint8Array => new Uint8Array(readFileSync(`public${url}`));
+const read = (url: string): Uint8Array => new Uint8Array(readFileSync(`src/static${url}`));
 await prepareAssetDecoders();
 // Actual cold source intake precedes timed assertions; all cases retain 30 s.
 const frames = await bakeSkyIsleFrames(read), inputs = { frames, fits: MODEL_FITS, daisHeight: CARVED.daisH };
 const actual = await bakePreparedModels(read, inputs);
-const original = new Uint8Array(readFileSync('public/assets/far-reach/baked/prepared-models.glb'));
+const original = new Uint8Array(readFileSync('src/static/assets/far-reach/baked/prepared-models.glb'));
 
 test('explicit frame inputs retain every byte of the original largest Far Reach producer', async () => {
   expect(Buffer.compare(actual, original)).toBe(0);

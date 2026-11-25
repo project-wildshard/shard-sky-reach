@@ -17,7 +17,5 @@ blob-report/
 out/
 tmp/
 .cache/
-/public/assets/far-reach/map/top.webp
-/public/assets/far-reach/entry-reads.json
 /src/discovery.generated.ts
 /.owner

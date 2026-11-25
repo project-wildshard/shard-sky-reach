@@ -15,7 +15,7 @@ const check = (files: ReadonlyMap<string, Uint8Array>): void => {
 };
 
 test('current placement source retains every original byte and ordered metadata row', async () => {
-  const inputs = new Map(WORLD_PLACEMENT_INPUTS.map(name => [name, Uint8Array.from(readFileSync(`public${name}`))]));
+  const inputs = new Map(WORLD_PLACEMENT_INPUTS.map(name => [name, Uint8Array.from(readFileSync(`src/static${name}`))]));
   check(await skyWorldPlacementSource(inputs));
 });
 

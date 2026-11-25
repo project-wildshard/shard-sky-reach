@@ -13,14 +13,14 @@ test('complete original rig oracles work with neither retired handoff and reject
   mkdirSync('tmp', { recursive: true });
   const root = mkdtempSync(resolve('tmp/sky-original-rigs-'));
   const paths = ['test/fixtures/sky-rigs/storm-roc.glb', 'test/fixtures/sky-rigs/sky-goat.glb',
-    'public/assets/far-reach/rigs/drift-ray.glb', 'public/assets/far-reach/rigs/gale-wisp.glb',
+    'src/static/assets/far-reach/rigs/drift-ray.glb', 'src/static/assets/far-reach/rigs/gale-wisp.glb',
     'test/fixtures/sky-rigs/storm-roc-70e5655f.glb'];
   try {
     for (const path of paths) {
       const file = resolve(root, path); mkdirSync(dirname(file), { recursive: true });
       writeFileSync(file, readFileSync(path));
     }
-    for (const name of ['storm-roc', 'sky-goat']) expect(existsSync(resolve(root, `public/assets/far-reach/rigs/${name}.glb`))).toBe(false);
+    for (const name of ['storm-roc', 'sky-goat']) expect(existsSync(resolve(root, `src/static/assets/far-reach/rigs/${name}.glb`))).toBe(false);
     const original = originalSkyRigs(root), pins = [...original].map(([name, bytes]) => [name, bytes.length, hashImmutableBytes(bytes)]);
     expect(original.size).toBe(5);
     for (const bytes of original.values()) bytes.fill(0);

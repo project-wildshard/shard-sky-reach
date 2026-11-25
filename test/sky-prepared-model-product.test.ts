@@ -40,7 +40,7 @@ test('all original tiles admit from owned output with no project asset files', a
   const scratch = mkdtempSync(resolve('tmp/sky-tile-publication-'));
   try {
     const ctx = createProjectGeneration(resolve('src'), 'f'.repeat(64), new Map(), resolve(scratch, 'cache'),
-      [{ prefix: '/assets/', directory: resolve('public/assets') }]);
+      [{ prefix: '/assets/', directory: resolve('src/static/assets') }]);
     const owned = await prepareOutput(ctx), prepared = await prepareProjectOutput(resolve('src'), owned);
     const base = emptyShardfile({ slug: 'tile-publication', name: 'Tiles', author: 'Fixture', revision: 1, seed: 1 });
     const rows = SKY_WORLD_TILE_ROWS, shard = { ...base, files: rows.files, tiles: rows.tiles,

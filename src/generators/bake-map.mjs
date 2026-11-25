@@ -53,24 +53,24 @@ export async function skyMapSources(native) {
   sources.set('owned-route-scenes.json', routes);
   const bridgeGeometry = bridge.get('bridge-rest.glb');
   if (bridgeGeometry === undefined) throw new Error('Missing owned map bridge inputs');
-  sources.set('../../../public/assets/far-reach/baked/bridge-rest.glb', bridgeGeometry);
+  sources.set('../../../src/static/assets/far-reach/baked/bridge-rest.glb', bridgeGeometry);
   const millInputs = new Map(MILL_REST_INPUTS.map(url => [url,
     read(url)]));
   const mill = await skyMillRestSource(millInputs), millGeometry = mill.get('mill-rest.glb');
   if (millGeometry === undefined) throw new Error('Missing owned map mill input');
-  sources.set('../../../public/assets/far-reach/baked/mill-rest.glb', millGeometry);
+  sources.set('../../../src/static/assets/far-reach/baked/mill-rest.glb', millGeometry);
   const vaneInputs = new Map(VANE_INPUTS.map(url => [url,
     read(url)]));
   for (const [file, bytes] of await skyVaneSource(vaneInputs)) {
     const part = file === 'vane-post.glb' ? 'post' : 'rotor';
-    sources.set(`../../../public/assets/far-reach/models/wind-vane/${part}.glb`, bytes);
+    sources.set(`../../../src/static/assets/far-reach/models/wind-vane/${part}.glb`, bytes);
   }
   for (const [index, bytes] of restPoolGlbs().entries()) {
     const url = REST_URLS[index];
     if (url === undefined) throw new Error('Missing declared map rest pool');
-    sources.set(`../../../public${url}`, bytes);
+    sources.set(`../../../src/static${url}`, bytes);
   }
-  sources.set(`../../../public${ISLET_POOL.url}`, isletGlb());
+  sources.set(`../../../src/static${ISLET_POOL.url}`, isletGlb());
   const islets = isletScenes(), motion = isletMotionRows();
   sources.set('data/isletScenes.generated.json', new TextEncoder().encode(`${JSON.stringify(islets)}\n`));
   sources.set('data/mapRest.generated.json', new TextEncoder().encode(`${JSON.stringify(mapSceneRest(islets.scene, motion.channels, motion.rest))}\n`));

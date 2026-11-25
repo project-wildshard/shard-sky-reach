@@ -16,13 +16,13 @@ await prepareAssetDecoders();
 const check = (files: ReadonlyMap<string, Uint8Array>): void => {
   expect([...files.keys()]).toEqual(WORLD_PACK_FILES);
   for (const [name, bytes] of files) {
-    const original = name.startsWith('baked/') ? `public/assets/far-reach/${name}` : `src/${name}`;
+    const original = name.startsWith('baked/') ? `src/static/assets/far-reach/${name}` : `src/${name}`;
     expect(Buffer.compare(bytes, readFileSync(original)), name).toBe(0);
   }
 };
 
 test('current pack source retains every original byte and ordered metadata row', async () => {
-  const inputs = new Map(WORLD_PACK_INPUTS.map(name => [name, Uint8Array.from(readFileSync(`public${name}`))]));
+  const inputs = new Map(WORLD_PACK_INPUTS.map(name => [name, Uint8Array.from(readFileSync(`src/static${name}`))]));
   check(await skyWorldPackSource(inputs, bytes => encodeBuildBytes(bytes, 'deflate', 9, 'native')));
 });
 

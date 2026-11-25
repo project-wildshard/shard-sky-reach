@@ -20,7 +20,7 @@ export interface TasselPart { readonly shape: number; readonly bronze: boolean; 
 
 /**
  * The leaf (loop 4): each panel is a real pleat, two strips meeting at a raised crease, mapped polar onto the painted silk
- * (`public/assets/far-reach/fan/leaf.webp`: u across the open fan guard to guard, v from the leaf's inner edge out to the
+ * (`src/static/assets/far-reach/fan/leaf.webp`: u across the open fan guard to guard, v from the leaf's inner edge out to the
  * gilt rim). The vertex colour shades the pleat's two faces apart (one toward the light, one turned away), so the folds
  * read even under the flat viewmodel light.
  */

@@ -8,11 +8,11 @@ import { skyWorldRows } from './worldRows';
 export function skyMapWorldSources(compress: (bytes: Uint8Array) => Uint8Array): Map<string, Uint8Array> {
   const sources = new Map<string, Uint8Array>();
   for (const [name, bytes] of skyWorldPieceSource()) {
-    if (name.startsWith('baked/')) sources.set(`../../../public/assets/far-reach/${name}`, bytes);
+    if (name.startsWith('baked/')) sources.set(`../../../src/static/assets/far-reach/${name}`, bytes);
     else if (name === 'data/geometries.json') sources.set(name, bytes);
   }
   for (const [name, bytes] of skyWorldPackFiles('isles', bakeSkyIsles(), compress)) {
-    sources.set(name.startsWith('baked/') ? `../../../public/assets/far-reach/${name}` : name, bytes);
+    sources.set(name.startsWith('baked/') ? `../../../src/static/assets/far-reach/${name}` : name, bytes);
   }
   sources.set('owned-ground.json', skyGroundSource());
   sources.set('owned-world-rows.json', new TextEncoder().encode(`${JSON.stringify(skyWorldRows())}\n`));

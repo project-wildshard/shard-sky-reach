@@ -207,7 +207,7 @@ export function entryParts(tools: FarModelTools): FarPart[] {
 export async function farParts(tools: FarModelTools): Promise<FarPart[]> {
   const models = new Map<SkyIsleModel, FarIsle>();
   for (const name of SKY_ISLE_MODELS) {
-    const raw = await tools.model(`public${HD_URLS[name]}`), geometry = new BufferGeometry();
+    const raw = await tools.model(`src/static${HD_URLS[name]}`), geometry = new BufferGeometry();
     geometry.setAttribute('position', new BufferAttribute(Float32Array.from(raw.positions), 3)).setIndex(new BufferAttribute(Uint32Array.from(raw.index), 1));
     const unit = skyIsleUnit(geometry, skyIsleFrame(geometry)), positions = Float32Array.from(geometry.getAttribute('position').array), kept = tools.decimate(positions, raw.index, FAR_ISLES.triangles);
     // compact to the vertices the decimated index keeps

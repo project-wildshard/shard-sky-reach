@@ -12,7 +12,7 @@ test('both bridge writers and every declared handoff reader are retired', () => 
 
 test('owned bridge compilation reads its declared native model and publishes both files', async () => {
   const reads: string[] = [];
-  const files = await bridgeRestFiles(url => { reads.push(url); return new Uint8Array(readFileSync(`public${url}`)); });
+  const files = await bridgeRestFiles(url => { reads.push(url); return new Uint8Array(readFileSync(`src/static${url}`)); });
   expect(reads).toEqual([MODEL_URLS['bridge-deck']]);
   expect([...files.keys()]).toEqual(['bridge-rest.glb', 'bridge-rest.json']);
   const glb = files.get('bridge-rest.glb'), rows = files.get('bridge-rest.json');

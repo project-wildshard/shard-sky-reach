@@ -47,7 +47,7 @@ test('both fixed worlds isolate caller-owned values', async () => {
 
 test('the static factory consumes explicit fixed-world values for both envelopes without mutating them', async () => {
   const { mill } = await originalSkySceneInputs();
-  const { placements } = await skyWorldPlacementValues(new Map(WORLD_PLACEMENT_INPUTS.map(name => [name, new Uint8Array(readFileSync(`public${name}`))])));
+  const { placements } = await skyWorldPlacementValues(new Map(WORLD_PLACEMENT_INPUTS.map(name => [name, new Uint8Array(readFileSync(`src/static${name}`))])));
   const values = skyFixedWorldValues(mill.recipe);
   values.mill.scene.nodes = values.mill.scene.nodes.map(node => node.id === 'hub' ? { ...node, rotation: [0.25, 0, 0] } : node);
   const supplied = { ...values, groundColliders: [{ id: 'owned-ground', colliders: [{ kind: 'hull' as const, x: 1, y: 2, z: 3, points: [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1], surface: 'grass' as const }] }] };
@@ -68,9 +68,9 @@ test('the static factory consumes explicit fixed-world values for both envelopes
 
 test('the static reader uses explicit native models and admits current contacts', async () => {
   const reads: string[] = [];
-  const bytes = await skyStaticSceneBytes(name => { reads.push(name); return new Uint8Array(readFileSync(`public${name}`)); });
+  const bytes = await skyStaticSceneBytes(name => { reads.push(name); return new Uint8Array(readFileSync(`src/static${name}`)); });
   expect(reads).toEqual(STATIC_SCENE_INPUTS);
-  const { placements } = await skyWorldPlacementValues(new Map(WORLD_PLACEMENT_INPUTS.map(name => [name, new Uint8Array(readFileSync(`public${name}`))])));
+  const { placements } = await skyWorldPlacementValues(new Map(WORLD_PLACEMENT_INPUTS.map(name => [name, new Uint8Array(readFileSync(`src/static${name}`))])));
   const { mill } = await originalSkySceneInputs();
   const source = skyStaticScenes(placements, skyFixedWorldValues(mill.recipe));
   const admitted = readSkyStaticSceneEnvelope(bytes);
@@ -85,7 +85,7 @@ test('the static reader uses explicit native models and admits current contacts'
 });
 
 test('the static scheduler handoff is retired while original native-source inventory refusals remain strict', async () => {
-  const inputs = new Map(STATIC_SCENE_INPUTS.map(url => [url, new Uint8Array(readFileSync(`public${url}`))]));
+  const inputs = new Map(STATIC_SCENE_INPUTS.map(url => [url, new Uint8Array(readFileSync(`src/static${url}`))]));
   for (const name of STATIC_SCENE_INPUTS) {
     const omitted = new Map(inputs); omitted.delete(name);
     await expect(skyStaticSceneSource(omitted)).rejects.toThrow('input inventory differs');
