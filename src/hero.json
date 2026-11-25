@@ -1,11 +1,10 @@
 {
-  "content": "2acb5825d4cc1f27a0092b13137384fb98c5ead3a9f9557fc561d5db369011ae",
-  "captured": "2026-11-24T11:43:45.053Z",
-  "base": "http://127.0.0.1:57029",
+  "content": "7c9d2a873e1cfa58ff694598914a27b10fe15822e132ce4f636a567ac72cb188",
+  "captured": "2026-11-25T16:12:03.664Z",
+  "base": "http://127.0.0.1:61491",
   "card": {
-    "thumbs/far-reach.jpg": "05b6b10ffe79bc5c596eb7e87733ab1ad45c12d3a2b6f63f0127eb5bc529c7a4",
-    "thumbs/far-reach-portrait.jpg": "924630d0534e12bd6dbfacc791c7974a53bba1797fcfc706c5426d89303b1301",
-    "thumbs/far-reach-landscape.jpg": "847db5b0003c491c6536ac66622855997ce92984fb9e37bdb8244782d8eab3dd"
-  },
-  "look": "a2c5778d690c35f8cb20cf76deaf4a4347a3a3acfd3cdd77b3d701b1f366e4b3"
+    "thumbs/far-reach.jpg": "eefe706851588fa36cc734978851f9a17bda34fe1c8c034aa544ebd436bd7e42",
+    "thumbs/far-reach-portrait.jpg": "519e71fa5e5968cf57117cf58a76616b607df68ee80fbb216de4983a5a9201dd",
+    "thumbs/far-reach-landscape.jpg": "265796cb429999cfb8f7af3f89cc3dcc8fe39c8731dbaa4d717e06896b01e9b6"
+  }
 }
