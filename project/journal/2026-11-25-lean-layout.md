@@ -31,3 +31,6 @@ Fixups found by running the tools:
   green here yet.
 - ci.yml: the `pnpm test:hooks` step is gone (`pnpm check` runs `test:kit`, which holds the hook tests)
 - tsconfig.json: no `three` paths (no typecheck here reads the root tsconfig; `wildshard check` lints through it, TS21)
+
+Step 3: `agent-sync --from` on the lean layout re-points the kit skills
+at `src/scripts/.kit/`.
