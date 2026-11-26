@@ -9,7 +9,7 @@
 //   node --import ./scripts/bake-loader.mjs src/scripts/bake-sky.mjs [--check]
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
-import { byteWriter, outputHash, jsonBytes, toolVersion } from './bake-output.mjs';
+import { byteWriter, outputHash, jsonBytes, toolVersion } from '@wildshard/sdk/headless/scripts/bake-output.mjs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { HDRLoader } from 'three/examples/jsm/loaders/HDRLoader.js';
