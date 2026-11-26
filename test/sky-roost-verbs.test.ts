@@ -9,7 +9,7 @@ import * as v from 'valibot';
 
 const result=v.object({phase:v.literal('replayed'),story:v.literal('sky-roost'),ticks:v.number(),commands:v.number(),parts:v.number(),removedSwings:v.number()});
 test('Sky earns the roost with actual fan swings, while the same walk without swings cannot',()=>{
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/sky-roost-run.ts')],{encoding:'utf8',timeout:30_000});
   expect(child.status,child.stdout+child.stderr).toBe(0);
   const line=child.stdout.split('\n').find(row=>row.includes('"phase":"replayed"'));

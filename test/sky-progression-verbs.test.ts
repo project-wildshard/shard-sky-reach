@@ -13,7 +13,7 @@ for(const stage of ['vanes','winch','roc'] as const)test(stage==='vanes'
   :stage==='winch'?'Sky earns the winch after the roost and vanes; omitting USE cannot raise the bridge'
   :'Sky defeats the Storm Roc with actual fan contacts and exact fresh-worker replay',()=>{
   const started=performance.now();
-  const child=spawnSync(process.execPath,['--experimental-transform-types','--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
+  const child=spawnSync(process.execPath,['--import',import.meta.resolve('@wildshard/sdk/headless/scripts/sim-node-loader.mjs'),
     resolve('test/fixtures/headless/sky-roost-run.ts'),stage],{encoding:'utf8',timeout:30_000});
   const outcome=child.stdout+child.stderr+JSON.stringify({error:child.error?.message,code:child.error!==undefined&&'code' in child.error?child.error.code:null,signal:child.signal,elapsedMs:performance.now()-started});
   expect(child.error,outcome).toBeUndefined();expect(child.signal,outcome).toBeNull();expect(child.status,outcome).toBe(0);

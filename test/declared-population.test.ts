@@ -35,7 +35,7 @@ async function cell(effects: NativeRuntimeEffect[] = []) {
     Uint8Array.from(readFileSync(`${directory}/${file.path}`))]));
   const rapier = await loadRapier(Uint8Array.from(readFileSync(nativeRapierFile)));
   const world = await prepareRuntimeWorld(shard, assets, plan.baked, plan.recipe, descriptor.sections), host = createSimHost(world.level, { ...world.ports, rapier });
-  world.install(host, { restoring: false, emit: effect => { effects.push(effect); } }).keeper.settle();
+  world.install(host, { restoring: false, emit: effect => { effects.push(effect); } });
   return { product, shard, plan, world, host, rapier };
 }
 
@@ -89,7 +89,7 @@ test('the flock and the Roc are declared spawns: goats keep their isles, a falle
   expect(goat.position.y).toBeGreaterThan(goatHome.y - 1);
   const saved = snapshotSimHost(host);
   const resumed = restoreSimHost(world.level, { ...world.ports, rapier }, saved, fresh => {
-    world.install(fresh, { restoring: true, emit: () => undefined, snapshot: saved }).keeper.settle();
+    world.install(fresh, { restoring: true, emit: () => undefined, snapshot: saved });
   });
   try {
     for (let i = 0; i < 60; i++) { host.step(); resumed.step(); }
