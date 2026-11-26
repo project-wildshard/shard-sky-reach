@@ -1,11 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { skyMapSources, SKY_MAP_INPUTS } from '../generators/bake-map.mjs';
-import { paintDataMap } from './bake-data-maps.mjs';
+import { paintDataMap } from '@wildshard/dev/scripts/bake-data-maps.mjs';
 
 // The catalogue names the defining recipe separately from this I/O driver.
 if (process.argv[2] !== 'src/generators/bake-map.mjs') throw new Error('Sky map driver requires its explicit defining source');
 
 // The registered runner confines native reads to this producer's exact list.
 const native = new Map(SKY_MAP_INPUTS.map(url => [url,
-  new Uint8Array(readFileSync(new URL(`../src/static${url}`, import.meta.url)))]));
+  new Uint8Array(readFileSync(new URL(`../static${url}`, import.meta.url)))]));
 await paintDataMap(process.cwd(), 'far-reach', { sources: await skyMapSources(native) });
