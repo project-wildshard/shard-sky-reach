@@ -17,7 +17,7 @@ export const BOOT_SOURCES = { tiers: { phone: { sky: [PANO_URL.phone], ...shared
 /** Existing all-file inventory intentionally uses the phone image source for both tiers. */
 export const BOOT_FILES = { sources: BOOT_SOURCES, tier: 'phone', tex: 'img' } as const;
 /** The learned grade remains the only late read. */
-export const LATE_READS = ['/assets/lut/far-reach.bin'];
+export const LATE_READS = ['/assets/far-reach/lut.bin'];
 
 /** Public boot packs omit owned geometry; native pools load it through normal shard file admission. */
 export function skyBootInventory(rigs?: SkyRigAssetSources): {

@@ -38,7 +38,7 @@
     "bytes": 163816
    },
    {
-    "url": "/assets/lut/far-reach.bin?v=0fb5e641",
+    "url": "/assets/far-reach/lut.bin?v=0fb5e641",
     "hash": "0fb5e641f93432486efd63de854047c0fab22a60f2acf16d139fe2c94c3a4269",
     "bytes": 143748
    },
@@ -418,7 +418,7 @@
     "bytes": 1828044
    },
    {
-    "url": "/assets/lut/far-reach.bin?v=0fb5e641",
+    "url": "/assets/far-reach/lut.bin?v=0fb5e641",
     "hash": "0fb5e641f93432486efd63de854047c0fab22a60f2acf16d139fe2c94c3a4269",
     "bytes": 143748
    },
@@ -693,12 +693,12 @@
     "bytes": 10132
    },
    {
-    "url": "/assets/baked/far-reach/near.json?v=401b6746",
+    "url": "/assets/far-reach/baked/near.json?v=401b6746",
     "hash": "401b6746dd8b7fea6c64db882e3ab1302145f6f2eef4a54d7089f44581c553e0",
     "bytes": 455
    },
    {
-    "url": "/assets/baked/far-reach/near.glb?v=3e3a9d97",
+    "url": "/assets/far-reach/baked/near.glb?v=3e3a9d97",
     "hash": "3e3a9d970d5b47831516f89695ca94d34b379219f5889ccc6abe0e86e8fe055b",
     "bytes": 2089520
    }

@@ -32,7 +32,7 @@
   },
   "assetGlobs": [
     "public/assets/far-reach/**",
-    "public/assets/lut/far-reach.bin"
+    "public/assets/far-reach/lut.bin"
   ],
   "card": {
     "thumb": "/src/shards/far-reach/thumbs/far-reach.jpg",

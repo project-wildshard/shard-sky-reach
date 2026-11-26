@@ -32,7 +32,7 @@
   "asset:/assets/gpu/far-reach/models/trees/tree-pine-tall.glb",
   "asset:/assets/gpu/far-reach/models/trees/tree-pine-wide.glb",
   "asset:/assets/gpu/far-reach/models/trees/tree-pine-young.glb",
-  "asset:/assets/lut/far-reach.bin",
+  "asset:/assets/far-reach/lut.bin",
   "props-tile:0/0/3:file",
   "props-tile:0/0/4:file",
   "props-tile:0/2/1:file",

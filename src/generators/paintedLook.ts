@@ -22,7 +22,7 @@ export function skyPaintedPresentation(): PaintedLookRow {
   const cards = (row: typeof dressing.glow.cards | typeof dressing.cumulus.cards, graph: string, image?: string) => row.cards.map(card => ({ name: row.name, graph,
     ...(image === undefined ? {} : { image }), order: row.order, geometry: { kind: 'plane', size: row.plane, instances: card.instances } }));
   return authorFormatRows('paintedLook.PaintedLookSchema', { look: { ...look, lightScope: 'page', clock: SKY_PAINTED.day, sky: { kind: 'haze', row: SKY_PAINTED.haze } },
-    lut: '/assets/lut/far-reach.bin', images: { pano: images.pano, cloud: images.rest[0], sea: images.rest[1], vortex: images.rest[2],
+    lut: '/assets/far-reach/lut.bin', images: { pano: images.pano, cloud: images.rest[0], sea: images.rest[1], vortex: images.rest[2],
       ...Object.fromEntries(SKY_WORLD_PREPARATION.textures.map(({ id, phase: _phase, ...image }) => [id, image])) },
     bumps: SKY_WORLD_PREPARATION.bumps.map(({ material, texture, channel, scale }) => ({ material, image: texture, channel, scale })),
     dome: { graph: { phone: 'sky-dome-phone', desktop: 'sky-dome-desktop' }, image: 'pano' },
