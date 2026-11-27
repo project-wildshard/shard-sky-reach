@@ -29,19 +29,22 @@
   "0.1.65-next.9c91846e linux-x64": {
     "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
   },
+  "0.1.67 linux-x64": {
+    "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
+  },
   "0.1.74-next.d6e6bc6b darwin-arm64": {
     "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
   },
   "0.1.74-next.d6e6bc6b linux-x64": {
     "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
   },
-  "0.1.76-next.f3b1d4c7 linux-x64": {
-    "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
-  },
   "0.1.76-next.f3b1d4c7 darwin-arm64": {
     "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
   },
-  "0.1.67 linux-x64": {
+  "0.1.76-next.f3b1d4c7 linux-x64": {
     "far-reach": "8df164bcb3beb230c33347c1832990cdcc34b437323f90c38676568cf7cc4783"
+  },
+  "0.1.99-next.6385c3d0 linux-x64": {
+    "far-reach": "89bffaf7231834cd5b8b7dc8e57d6b265ad7dc2c60c84131a575108ebead9aef"
   }
 }
