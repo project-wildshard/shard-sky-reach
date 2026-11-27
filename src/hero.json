@@ -1,11 +1,11 @@
 {
-  "content": "6fbea4b5eb7e6f831dcc6a521b34393a27906b5544f5a5bb2af7795e585c452d",
-  "captured": "2026-11-26T23:58:35.213Z",
-  "base": "http://127.0.0.1:59995",
+  "content": "6f7209750d54e854154a6509c8e719aba7336d769171719cc78e4fafc85d821a",
+  "captured": "2026-11-27T11:54:12.293Z",
+  "base": "http://127.0.0.1:50600",
   "card": {
-    "thumbs/far-reach.jpg": "ff30cfd7fe0f420463cd8103541fc1ca21178ca34eca3b59faf86ab655e58273",
-    "thumbs/far-reach-portrait.jpg": "179b1da4f0ec3bae2167f825a9af65310d8b0628a20ee2e21fd5d6a27169596f",
-    "thumbs/far-reach-landscape.jpg": "0d29af802f37f10b2a7edc4710d62babff353564743807c07e9bab81828e2bb1"
+    "thumbs/far-reach.jpg": "c04527fdaf0fd7b7f2bf1a1ff55b05f2fb7f2e5de46229f874c53305f71606cc",
+    "thumbs/far-reach-portrait.jpg": "022cb0cd694f313dc4f021e8e0710266e77702cba4b6e80bfc108ce2a0681a0c",
+    "thumbs/far-reach-landscape.jpg": "83542b3df651a7bf3699e2c5fa379ea227b7ddb79dc01a652ef4d1dd4c850956"
   },
-  "look": "9276552e441c5d958a096aa43e46612959418f295ac5776f3e0cd6943f9c456b"
+  "look": "53a358d1a2f13183106f7a8b3616e89d2d2017d6f92236ced28f8218065c57d2"
 }
