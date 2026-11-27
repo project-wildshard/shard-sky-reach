@@ -1,73 +1,73 @@
 {
   "rock": {
     "source": "/assets/far-reach/tex/rock.webp",
+    "asset": "5b883304845faad673e9ccb33150ac944c177836438b069822d24d77b98a8e42",
     "sampler": {
       "filter": "linear",
       "wrap": "repeat",
       "anisotropy": 4
-    },
-    "asset": "29509eb73032d3779209857635a2800c58e30d97cf39aa647cd82edce53aa9b5"
+    }
   },
   "meadow": {
     "source": "/assets/far-reach/tex/meadow.webp",
+    "asset": "7001910d23c197ccdd161b27d462ad9fa84605d79dbe3f40881c21ed65dab0df",
     "sampler": {
       "filter": "linear",
       "wrap": "repeat",
       "anisotropy": 4
-    },
-    "asset": "b230b51585a820cad1c588292ad3b7b96e8ce087526b6adbcb2f6eb566dd96e0"
+    }
   },
   "clouds": {
     "source": "/assets/far-reach/tex/clouds.webp",
+    "asset": "19546c3235c673bd2954564faf6a2e38dabfd84d3d310564061ec6b0e89cbc93",
     "sampler": {
       "filter": "linear"
-    },
-    "asset": "8643f909ff6e1a8bd9bc0939ffa587bf1302d58fe6a46d49163873f133b6d5b0"
+    }
   },
   "cloudsea": {
     "source": "/assets/far-reach/tex/cloudsea.webp",
+    "asset": "7c11fdab40f5b777ad3a25d9de6dfca81af51a1148e7554269ccbdd30834ca84",
     "sampler": {
       "filter": "linear",
       "wrap": "repeat",
       "anisotropy": 4
-    },
-    "asset": "e87efc25c5f2fb46ff968d8558edc2def23b5b14bc8e9eb81005f7e27f0bb0b3"
+    }
   },
   "maelstrom": {
     "source": "/assets/far-reach/tex/maelstrom.webp",
+    "asset": "3fcfa2855cbaf8cd98a263a444d93d32756f663eae5d57ba55562d6572a9f49c",
     "sampler": {
       "filter": "linear"
-    },
-    "asset": "36bcd27f5ed57c6ec5843e78ebcb57645e1050c32315c25a89329cd30de6dd14"
+    }
   },
   "stormeye": {
     "source": "/assets/far-reach/tex/stormeye.webp",
+    "asset": "a64867688ad9a71b245df0620d237e1cea8fc5395dba10146f03719f6429937a",
     "sampler": {
       "filter": "linear"
-    },
-    "asset": "47844d7d65db8ad2d473359243eb9bff595a18254f0507d91a503e255b3d0e44"
+    }
   },
   "millStone": {
     "source": "/assets/far-reach/tex/mill-stone.webp",
+    "asset": "e2ebade4814238ca2d49aca89bb11a2bb6839941537933599168fcb358999881",
     "sampler": {
       "filter": "linear",
       "wrap": "repeat",
       "anisotropy": 4
-    },
-    "asset": "a6a27d40f424f2adca503a5acc321df62b65f666e6b7a266b4f7330b58c95268"
+    }
   },
   "millCanvas": {
     "source": "/assets/far-reach/tex/mill-canvas.webp",
+    "asset": "e3fe1d92d1b551e62cb9ce9193b6c8ca44c86f4d180f25c8c25ac923500d4c1a",
     "sampler": {
       "filter": "linear"
-    },
-    "asset": "902bd6a90128d62477fb16fc567dceb43194bffadd4544ee09cb94217b42a054"
+    }
   },
   "millIvy": {
     "source": "/assets/far-reach/tex/mill-ivy.webp",
+    "asset": "1fd25821444df9272cb8d92afa0766d5a8b88435a487aa60a2b8aca8299076c9",
     "sampler": {
       "filter": "linear"
-    },
-    "asset": "4d7f378584c91c5e64a2c15a496fff6407e12db1c194fe30bf4261346eb03d3b"
+    }
   }
 }

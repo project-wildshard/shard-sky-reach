@@ -1,4 +1,4 @@
-import { bakeRawColourPixels } from '@wildshard/sdk/bake/rawTexture';
+import type { ProjectGenerationContext } from '@wildshard/sdk/projectGeneration';
 import { SWARD_ATLAS } from './rows/swardAtlas';
 
 /**
@@ -78,8 +78,7 @@ export function bakeSkySwardAtlas(seed = 6417): Uint8Array {
 
 /** The atlas as a lossless, linear library texture (data/swardAtlas.ts `SWARD_ATLAS_FILE`): the same texels in the same row
  *  order, one level (the sampler's GPU mips build the chain, as the DataTexture's did). */
-export function bakeSwardAtlasTexture(): Promise<Uint8Array> {
+export function bakeSwardAtlasTexture(writeImagePixels: NonNullable<ProjectGenerationContext['writeImagePixels']>): Promise<Uint8Array> {
   const { variants, w, h } = SWARD_ATLAS;
-  return Promise.resolve(bakeRawColourPixels({ width: w * variants, height: h,
-    pixels: new Uint8ClampedArray(bakeSkySwardAtlas()) }, { colourSpace: 'linear' }));
+  return writeImagePixels({ width: w * variants, height: h, pixels: new Uint8ClampedArray(bakeSkySwardAtlas()) });
 }

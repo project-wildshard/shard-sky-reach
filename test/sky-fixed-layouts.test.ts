@@ -40,6 +40,12 @@ async function skyDiscovery(): Promise<ReturnType<typeof parseDiscoveryValues>> 
       { prefix: '/assets/', directory: resolve('src/static/assets') },
     ]);
     const rigs = await skyCreatureRigOutput(context);
+    expect(rigs.files.map(file => file.name).sort()).toEqual([
+      'world/rigs/drift-ray.glb',
+      'world/rigs/gale-wisp.glb',
+      'world/rigs/sky-goat.glb',
+      'world/rigs/storm-roc.glb',
+    ]);
     return parseDiscoveryValues({ ...skyProductBoot(skyRigAssetSources(rigs.files, GPU_FILES)),
       ...skyViewDiscovery(), mapPalette: skyMapPalette(), navigation: originalSkyNavigation() });
   } finally { rmSync(cache, { recursive: true, force: true }); }
@@ -77,6 +83,7 @@ for (const [slug, palette] of [['far-reach', skyMap]] as const) {
   test(`${slug} discovery lends fixed palette JSON without executable authoring`, async () => {
     const discovery = await skyDiscovery();
     if (discovery === undefined) throw new Error('Missing current source discovery');
+    expect(discovery.ktx2).toEqual({ phone: {}, desktop: {} });
     const root = appBuildRoot();
     try {
     const source = authoredManifestSource(root, slug, { discovery });

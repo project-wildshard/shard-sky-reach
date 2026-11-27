@@ -23,10 +23,7 @@ export function skyRigAssetSources(files: EmittedBlobs['files'], original: SkyRi
   };
   const targets = new Map<string, string>(SKY_CREATURES.map(creature =>
     [SKY_CREATURE_RIGS[creature], address(urls[creature])]));
-  const originalPhone = original.phone[SKY_CREATURE_RIGS['storm-roc']];
-  if (originalPhone === undefined) throw new Error('Sky rig mapping needs the original phone variant');
-  targets.set(originalPhone, address('world/rigs/storm-roc.phone.glb'));
-  if (new Set(targets.values()).size !== 5) throw new Error('Sky rig mapping cannot alias original representations');
+  if (new Set(targets.values()).size !== SKY_CREATURES.length) throw new Error('Sky rig mapping cannot alias original representations');
   const tier = (rows: Readonly<Record<string, string>>): Record<string, string> => {
     const result: Record<string, string> = {};
     for (const [source, target] of Object.entries(rows)) {

@@ -10,6 +10,7 @@ import { Buffer } from 'node:buffer';
 import { expect, test } from 'vitest';
 import { readBuiltShardfile } from '@wildshard/sdk/headless/scripts/built-folder.mjs';
 import { readProgramDiscovery } from '@wildshard/sdk/headless/scripts/program-discovery.mjs';
+import { readCookData } from '@wildshard/format/cookData';
 import { parseOutputIndex } from '@wildshard/format/outputIndex';
 import { hashImmutableBytes } from '@wildshard/sdk/immutable';
 import { emptyShardfile } from '@wildshard/sdk/internal/engine/host/author';
@@ -25,7 +26,15 @@ test('the SDK-built product publishes receipt-backed geometry and discovery', ()
   const input: unknown = JSON.parse(readFileSync(resolve(folder, 'shard.json'), 'utf8'));
   const index = parseOutputIndex(input);
   const discovery = readProgramDiscovery(root, 'far-reach');
-  expect(discovery.navigation).toEqual(skyNavigationRows(readFileSync(resolve('src', SKY_NAVIGATION_INPUT))));
+  const navigation = skyNavigationRows(readFileSync(resolve('src', SKY_NAVIGATION_INPUT)));
+  expect(discovery.navigation).toEqual(navigation);
+  const cook = readCookData(JSON.parse(readFileSync(resolve(folder, 'cook.json'), 'utf8')));
+  const navAsset = index.files.find(row => row.hash === navigation.navigation.file);
+  if (navAsset === undefined) throw new Error('Missing admitted navigation asset');
+  expect(cook.mounts.find(row => row.url === navigation.url)).toMatchObject({
+    hash: navigation.navigation.file,
+    path: navAsset.path,
+  });
   for (const name of ['prepared-models', 'bridge-rest', 'mill-rest', 'fan']) {
     const file = index.files.find(row => row.name === `world/geometry/${name}.glb`);
     if (file === undefined) throw new Error('Missing owned geometry');

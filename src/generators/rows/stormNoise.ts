@@ -1,9 +1,9 @@
 /** The retained cloud density/light channels, lossless and linear in the cached library. */
 export const STORM_NOISE = {
-  "hash": "9e04e0e37d62f6e67961705d1b59f30082227cc60df9bf4c6cb0d262845c2e00",
-  "kind": "ktx2",
-  "compressed": 9463,
-  "decoded": 0,
+  "hash": "c17558f1f31296936f6bc8acbe827f9466e261cc05a441c5d6ed79816dd660db",
+  "kind": "image",
+  "compressed": 10624,
+  "decoded": 58880,
   "gpu": 16384,
   "triangles": 0,
   "draws": 0,

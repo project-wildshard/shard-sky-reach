@@ -6,7 +6,7 @@ import skyMapSources from '../../data/skyMapSources.json' with { type: 'json' };
  * ISLE_CUT) and 0.8 m for the windmill's (`isle-paint-cut-mill`).
  */
 
-/** The library maps the island looks sample (data/skyMapSources.json: the KTX2 file each tiling map was admitted as). */
+/** The PNG library maps the island looks sample. */
 export const ISLE_MAPS = { rock: skyMapSources.rock.asset, meadow: skyMapSources.meadow.asset } as const;
 
 /** How many values each playable island takes from the level's cosmetic stream (the old 12-gon island's 122; the last seeds

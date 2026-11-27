@@ -1,4 +1,2 @@
-import type { bakeColourTexture } from '@wildshard/sdk/bake/texture';
-
-/** Offline library catalogue writer; the explicit entry supplies its shared pixel encoder. */
-export declare function bakeTextureLibrary(root: string, input: string, options: { encoder: typeof bakeColourTexture; encode: boolean; check: boolean }): Promise<void>;
+/** Refresh the committed PNG pins and cost declarations. */
+export declare function bakeTextureLibrary(root: string, input: string, options: { encode: boolean; check: boolean }): Promise<void>;

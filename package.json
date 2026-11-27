@@ -1,6 +1,6 @@
 {
   "name": "@wildshard/shard-sky-reach",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": true,
   "description": "Sky Reach: a Wildshard shard.",
   "type": "module",

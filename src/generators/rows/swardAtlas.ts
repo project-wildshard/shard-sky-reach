@@ -12,10 +12,10 @@ export const SWARD_ATLAS = { variants: 6, perSpecies: 2, w: 192, h: 512 } as con
 /** The atlas as a cached, hash-named library texture (generators/swardAtlas.ts `bakeSwardAtlasTexture`): lossless, linear
  *  (its channels are data), one level; the meadow graph samples it with GPU mips, as the DataTexture did. */
 export const SWARD_ATLAS_FILE = {
-  hash: '607c53f28dbdd88423b39fd32419ba735f9a13c3c1ecabaf1cadb68715d63f0b',
-  kind: 'ktx2',
-  compressed: 663989,
-  decoded: 0,
+  hash: '861c087e975421ddd7cfb4be9d9ff876c38dc175ed94c635545a6aa50a89ba8d',
+  kind: 'image',
+  compressed: 704569,
+  decoded: 5177572,
   gpu: 2359296,
   triangles: 0,
   draws: 0,

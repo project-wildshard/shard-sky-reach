@@ -357,7 +357,7 @@
     "stages": {"surface":{"colour":"b87","roughness":0.95,"metalness":0},"lighting":{"sun":"plSun","sunSpecular":1,"ambient":"plAmb"}},
     "model": "standard",
     "flatShading": true,
-    "params": {"rock":{"type":"texture","value":"29509eb73032d3779209857635a2800c58e30d97cf39aa647cd82edce53aa9b5"}},
+    "params": {"rock":{"type":"texture","value":"5b883304845faad673e9ccb33150ac944c177836438b069822d24d77b98a8e42"}},
     "nodes": {
       "plAlb": {"op":"albedo"},
       "plN": {"op":"normalView"},
@@ -620,7 +620,7 @@
     "stages": {"surface":{"colour":"i109","roughness":0.95,"metalness":0},"lighting":{"sun":"plSun","sunSpecular":1,"ambient":"plAmb"}},
     "model": "standard",
     "flatShading": true,
-    "params": {"rock":{"type":"texture","value":"29509eb73032d3779209857635a2800c58e30d97cf39aa647cd82edce53aa9b5"},"meadow":{"type":"texture","value":"b230b51585a820cad1c588292ad3b7b96e8ce087526b6adbcb2f6eb566dd96e0"}},
+    "params": {"rock":{"type":"texture","value":"5b883304845faad673e9ccb33150ac944c177836438b069822d24d77b98a8e42"},"meadow":{"type":"texture","value":"7001910d23c197ccdd161b27d462ad9fa84605d79dbe3f40881c21ed65dab0df"}},
     "nodes": {
       "plAlb": {"op":"albedo"},
       "plN": {"op":"normalView"},
@@ -785,7 +785,7 @@
     "stages": {"surface":{"colour":"i109","roughness":0.95,"metalness":0,"discard":"kCut"},"lighting":{"sun":"plSun","sunSpecular":1,"ambient":"plAmb"}},
     "model": "standard",
     "flatShading": true,
-    "params": {"rock":{"type":"texture","value":"29509eb73032d3779209857635a2800c58e30d97cf39aa647cd82edce53aa9b5"},"meadow":{"type":"texture","value":"b230b51585a820cad1c588292ad3b7b96e8ce087526b6adbcb2f6eb566dd96e0"}},
+    "params": {"rock":{"type":"texture","value":"5b883304845faad673e9ccb33150ac944c177836438b069822d24d77b98a8e42"},"meadow":{"type":"texture","value":"7001910d23c197ccdd161b27d462ad9fa84605d79dbe3f40881c21ed65dab0df"}},
     "nodes": {
       "plAlb": {"op":"albedo"},
       "plN": {"op":"normalView"},
@@ -953,7 +953,7 @@
     "stages": {"surface":{"colour":"i109","roughness":0.95,"metalness":0,"discard":"kCut"},"lighting":{"sun":"plSun","sunSpecular":1,"ambient":"plAmb"}},
     "model": "standard",
     "flatShading": true,
-    "params": {"rock":{"type":"texture","value":"29509eb73032d3779209857635a2800c58e30d97cf39aa647cd82edce53aa9b5"},"meadow":{"type":"texture","value":"b230b51585a820cad1c588292ad3b7b96e8ce087526b6adbcb2f6eb566dd96e0"}},
+    "params": {"rock":{"type":"texture","value":"5b883304845faad673e9ccb33150ac944c177836438b069822d24d77b98a8e42"},"meadow":{"type":"texture","value":"7001910d23c197ccdd161b27d462ad9fa84605d79dbe3f40881c21ed65dab0df"}},
     "nodes": {
       "plAlb": {"op":"albedo"},
       "plN": {"op":"normalView"},
@@ -1799,7 +1799,7 @@
     "stages": {"surface":{"roughness":0.95,"metalness":0,"colour":"colour","emissive":"glow","discard":"cut"},"lighting":{"sun":"plSun","sunSpecular":1,"ambient":"plAmb"}},
     "model": "standard",
     "doubleSided": true,
-    "params": {"canvas":{"type":"texture","value":"902bd6a90128d62477fb16fc567dceb43194bffadd4544ee09cb94217b42a054"}},
+    "params": {"canvas":{"type":"texture","value":"e3fe1d92d1b551e62cb9ce9193b6c8ca44c86f4d180f25c8c25ac923500d4c1a"}},
     "nodes": {
       "plAlb": {"op":"albedo"},
       "plN": {"op":"normalView"},
@@ -1933,7 +1933,7 @@
     "effectState": {"blend":"alpha","fog":false,"depthWrite":false},
     "model": "unlit",
     "doubleSided": true,
-    "params": {"noise":{"type":"texture","role":"data","value":"9e04e0e37d62f6e67961705d1b59f30082227cc60df9bf4c6cb0d262845c2e00"},"paint":{"type":"texture","value":"47844d7d65db8ad2d473359243eb9bff595a18254f0507d91a503e255b3d0e44"}},
+    "params": {"noise":{"type":"texture","role":"data","value":"c17558f1f31296936f6bc8acbe827f9466e261cc05a441c5d6ed79816dd660db"},"paint":{"type":"texture","value":"a64867688ad9a71b245df0620d237e1cea8fc5395dba10146f03719f6429937a"}},
     "nodes": {
       "g0": {"op":"positionGeometry"},
       "g1": {"op":"swizzle","in":["g0"],"mask":"xz"},
@@ -2212,7 +2212,7 @@
     "effectState": {"fog":false},
     "model": "unlit",
     "doubleSided": true,
-    "params": {"atlas":{"type":"texture","role":"data","value":"607c53f28dbdd88423b39fd32419ba735f9a13c3c1ecabaf1cadb68715d63f0b"}},
+    "params": {"atlas":{"type":"texture","role":"data","value":"861c087e975421ddd7cfb4be9d9ff876c38dc175ed94c635545a6aa50a89ba8d"}},
     "nodes": {
       "g0": {"op":"attribute","name":"aBladeA","type":"vec4"},
       "g1": {"op":"attribute","name":"aBladeB","type":"vec4"},

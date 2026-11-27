@@ -39,6 +39,7 @@ const creatures = { ...base.creatures, brains: SKY_DECLARED_ROWS.brains, spawns:
 /** ONE-FORMAT OF31h3: the cell's awake cost, ms per tick with one player in it as microseconds (engine's measured
  * SC8 table, v0.1.19: 0.866 ms); the box weighs the cell by it in place of an engine table of shards. */
 const SKY_AWAKE_MICROS = 866;
+const libraryBytes = skyMaps.budget.compressed + STORM_NOISE.compressed + SWARD_ATLAS_FILE.compressed;
 /** Build-time declaration rows from admitted original navigation; no source handoff is read. */
 export function skyShardfileRows(navigation: SkyNavigationRows, movers: MoverData): ReturnType<typeof parseShardfile> {
   return structuredClone(parseShardfile({ ...base, ...SKY_SECTIONS, rows, creatures, encounters: SKY_DECLARED_ENCOUNTERS, spawn: manifest.spawn, ui: [...base.ui, ...SKY_DECLARED_UI], plumbing, state: { ...SKY_SECTIONS.state, version: 2 }, migrations: slotMigrations, navigation: navigation.navigation, serverBudget: { ...base.serverBudget, awakeMicros: SKY_AWAKE_MICROS, memory: base.serverBudget.memory + navigation.files.reduce((sum, file) => sum + file.decoded, 0) }, accent: 'pink', runtime: null,
@@ -54,7 +55,7 @@ export function skyShardfileRows(navigation: SkyNavigationRows, movers: MoverDat
   // decoded + GPU for all 64 L0 tiles, the files already ship), so nothing past a 5 x 5 ring falls to its 1.5 % copy
   ring: 'cell',
   library: [...base.library, ...skyMaps.library, STORM_NOISE.hash, SWARD_ATLAS_FILE.hash], tiles: isleProps.tiles, files: [...skyMaps.files, { ...STORM_NOISE, dependencies: [] }, { ...SWARD_ATLAS_FILE, dependencies: [] }, ...navigation.files, ...isleProps.files], critical: [...navigation.critical],
-  budgets: { ...base.budgets, client: SKY_REACH_RUNTIME_COST, library: { ...skyMaps.budget, compressed: skyMaps.budget.compressed + STORM_NOISE.compressed + SWARD_ATLAS_FILE.compressed, resident: skyMaps.budget.resident + STORM_NOISE.decoded + STORM_NOISE.gpu + SWARD_ATLAS_FILE.gpu, downloadAllowance: 8_811_813 + STORM_NOISE.compressed + SWARD_ATLAS_FILE.compressed }, sim: { resident: 1_000_000 + navigation.files.reduce((sum, file) => sum + file.decoded, 0), compressed: navigation.files.reduce((sum, file) => sum + file.compressed, 0) } },
+  budgets: { ...base.budgets, client: SKY_REACH_RUNTIME_COST, library: { ...skyMaps.budget, compressed: libraryBytes, resident: skyMaps.budget.resident + STORM_NOISE.decoded + STORM_NOISE.gpu + SWARD_ATLAS_FILE.decoded + SWARD_ATLAS_FILE.gpu, downloadAllowance: libraryBytes }, sim: { resident: 1_000_000 + navigation.files.reduce((sum, file) => sum + file.decoded, 0), compressed: navigation.files.reduce((sum, file) => sum + file.compressed, 0) } },
   sim: { ...base.sim, scripts: [] },
   props: { ...isleProps.props, materials: Object.fromEntries(['isle-paint', 'isle-paint-cut', 'isle-paint-cut-mill', 'isle-coarse'].map(name => [name, { id: name === 'isle-coarse' ? 'toon' : name }])),
     colliders: [...RISING_ISLETS.map((entry) => ({ id: `landing.${entry.edge}`, panel: null, initialActive: true, shapes: [{ ...entry.landing }] })),

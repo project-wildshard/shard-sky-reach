@@ -27,6 +27,9 @@ import { skySwardAtlasProgram } from './swardAtlasProgram';
 import { skyStormNoiseInput } from './stormNoiseInput';
 import { STORM_NOISE } from './rows/stormNoise';
 import { SWARD_ATLAS_FILE } from './rows/swardAtlas';
+import { hashImmutableBytes } from '@wildshard/sdk/immutable';
+import { skyMapPng } from './skyMapImage';
+import skyMapSources from '../data/skyMapSources.json' with { type: 'json' };
 import { skyCreatureRigOutput } from './creatureRigOutput';
 import { skyPaintedModelPhoneOutput } from './paintedModelPhone';
 import { skyRigAssetSources } from './rigAssetSources';
@@ -124,6 +127,21 @@ export async function prepareOutput(ctx: ProjectGenerationContext): Promise<SkyS
     assets.delete(previous.hash); assets.set(replacement.file.hash, replacement.bytes);
   }
   for (const blob of [panorama, geometry, ...world, bridge, mill, fan, ...vanes, ...rest]) assets.set(blob.file.hash, blob.bytes);
+  const mapSources = Object.values(skyMapSources);
+  const maps = await ctx.cached({ id: 'sky-library-pngs', native: true, inputs: mapSources.map(row => row.source) }, async inputs => {
+    const output = new Map<string, Uint8Array>();
+    for (const row of mapSources) {
+      const image = inputs.get(row.source);
+      if (image === undefined) throw new Error(`Missing library source ${row.source}`);
+      output.set(row.asset, await skyMapPng(image, ctx));
+    }
+    return output;
+  });
+  for (const row of mapSources) {
+    const png = maps.get(row.asset);
+    if (png === undefined || hashImmutableBytes(png) !== row.asset) throw new Error(`Sky library PNG differs for ${row.source}`);
+    assets.set(row.asset, png);
+  }
   assets.set(SWARD_ATLAS_FILE.hash, await skySwardAtlasProgram(ctx));
   assets.set(STORM_NOISE.hash, await skyStormNoiseInput(ctx));
   const tiles = await skyWorldTileProgram(ctx);
