@@ -16,3 +16,5 @@ Every mount now sits under `/assets/far-reach/`:
 
 Shard version 0.0.9, a patch bump of the live 0.0.8 (meta R2 layout RL2). The SDK still writes the navigation's
 discovery URL at the engine-wide path until its fix ships; the engine reads the zone copy first either way.
+
+The hero is captured again from `wildshard dev` (the same view) and its built look recorded.
