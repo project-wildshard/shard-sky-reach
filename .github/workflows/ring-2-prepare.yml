@@ -29,7 +29,8 @@ concurrency:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # SF24: the images-only cook encodes every texture cold (472 s on 2026-11-27, run 46003635023).
+    timeout-minutes: 40
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
     steps:
